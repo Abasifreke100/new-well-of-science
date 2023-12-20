@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom"
 import { Button } from "../ui/button"
 import { useState } from "react"
 import { AnimatePresence, m } from "framer-motion"
-import { menuVariant, navItem } from "../../animations/menu-variants"
+import { navItem } from "../../animations/menu-variants"
 
 export default function Header() {
   const location = useLocation()
@@ -17,25 +17,33 @@ export default function Header() {
     setIsOpen((prev) => !prev)
   }
   return (
-    <header className="fixed top-0 left-0 z-50 flex items-center w-full h-20 py-4 bg-dark_bg">
-      <nav
-        className={`container flex items-center justify-between h-full duration-300`}
-      >
-        <div>
+    <header
+      className={`fixed top-0 left-0 z-50 flex justify-center w-full ${
+        isOpen ? "h-screen" : "h-20"
+      } bg-dark_bg duration-500 lg:h-20`}
+    >
+      <nav className="absolute top-0 left-0 w-full p-4 border-red-500">
+        <div className="flex items-center justify-between">
           <img src={logo} alt={siteConfig.name} width={208} height={52} />
-        </div>
 
-        <DesktopNav location={location} />
+          <DesktopNav location={location} />
 
-        <div
-          className="relative z-50 transition-all duration-300 lg:hidden"
-          onClick={handleMenuToggle}
-        >
-          {isOpen ? (
-            <X className="text-white" />
-          ) : (
-            <Menu className="text-white" />
-          )}
+          <div className="flex items-center gap-8 lg:hidden">
+            <Button asChild className={"hidden md:flex"}>
+              <Link to={"/contact"}>Contact us</Link>
+            </Button>
+
+            <div
+              className="relative z-50 transition-all duration-300 lg:hidden"
+              onClick={handleMenuToggle}
+            >
+              {isOpen ? (
+                <X className="text-white" />
+              ) : (
+                <Menu className="text-white" />
+              )}
+            </div>
+          </div>
         </div>
 
         <AnimatePresence
@@ -69,28 +77,18 @@ const DesktopNav = ({ location }) => {
             </Link>
           )
         })}
+        <Button asChild>
+          <Link to={"/contact"}>Contact us</Link>
+        </Button>
       </div>
-
-      <Button asChild>
-        <Link to={"/contact"}>Contact us</Link>
-      </Button>
     </div>
   )
 }
 
 const MobileNav = ({ handleMenuToggle }) => {
   return (
-    <m.div
-      className="absolute inset-0 z-40 w-screen h-screen lg:hidden bg-dark_bg"
-      initial={{ opacity: 0 }}
-      variants={menuVariant}
-      whileInView={"show"}
-      exit={"exit"}
-    >
-      <div className="container py-4 space-y-20">
-        <div className="mb-20">
-          <img src={logo} alt={siteConfig.name} width={208} height={52} />
-        </div>
+    <div className="absolute top-32 lg:hidden">
+      <div className="py-4 space-y-20 ">
         <m.div
           className="flex flex-col gap-12"
           initial={{ opacity: 0 }}
@@ -113,6 +111,6 @@ const MobileNav = ({ handleMenuToggle }) => {
           </Button>
         </m.div>
       </div>
-    </m.div>
+    </div>
   )
 }
