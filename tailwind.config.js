@@ -23,6 +23,7 @@ export default {
         footer_bg: "#212121",
         light_text: "#cccccc",
         light_pink: "#BA2552",
+        normal_text: "#333",
       },
       fontFamily: {
         inter: [`Inter`, `sans-serif`],
