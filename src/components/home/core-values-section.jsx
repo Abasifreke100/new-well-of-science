@@ -11,6 +11,53 @@ import Renewables from "./assets/Renewables.png"
 
 import { m } from "framer-motion"
 
+const coreValues = [
+  {
+    title: "Technology",
+    icon: TechnologyIcon,
+    description: "Maximizing impact through technology for sustainable growth.",
+  },
+  {
+    title: "Innovation",
+    icon: InnovationIcon,
+    description:
+      "Championing bold ideas and positive trends to achieve sustainable breakthroughs",
+  },
+  {
+    title: "Sustainability",
+    icon: SustainabilityIcon,
+    description:
+      "Unlocking valuable data insights to promote circularity across diverse sectors.",
+  },
+  {
+    title: "Partnership",
+    icon: PartnershipIcon,
+    description:
+      "Fostering collaborations for sustainable socio-economic and environmental impact.",
+  },
+]
+
+const sus = [
+  {
+    title: "Lifestyle",
+    icon: LifestyleIcon,
+    description:
+      "Promoting sustainable habits among consumers by raising awareness about the environmental impact of their daily choices.",
+  },
+  {
+    title: "ValueChain",
+    icon: ValueChainIcon,
+    description:
+      "Collaborating with brands to establish and implement sustainable practices across their business processes by identifying and addressing potential sustainability concerns.",
+  },
+  {
+    title: "Circularity",
+    icon: CircularityIcon,
+    description:
+      "Enhancing sustainable production and consumption practices that ensure economic prosperity for present and future generations.",
+  },
+]
+
 export default function CoreValuesSection() {
   return (
     <section className="relative bg-green_three rounded-[32px] md:rounded-[64px] lg:rounded-[80px] overflow-clip">
@@ -34,7 +81,14 @@ export default function CoreValuesSection() {
           </m.p>
         </header>
 
-        <div className="grid grid-cols-1 gap-8 place-items-center md:grid-cols-2 max-w-[650px] mx-auto">
+        <m.div
+          className="grid grid-cols-1 gap-8 place-items-center md:grid-cols-2 max-w-[650px] mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            transition: { duration: 0.5, staggerChildren: 0.2 },
+          }}
+        >
           <m.img
             initial={{ opacity: 0, x: -100, rotate: 56 }}
             whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
@@ -43,35 +97,17 @@ export default function CoreValuesSection() {
             className="absolute hidden rotate-[56deg] -left-[40%] top-24 lg:flex"
           />
 
-          <Card
-            description={
-              "Maximizing impact through technology for sustainable growth."
-            }
-            heading={"Technology"}
-            Icon={TechnologyIcon}
-          />
-          <Card
-            description={
-              "Championing bold ideas and positive trends to achieve sustainable breakthroughs"
-            }
-            heading={"Innovation"}
-            Icon={InnovationIcon}
-          />
-          <Card
-            description={
-              "Unlocking valuable data insights to promote circularity across diverse sectors."
-            }
-            heading={"Sustainability"}
-            Icon={SustainabilityIcon}
-          />
-          <Card
-            description={
-              "Fostering collaborations for sustainable socio-economic and environmental impact."
-            }
-            heading={"Partnership"}
-            Icon={PartnershipIcon}
-          />
-        </div>
+          {coreValues.map((item, index) => (
+            <Card
+              key={item.title}
+              description={item.description}
+              heading={item.title}
+              Icon={item.icon}
+              delay={(index + 1) / 10}
+              direction="right"
+            />
+          ))}
+        </m.div>
       </div>
 
       <div className="relative w-full h-3">
@@ -99,31 +135,42 @@ export default function CoreValuesSection() {
           </m.p>
         </header>
 
-        <div className="grid grid-cols-1 gap-10 lg:gap-8 place-items-start items-center lg:items-start justify-center w-fit  lg:w-[998px] lg:grid-cols-3 mx-auto pb-[227px] lg:pb-[245px]">
-          <Card
-            description={
-              "Promoting sustainable habits among consumers by raising awareness about the environmental impact of their daily choices."
+        <m.div
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            transition: { duration: 0.5, staggerChildren: 0.3 },
+          }}
+          className="grid grid-cols-1 gap-10 lg:gap-8 place-items-start items-center lg:items-start justify-center w-fit  lg:w-[998px] lg:grid-cols-3 mx-auto pb-[227px] lg:pb-[245px]"
+        >
+          {sus.map((item, index) => {
+            if (index === 1) {
+              return (
+                <div className="lg:mt-[59px]" key={item.title}>
+                  <Card
+                    key={item.title}
+                    description={item.description}
+                    heading={item.title}
+                    Icon={item.icon}
+                    delay={(index + 1) / 10}
+                    direction="left"
+                  />
+                </div>
+              )
             }
-            heading={"Lifestyle"}
-            Icon={LifestyleIcon}
-          />
-          <div className="lg:mt-[59px]">
-            <Card
-              description={
-                "Collaborating with brands to establish and implement sustainable practices across their business processes by identifying and addressing potential sustainability concerns."
-              }
-              heading={"ValueChain"}
-              Icon={ValueChainIcon}
-            />
-          </div>
-          <Card
-            description={
-              "Enhancing sustainable production and consumption practices that ensure economic prosperity for present and future generations."
-            }
-            heading={"Circularity"}
-            Icon={CircularityIcon}
-          />
-        </div>
+
+            return (
+              <Card
+                key={item.title}
+                description={item.description}
+                heading={item.title}
+                Icon={item.icon}
+                delay={(index + 1) / 10}
+                direction="left"
+              />
+            )
+          })}
+        </m.div>
       </div>
 
       <m.img
@@ -160,16 +207,21 @@ export default function CoreValuesSection() {
   )
 }
 
-const Card = ({ heading, description, Icon }) => {
+const Card = ({
+  heading,
+  description,
+  Icon,
+  delay = 0.2,
+  direction = "left",
+}) => {
   return (
     <m.div
       className="px-4 w-full max-w-[308px] min-h-[288px] md:min-h-[308px] md:w-[308px] pt-8 bg-white border border-[#D9D9D9] rounded-3xl relative overflow-clip"
-      initial={{ opacity: 0, scaleZ: 0, scale: 0 }}
+      initial={{ opacity: 0, x: direction == "left" ? -100 : 100 }}
       whileInView={{
         opacity: 1,
-        scaleZ: 1,
-        scale: 1,
-        transition: { duration: 0.5 },
+        x: 1,
+        transition: { duration: 0.5, delay: delay },
       }}
     >
       <div className="grid w-12 h-12 mb-10 place-items-center bg-[#4B7810] ml-auto rounded-full">

@@ -6,6 +6,7 @@ import Tree from "./assets/Tree.svg"
 import bag from "./assets/bag.svg"
 import { m } from "framer-motion"
 import Arrow from "./assets/arrow.svg"
+import { Link } from "react-router-dom"
 
 export default function FeaturesSection() {
   return (
@@ -108,8 +109,8 @@ export default function FeaturesSection() {
             recyclable and biodegradable alternative to plastic shopping bags.{" "}
           </m.p>
 
-          <Button size={"lg"} variant={"outline"} className={"mx-auto"}>
-            Learn more
+          <Button size={"lg"} variant={"outline"} className={"mx-auto"} asChild>
+            <Link to={"/portfolio"}>Learn more</Link>
           </Button>
         </div>
 

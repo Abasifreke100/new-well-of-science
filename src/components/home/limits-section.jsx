@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { Button } from "../ui/button"
 import Cube from "./assets/cube.svg"
 import Sign from "./assets/sign.png"
@@ -16,7 +17,9 @@ export default function LimitsSection() {
           the other.
         </p>
 
-        <Button size={"lg"}>Get in touch</Button>
+        <Button size={"lg"} asChild>
+          <Link to={"/partnership"}>Get in touch</Link>
+        </Button>
 
         <img
           src={Cube}
@@ -32,7 +35,7 @@ export default function LimitsSection() {
           className="absolute z-20 -bottom-20 -right-16 md:-right-32 md:bottom-0 lg:bottom-0 lg:right-20"
         />
 
-        <div className="bg-[#D15982] h-[25rem] w-[650px] -rotate-90 rounded-r-full absolute md:-right-72 lg:-right-16 top-[60%]" />
+        <div className="bg-[#D15982] h-[25rem] w-[650px] -rotate-90 rounded-r-full absolute md:-right-72 lg:-right-16 top-[60%] hidden md:flex" />
       </div>
     </section>
   )

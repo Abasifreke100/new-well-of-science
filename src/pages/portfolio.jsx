@@ -1,5 +1,12 @@
+import { useSearchParams } from "react-router-dom"
 import Layout from "../components/layout"
 
 export default function Portfolio() {
-  return <Layout>Portfolio</Layout>
+  let [searchParams, setSearchParams] = useSearchParams()
+
+  return (
+    <Layout>
+      Portfolio - {JSON.stringify(searchParams.get("tab"), null, 2)}
+    </Layout>
+  )
 }

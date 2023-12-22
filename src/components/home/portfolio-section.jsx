@@ -7,6 +7,7 @@ import Bag from "./assets/bag.png"
 import { m } from "framer-motion"
 
 import { Button } from "../ui/button"
+import { Link } from "react-router-dom"
 
 export default function PortfolioSection() {
   const [activeTab, setActiveTab] = useState(0)
@@ -34,7 +35,7 @@ export default function PortfolioSection() {
 
         <div className="flex items-center w-full md:w-[530px] mx-auto lg:w-[695px] gap-4 md:gap-6 lg:gap-8 shadow-xl border h-14 md:h-20 lg:h-28 rounded-lg md:rounded-xl lg:rounded-2xl px-5 justify-center mb-8 md:mb-14 lg:mb-10">
           <m.div
-            className={`flex  items-center justify-center h-7 sm:h-10  rounded-md py-1 w-full ${
+            className={`flex items-center justify-center h-7 md:h-10  rounded-md py-1 w-full ${
               activeTab == 0
                 ? "border-2 border-[#497511] opacity-100 "
                 : "border border-[#D9D9d9] opacity-30 cursor-pointer"
@@ -46,7 +47,7 @@ export default function PortfolioSection() {
           </m.div>
 
           <m.div
-            className={`flex items-center h-7 sm:h-10 rounded-md w-full gap-2 ${
+            className={`flex items-center h-7 md:h-10 rounded-md w-full gap-2 ${
               activeTab == 1
                 ? "border-2 border-[#497511] opacity-100"
                 : "border border-[#D9D9d9] opacity-30 cursor-pointer"
@@ -55,7 +56,7 @@ export default function PortfolioSection() {
             onClick={() => setActiveTab(1)}
           >
             <img src={Mushroom} alt="mushroom" className="h-full" />
-            <p className="text-dark_text text-[13px]  font-gen_sans md:text-2xl font-semibold lg:text-[32px] leading-[125%]">
+            <p className="text-dark_text text-[11px]  font-gen_sans md:text-2xl font-semibold lg:text-[32px] leading-[125%]">
               Mushroom Lab
             </p>
           </m.div>
@@ -87,7 +88,9 @@ const ShoppersBag = () => {
           on every usage in stores and malls.
         </p>
 
-        <Button size="lg">Learn more</Button>
+        <Button size="lg">
+          <Link to={"/portfolio?tab=0"}>Learn more</Link>
+        </Button>
       </div>
 
       <img
@@ -115,17 +118,19 @@ const MushroomLab = () => {
             alt="mushroom-lab"
             className="block w-10 h-full"
           />
-          <p className="text-2xl font-semibold text-white font-gen_sans text-[32px]">
+          <p className="text-2xl font-semibold text-white font-gen_sans md:text-[32px]">
             Mushroom Lab
           </p>
         </div>
 
-        <p className="mb-8 text-sm font-normal text-gray-100 font-inter lg:text-base">
+        <p className="mb-8 text-sm font-normal text-gray-300 font-inter lg:text-base">
           Mushroom labs is poised to transform lives through the power of
           mushrooms.
         </p>
 
-        <Button size="lg">Learn more</Button>
+        <Button size="lg">
+          <Link to={"/portfolio?tab=1"}>Learn more</Link>
+        </Button>
       </div>
     </div>
   )
