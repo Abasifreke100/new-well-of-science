@@ -68,13 +68,13 @@ export default function FeaturesSection() {
           </Button>
         </div>
 
-        <div>
+        <>
           <img
             src={bag}
             alt="FeaturesSection"
-            className="w-full h-[275px] md:w-[480px] lg:h-[387px]"
+            className="w-full h-[275px] md:w-[480px] md:mx-auto lg:mx-0 lg:h-[387px]"
           />
-        </div>
+        </>
       </section>
       <img
         src={cube}
