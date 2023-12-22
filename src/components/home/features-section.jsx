@@ -7,7 +7,7 @@ import bag from "./assets/bag.svg"
 
 export default function FeaturesSection() {
   return (
-    <>
+    <div className="relative">
       <section className="mb-[5.5rem] md:mb-[7.5rem] w-full">
         <div className="flex flex-col lg:flex-row rounded-[32px] overflow-clip w-full lg:items-center ">
           {/* left / top */}
@@ -20,7 +20,7 @@ export default function FeaturesSection() {
             <img
               src={LeftSlider}
               alt="left "
-              className="w-[369px] h-[225px] flex-shrink-0 md:h-[354px] md:w-[609px] lg:h-[442px] lg:w-[761px] -translate-x-8 md:-translate-x-0 lg:-translate-x-32"
+              className="w-[369px] sm:w-full h-[225px] flex-shrink-0 md:h-[354px] md:w-[609px] lg:h-[442px] lg:w-[761px] -translate-x-8 md:-translate-x-0 lg:-translate-x-32"
             />
 
             <img
@@ -40,7 +40,7 @@ export default function FeaturesSection() {
             <img
               src={RightSlider}
               alt="right "
-              className="h-[280px] w-[368px] md:w-[609px] md:h-[459px] lg:w-[761px] lg:h-[574px] flex-shrink-0 translate-x-8 md:translate-x-0 lg:translate-x-24 sm:ml-auto"
+              className="h-[280px] sm:w-full w-[368px] md:w-[609px] md:h-[459px] lg:w-[761px] lg:h-[574px] flex-shrink-0 translate-x-8 md:translate-x-0 lg:translate-x-24 sm:ml-auto"
             />
 
             <img
@@ -52,12 +52,12 @@ export default function FeaturesSection() {
         </div>
       </section>
 
-      <section className="mb-[5.5rem] md:mb-[7.5rem] px-[18px] pt-[33px] flex flex-col lg:flex-row gap-28 lg:gap-36">
-        <div className="space-y-6 max-w-[21.375rem] md:max-w-[26.5625rem] text-center lg:text-left mx-auto">
-          <h2 className="text-2xl font-semibold font-gen_sans text-dark_text md:text-[32px] lg:text-[40px] md:leading-[130%]">
+      <section className="mb-[5.5rem] md:mb-[7.5rem] px-[18px] pt-[33px] flex flex-col lg:flex-row gap-28 lg:gap-36 justify-between container relative">
+        <div className=" max-w-[21.375rem] md:max-w-[26.5625rem] lg:max-w-[31.25rem] text-center lg:text-left mx-auto lg:mx-0">
+          <h2 className="text-2xl font-semibold font-gen_sans text-dark_text md:text-[32px] lg:text-[40px] md:leading-[130%] mb-6">
             How will it work without endangering the environment?
           </h2>
-          <p className="text-sm mb-8 font-medium font-inter text-normal_text [text-wrap:balance] ">
+          <p className="text-sm mb-8 font-medium font-inter text-normal_text [text-wrap:balance] lg:text-base ">
             The answer to this question was at the core of our business model
             during the development of ShoppersBag - our flagship reusable,
             recyclable and biodegradable alternative to plastic shopping bags.{" "}
@@ -69,9 +69,18 @@ export default function FeaturesSection() {
         </div>
 
         <div>
-          <img src={bag} alt="FeaturesSection" />
+          <img
+            src={bag}
+            alt="FeaturesSection"
+            className="w-full h-[275px] md:w-[480px] lg:h-[387px]"
+          />
         </div>
       </section>
-    </>
+      <img
+        src={cube}
+        alt=""
+        className="absolute -left-20 -bottom-52 rotate-[165deg] -z-10"
+      />
+    </div>
   )
 }
