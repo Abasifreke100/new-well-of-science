@@ -9,20 +9,40 @@ import Tree from "./assets/Tree.png"
 import Cycler from "./assets/Cycler.svg"
 import Renewables from "./assets/Renewables.png"
 
+import { m } from "framer-motion"
+
 export default function CoreValuesSection() {
   return (
-    <section className="relative bg-green_three rounded-[32px] md:rounded-[64px] lg:rounded-[80px]">
+    <section className="relative bg-green_three rounded-[32px] md:rounded-[64px] lg:rounded-[80px] overflow-clip">
       <div className="px-8 pb-[186px] md:pb-[222px] lg:pb-[209px]">
         <header className="px-16 py-20 space-y-6 text-center ">
-          <h3 className="text-2xl font-semibold text-white font-gen_sans">
+          <m.h3
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-[32px] lg:text-[40px] font-semibold text-white font-gen_sans"
+          >
             Our core values
-          </h3>
-          <p className="text-sm font-medium text-white/90 font-inter">
+          </m.h3>
+          <m.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, transition: { delay: 0.5 } }}
+            viewport={{ once: true }}
+            className="text-sm font-medium text-white/90 font-inter"
+          >
             Our core business values includes the following
-          </p>
+          </m.p>
         </header>
 
         <div className="grid grid-cols-1 gap-8 place-items-center md:grid-cols-2 max-w-[650px] mx-auto">
+          <m.img
+            initial={{ opacity: 0, x: -100, rotate: 56 }}
+            whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
+            src={Tree}
+            alt=""
+            className="absolute hidden rotate-[56deg] -left-[40%] top-24 lg:flex"
+          />
+
           <Card
             description={
               "Maximizing impact through technology for sustainable growth."
@@ -60,13 +80,23 @@ export default function CoreValuesSection() {
       </div>
 
       <div className="relative z-20 px-8 ">
-        <header className="pt-8 pb-20 space-y-6 text-center max-w-[396px] mx-auto w-full md:px-0 ">
-          <h3 className="text-2xl font-semibold text-white font-gen_sans">
-            Weaving sustainability into the fabric of society
-          </h3>
-          <p className="text-sm font-medium text-white/90 font-inter">
+        <header className="pt-8 pb-20 space-y-6 text-center max-w-[428px] mx-auto w-full md:px-0 ">
+          <m.h3
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-[32px] lg:text-[40px] leading-[130%] font-semibold text-white font-gen_sans"
+          >
+            Weaving sustainability into the <br /> fabric of society
+          </m.h3>
+          <m.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, transition: { delay: 0.5 } }}
+            viewport={{ once: true }}
+            className="text-sm font-medium text-white/90 font-inter"
+          >
             Our focus is on opening new channels for adoption through
-          </p>
+          </m.p>
         </header>
 
         <div className="grid grid-cols-1 gap-10 lg:gap-8 place-items-start items-center lg:items-start justify-center w-fit  lg:w-[998px] lg:grid-cols-3 mx-auto pb-[227px] lg:pb-[245px]">
@@ -96,19 +126,32 @@ export default function CoreValuesSection() {
         </div>
       </div>
 
-      <img
+      <m.img
+        initial={{ opacity: 0, y: 100, x: "-50%" }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
         src={Tree}
         alt=""
         className="absolute bottom-0 -translate-x-1/2 left-1/2"
       />
 
-      <img
+      <m.img
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: { delay: 0.5, ease: "easeOut" },
+        }}
         src={Cycler}
         alt=""
         className="absolute bottom-0 hidden left-28 lg:flex"
       />
 
-      <img
+      <m.img
+        initial={{ scale: 0.2 }}
+        whileInView={{
+          scale: 1,
+          transition: { duration: 0.5, ease: "easeOut" },
+        }}
         src={Renewables}
         alt=""
         className="absolute bottom-0 right-0 hidden lg:flex"
@@ -119,7 +162,16 @@ export default function CoreValuesSection() {
 
 const Card = ({ heading, description, Icon }) => {
   return (
-    <div className="px-4 w-full max-w-[308px] min-h-[288px] md:min-h-[308px] md:w-[308px] pt-8 bg-white border border-[#D9D9D9] rounded-3xl relative overflow-clip">
+    <m.div
+      className="px-4 w-full max-w-[308px] min-h-[288px] md:min-h-[308px] md:w-[308px] pt-8 bg-white border border-[#D9D9D9] rounded-3xl relative overflow-clip"
+      initial={{ opacity: 0, scaleZ: 0, scale: 0 }}
+      whileInView={{
+        opacity: 1,
+        scaleZ: 1,
+        scale: 1,
+        transition: { duration: 0.5 },
+      }}
+    >
       <div className="grid w-12 h-12 mb-10 place-items-center bg-[#4B7810] ml-auto rounded-full">
         <Icon fill={"#fff"} width={"28"} height={"28"} />
       </div>
@@ -135,6 +187,6 @@ const Card = ({ heading, description, Icon }) => {
       <div className="absolute bottom-0 -right-[60px] top-[139px] z-10">
         <Icon fill={"#E4EBDB"} width={"186"} height={"186"} />
       </div>
-    </div>
+    </m.div>
   )
 }

@@ -4,6 +4,7 @@ import Mushroom from "./assets/mushroom.png"
 import MushRoomLabBg from "./assets/mushroom-bg.webp"
 import Cube from "./assets/cube-2.svg"
 import Bag from "./assets/bag.png"
+import { m } from "framer-motion"
 
 import { Button } from "../ui/button"
 
@@ -32,30 +33,32 @@ export default function PortfolioSection() {
         {/* toggle */}
 
         <div className="flex items-center w-full md:w-[530px] mx-auto lg:w-[695px] gap-4 md:gap-6 lg:gap-8 shadow-xl border h-14 md:h-20 lg:h-28 rounded-lg md:rounded-xl lg:rounded-2xl px-5 justify-center mb-8 md:mb-14 lg:mb-10">
-          <div
-            className={`flex items-center justify-center h-7 sm:h-10  rounded-md py-1 w-full ${
+          <m.div
+            className={`flex  items-center justify-center h-7 sm:h-10  rounded-md py-1 w-full ${
               activeTab == 0
-                ? "border-2 border-[#497511] opacity-100"
-                : "border border-[#D9D9d9] opacity-30"
+                ? "border-2 border-[#497511] opacity-100 "
+                : "border border-[#D9D9d9] opacity-30 cursor-pointer"
             }`}
+            whileHover={{ scale: activeTab === 0 ? 1 : 1.1 }}
             onClick={() => setActiveTab(0)}
           >
             <img src={ShoppersBagImg} alt="shoppers-bag" className="h-full" />
-          </div>
+          </m.div>
 
-          <div
+          <m.div
             className={`flex items-center h-7 sm:h-10 rounded-md w-full gap-2 ${
               activeTab == 1
                 ? "border-2 border-[#497511] opacity-100"
-                : "border border-[#D9D9d9] opacity-30"
+                : "border border-[#D9D9d9] opacity-30 cursor-pointer"
             }`}
+            whileHover={{ scale: activeTab === 1 ? 1 : 1.1 }}
             onClick={() => setActiveTab(1)}
           >
             <img src={Mushroom} alt="mushroom" className="h-full" />
             <p className="text-dark_text text-[13px]  font-gen_sans md:text-2xl font-semibold lg:text-[32px] leading-[125%]">
               Mushroom Lab
             </p>
-          </div>
+          </m.div>
         </div>
 
         {/* contents */}

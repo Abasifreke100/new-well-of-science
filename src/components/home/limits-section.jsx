@@ -1,6 +1,7 @@
 import { Button } from "../ui/button"
 import Cube from "./assets/cube.svg"
 import Sign from "./assets/sign.png"
+import { m } from "framer-motion"
 
 export default function LimitsSection() {
   return (
@@ -23,7 +24,9 @@ export default function LimitsSection() {
           className="absolute -bottom-20 -right-16 md:right-36 opacity-50 md:bottom-20 lg:bottom-12 lg:right-96 lg:rotate-0 rotate-[30deg]"
         />
 
-        <img
+        <m.img
+          initial={{ opacity: 0, y: 300 }}
+          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
           src={Sign}
           alt="cube"
           className="absolute z-20 -bottom-20 -right-16 md:-right-32 md:bottom-0 lg:bottom-0 lg:right-20"
