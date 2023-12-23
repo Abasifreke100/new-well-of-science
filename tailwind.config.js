@@ -17,10 +17,12 @@ export default {
         green_one: "#547A1F",
         green_two: "#699431",
         green_three: "#5C8526",
+        green_four: "#42690F",
         dark_bg: "#121212f2",
         green_bg: "#5C8526",
         footer_bg: "#212121",
         light_text: "#cccccc",
+        pink: "#C9507A",
       },
       fontFamily: {
         inter: [`Inter`, `sans-serif`],
