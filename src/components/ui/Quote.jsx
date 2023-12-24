@@ -1,6 +1,6 @@
 import React from 'react'
 import SectionPadding from './SectionPadding'
-import logocolor from '../../../public/images/logocolor.png'
+import logocolor from '/images/logocolor.png'
 import {motion} from 'framer-motion'
 
 const Quote = () => {

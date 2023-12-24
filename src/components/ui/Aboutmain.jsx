@@ -2,7 +2,7 @@ import React from 'react'
 
 const Aboutmain = () => {
   return (
-    <div className={`text-white text-[56px] text-gen_sans font-semibold bg-[url('../../../public/images/grpphoto.png')] bg-left-bottom md:bg-center bg-cover bg-no-repeat  grid place-content-center -mt-20 h-[400px] sm:h-[500px] md:h-[800px] relative `}>
+    <div className={`text-white text-[56px] text-gen_sans font-semibold bg-[url('/images/grpphoto.png')] bg-left-bottom md:bg-center bg-cover bg-no-repeat  grid place-content-center -mt-20 h-[400px] sm:h-[500px] md:h-[800px] relative `}>
         <h1>About Us</h1>
     
       <div className=' absolute h-auto w-[100%] bottom-0 md:-bottom-10  '>

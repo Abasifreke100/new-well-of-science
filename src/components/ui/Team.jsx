@@ -1,7 +1,7 @@
 import React from 'react'
 import SectionPadding from './SectionPadding'
-import etiat1 from '../../assets/etiat1.png'
-import etiat2 from '../../assets/etiat2.png'
+import etiat1 from '/images/etiat1.png'
+import etiat2 from '/images/etiat2.png'
 import TeamNamePic from './TeamNamePic'
 import { motion } from 'framer-motion'
 import {teamMembers} from '../../config/team.js'
@@ -63,7 +63,7 @@ const Team = () => {
                         transition={{
                             duration:0.4,
                         }}
-                        className={`font-gen_sans bg-[url(./../../public/images/lightlogo.png)] w-[100%] bg-center bg-no-repeat `}>Our co-founders, Etiat Nwaenang and Ubong Inyang are brilliant tech enthusiasts and social entrepreneurs, prowling the sustainability and tech business landscape for opportunities to effect a positive change in the environment and impact as many lives as possible.
+                        className={`font-gen_sans bg-[url(/images/lightlogo.png)] w-[100%] bg-center bg-no-repeat `}>Our co-founders, Etiat Nwaenang and Ubong Inyang are brilliant tech enthusiasts and social entrepreneurs, prowling the sustainability and tech business landscape for opportunities to effect a positive change in the environment and impact as many lives as possible.
                         <br />
                         <br />
                         This call to action, known as the Sustainable Development Goals (SDGs), was all the motivation Etia and Ubong needed to align their business goals with the global movement towards sustainability while creating positive economic, social, and environmental impact.
