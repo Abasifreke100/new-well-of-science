@@ -96,7 +96,7 @@ const Team = () => {
             
         </div>
     </SectionPadding>
-    <div className='grid grid-cols-3 gap-10 my-60  bg-[#F4F4F4] px-4 md:px-24 py-10 rounded-[100px]  '>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-10 my-40 bg-[#F4F4F4] px-4 md:px-24 py-10 rounded-[100px]  '>
         {
             teamMembers.map(({name, img, role, roleBg, rotate }) => {
                 return(
