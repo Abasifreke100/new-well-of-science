@@ -22,7 +22,7 @@ export default function Header() {
         isOpen ? "h-screen" : "h-20"
       } bg-dark_bg duration-500 lg:h-20`}
     >
-      <nav className="absolute top-0 left-0 w-full p-4 border-red-500">
+      <nav className="container absolute top-0 w-full p-4 -translate-x-1/2 border-red-500 left-1/2">
         <div className="flex items-center justify-between">
           <img src={logo} alt={siteConfig.name} width={208} height={52} />
 

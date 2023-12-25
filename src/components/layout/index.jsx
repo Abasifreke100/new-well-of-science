@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   return (
     <MotionWrapper>
       <Header />
-      <main className="py-20">{children}</main>
+      <main className="relative py-20">{children}</main>
       <Footer />
     </MotionWrapper>
   )

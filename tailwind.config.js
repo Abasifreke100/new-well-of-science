@@ -5,7 +5,6 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "1.5rem",
     },
     screens: {
       sm: "375px",
@@ -19,14 +18,31 @@ export default {
         green_three: "#5C8526",
         green_four: "#42690F",
         dark_bg: "#121212f2",
+        dark_text: "#121212",
         green_bg: "#5C8526",
         footer_bg: "#212121",
         light_text: "#cccccc",
+        light_pink: "#BA2552",
+        normal_text: "#333",
         pink: "#C9507A",
       },
       fontFamily: {
         inter: [`Inter`, `sans-serif`],
         gen_sans: [`General Sans`, `sans-serif`],
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.4s ease-out",
+        "accordion-up": "accordion-up 0.4s ease-out",
       },
     },
   },

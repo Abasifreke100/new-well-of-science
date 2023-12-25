@@ -17,16 +17,31 @@ export default function Footer() {
   const location = useLocation()
 
   return (
-    <footer className="bg-footer_bg py-14 ">
+    <footer className="p-10 bg-footer_bg ">
       <div className="container relative space-y-16">
         {location.pathname == "/contact" ? null : (
           <>
-            <section className="max-w-[50.375rem] h-[11.6875rem] mx-auto w-full">
-              <div className="space-y-8 text-center">
-                <p className="text-white text-[32px] md:text-[40px] font-gen_sans font-semibold">
+            <section className="max-w-[50.375rem] relative h-[11.6875rem] mx-auto w-full">
+              <div className="space-y-8 text-center ">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="607"
+                  height="122"
+                  viewBox="0 0 607 122"
+                  fill="none"
+                  className="absolute top-0 left-0 z-10 w-full"
+                >
+                  <path
+                    d="M3.28455 71.9544C15.3066 125.948 218.322 122.794 318.327 114.468C318.327 114.468 593.839 91.0686 604.348 45.5052C614.857 -0.0583301 414.846 -0.215471 313.527 5.4014C205.104 5.08831 -8.73748 17.9606 3.28455 71.9544Z"
+                    stroke="#C9507A"
+                    strokeWidth="4"
+                  />
+                </svg>
+                <p className="text-white text-[32px] relative z-20 md:text-[40px] font-gen_sans font-semibold">
                   For Enquiries and partnerships
                 </p>
-                <Button asChild size={"lg"}>
+
+                <Button asChild size={"lg"} className={"z-20 relative"}>
                   <Link to={"/contact"}>Contact us</Link>
                 </Button>
               </div>
