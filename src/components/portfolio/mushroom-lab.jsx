@@ -3,7 +3,9 @@ import Mushroom from "./assets/mushroom.svg"
 import Img1 from "./assets/1.webp"
 import Img2 from "./assets/2.webp"
 import Img3 from "./assets/3.webp"
+
 import Mushrooms from "./assets/mushrooms.png"
+import { m } from "framer-motion"
 
 import {
   Accordion,
@@ -50,7 +52,16 @@ export default function MushroomLab() {
       />
 
       <div className="pb-[120px] md:pb-[168px] lg:pb-[120px] ">
-        <div className="flex flex-col items-center gap-4">
+        <m.div
+          className="flex flex-col items-center gap-4"
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.3, ease: "easeOut" },
+          }}
+          viewport={{ once: true }}
+        >
           <img
             src={Mushroom}
             alt="mushroom-lab"
@@ -59,16 +70,32 @@ export default function MushroomLab() {
           <p className="text-[32px] md:text-5xl  font-semibold text-[#E6E6E6] font-gen_sans leading-[40px] md:leading-[60px]">
             Mushroom Lab
           </p>
-        </div>
+        </m.div>
       </div>
 
       <div className="md:px-10 lg:px-14">
-        <div className="rounded-3xl md:rounded-[50px] bg-[#006634b3] px-4 py-10 md:py-12 pb-20 md:px-10 lg:pt-[60px] lg:px-[60px] lg:pb-[88px] relative mb-[120px] ">
-          <p className="text-[#E6E6E6] font-gen_sans text-2xl font-semibold md:text-[32px] md:leading-[45px] mb-6 max-w-[759px]">
+        <m.div
+          className="rounded-3xl md:rounded-[50px] bg-[#006634b3] px-4 py-10 md:py-12 pb-20 md:px-10 lg:pt-[60px] lg:px-[60px] lg:pb-[88px] relative mb-[120px] "
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.4 },
+          }}
+        >
+          <m.p
+            className="text-[#E6E6E6] font-gen_sans text-2xl font-semibold md:text-[32px] md:leading-[45px] mb-6 max-w-[759px]"
+            initial={{ opacity: 0 }}
+            whileInView={{
+              opacity: 1,
+              transition: { duration: 0.5, delay: 0.5 },
+            }}
+            viewport={{ once: true }}
+          >
             Mushroom Lab is poised to transform the lives of{" "}
             <span className="text-[#91CC41]">10,000 </span> households of farms
             in Africa through mushroom farming and production.
-          </p>
+          </m.p>
           <p className="text-sm font-medium lg:text-base font-inter text-light_text mb-11">
             Our unique business model centers on three key pillars:
           </p>
@@ -104,7 +131,7 @@ export default function MushroomLab() {
               })}
             </Accordion>
           </div>
-        </div>
+        </m.div>
 
         <div className="flex flex-col items-center lg:flex-row-reverse mb-[162px] md:mb-[120px] ">
           <img
