@@ -16,7 +16,7 @@ export default {
         green_one: "#547A1F",
         green_two: "#699431",
         green_three: "#5C8526",
-        green_four: "#6fa22d",
+        green_four: "#42690F",
         dark_bg: "#121212f2",
         dark_text: "#121212",
         green_bg: "#5C8526",
@@ -24,6 +24,7 @@ export default {
         light_text: "#cccccc",
         light_pink: "#BA2552",
         normal_text: "#333",
+        pink: "#C9507A",
       },
       fontFamily: {
         inter: [`Inter`, `sans-serif`],
