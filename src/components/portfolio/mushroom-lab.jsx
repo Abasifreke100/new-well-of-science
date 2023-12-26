@@ -100,11 +100,11 @@ export default function MushroomLab() {
             Our unique business model centers on three key pillars:
           </p>
 
-          <div>
+          <>
             <Accordion
               type="single"
               collapsible
-              className="bg-[#3D3D3D] rounded-[32px] md:rounded-[48px] py-8 px-6 md:px-10 max-w-[895px]"
+              className="bg-[#3D3D3D] rounded-[32px] md:rounded-[48px] py-8 px-6 md:px-10 lg:mr-[132px]"
               defaultValue="item-1"
             >
               {items.map((item) => {
@@ -130,7 +130,7 @@ export default function MushroomLab() {
                 )
               })}
             </Accordion>
-          </div>
+          </>
         </m.div>
 
         <div className="flex flex-col items-center lg:flex-row-reverse mb-[162px] md:mb-[120px] ">
