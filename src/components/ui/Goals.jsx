@@ -17,7 +17,7 @@ const Goals = () => {
                 transition={{
                     duration:0.5,
                 }} className=' border-[1px] rounded-3xl  '>
-                <div className={`relative h-[250px] w-[100%] bg-[url('../../../public/images/backgroundgoals.png')] bg-center bg-cover bg-no-repeat rounded-t-3xl `}>
+                <div className={`relative h-[250px] w-[100%] bg-[url('/images/backgroundgoals.png')] bg-center bg-cover bg-no-repeat rounded-t-3xl `}>
                     <div className='bg-[#C9507A] p-4 rounded-3xl absolute top-0 right-0 m-5 '>
                         <ArrowRight color='white' size={38} />
                     </div>

@@ -58,7 +58,7 @@ export default function HeroSection() {
           }}
           className="text-white font-gen_sans font-semibold text-[2.5rem] md:text-[3.25rem] md:first:leading-[125%] leading-[120%] [text-wrap:balance] max-w-[19.75rem] md:max-w-[33.5625rem] lg:max-w-[37.5rem] "
         >
-          Building <br /> <span className="text-green_four">Sustainable </span>
+          Building <br /> <span className="text-[#6FA22D]">Sustainable </span>
           Solutions For Global Impact
         </m.h1>
       </div>
