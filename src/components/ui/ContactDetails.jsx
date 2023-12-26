@@ -42,12 +42,11 @@ const ContactDetails = () => {
                         <p>+2349130275027</p>
                     </div>
                 </div>
-            <img src="/images/vector38.png" className='absolute top-10 -right-10 -z-10 ' alt="" />
+            <img src="/images/vector38.png" className=' hidden md:block absolute  top-10 -right-10 -z-10 ' alt="" />
             </div>
             <div>
                 {/* Form */}
                 <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-                    <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
                     <form action="#" className="space-y-8">
                         <div>
                             <label for="subject" className="block mb-2 text-sm font-medium text-gray-900 ">Full Name</label>
