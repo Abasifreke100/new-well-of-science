@@ -22,7 +22,7 @@ export default function Header() {
         isOpen ? "h-screen" : "h-20"
       } bg-dark_bg duration-500 lg:h-20`}
     >
-      <nav className="absolute top-0 left-0 w-full p-4 border-red-500">
+      <nav className="container absolute top-0 w-full p-4 -translate-x-1/2 border-red-500 left-1/2">
         <div className="flex items-center justify-between">
           <img src={logo} alt={siteConfig.name} width={208} height={52} />
 
@@ -66,15 +66,31 @@ const DesktopNav = ({ location }) => {
           const isActive = location.pathname === item.href
 
           return (
-            <Link
+            <div
+              className="relative flex flex-col overflow-hidden cursor-pointer group h-fit"
               key={item.name}
-              to={item.href}
-              className={`font-medium ${
-                isActive ? "text-white" : "text-white/60"
-              }`}
             >
-              {item.name}
-            </Link>
+              <Link
+                to={item.href}
+                className={`font-medium ${
+                  isActive
+                    ? "text-white"
+                    : "text-white/60 group-hover:-translate-y-7 group-hover:invisible"
+                }  visible duration-300 `}
+              >
+                {item.name}
+              </Link>
+              <Link
+                to={item.href}
+                className={`font-medium ${
+                  isActive
+                    ? "text-white invisible"
+                    : "text-white/60 invisible  group-hover:visible group-hover:-translate-y-[60%]"
+                } absolute top-[60%]  duration-200 `}
+              >
+                {item.name}
+              </Link>
+            </div>
           )
         })}
         <Button asChild>
