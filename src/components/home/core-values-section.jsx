@@ -8,6 +8,7 @@ import CircularityIcon from "./assets/icons/circularity.jsx"
 import Tree from "./assets/Tree.png"
 import Cycler from "./assets/Cycler.svg"
 import Renewables from "./assets/Renewables.png"
+import Cube from "./assets/cube-2.svg"
 
 import { m } from "framer-motion"
 
@@ -111,8 +112,13 @@ export default function CoreValuesSection() {
       </div>
 
       <div className="relative w-full h-3">
-        <div className="w-3 h-3 rounded-full bg-[#4b7810] m-auto relative" />
-        <div className="w-full h-[1px] bg-white absolute top-1/2 -translate-y-1/2 " />
+        <div className="w-3 h-3 rounded-full bg-[#4B7810] m-auto relative z-20" />
+        <div className="w-full h-[1px] bg-white absolute top-1/2 -translate-y-1/2 z-30 " />
+        <img
+          src={Cube}
+          alt=""
+          className="absolute rotate-[60deg] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 z-10"
+        />
       </div>
 
       <div className="relative z-20 px-8 ">

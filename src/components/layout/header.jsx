@@ -66,15 +66,31 @@ const DesktopNav = ({ location }) => {
           const isActive = location.pathname === item.href
 
           return (
-            <Link
+            <div
+              className="relative flex flex-col overflow-hidden cursor-pointer group h-fit"
               key={item.name}
-              to={item.href}
-              className={`font-medium ${
-                isActive ? "text-white" : "text-white/60"
-              }`}
             >
-              {item.name}
-            </Link>
+              <Link
+                to={item.href}
+                className={`font-medium ${
+                  isActive
+                    ? "text-white"
+                    : "text-white/60 group-hover:-translate-y-7 group-hover:invisible"
+                }  visible duration-300 `}
+              >
+                {item.name}
+              </Link>
+              <Link
+                to={item.href}
+                className={`font-medium ${
+                  isActive
+                    ? "text-white invisible"
+                    : "text-white/60 invisible  group-hover:visible group-hover:-translate-y-[60%]"
+                } absolute top-[60%]  duration-200 `}
+              >
+                {item.name}
+              </Link>
+            </div>
           )
         })}
         <Button asChild>
