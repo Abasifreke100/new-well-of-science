@@ -36,7 +36,7 @@ const PartnershipSwitch = () => {
                     </div>
                     {/* Second switcher */}
                     <h2 className='font-gen_sans font-semibold ext-[16px] sm:text-[18px] md:text-[24px] mt-10 '>Embracing Sustainable Alternatives To Plastic </h2>
-                    <div className='flex flex-row gap-6  '>
+                    <div className='flex flex-row '>
                         <h4 
                         className={`  ${switchState2 === true ? 'bg-green_two text-white ' : 'bg-zinc-200' }  cursor-pointer p-5 rounded-t-3xl `}
                         onClick={() => setSwitchState2(true)}>Kenaf</h4>
