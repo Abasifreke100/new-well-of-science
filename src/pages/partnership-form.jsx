@@ -10,7 +10,7 @@ export default function PartnerShipFormPage() {
         <img
           src={Desktop}
           alt="Responsive Image"
-          className="absolute z-20 hidden md:flex -top-10 w-full md:h-[897px] md:-top-32 lg:-top-28 object-cover lg:object-contain lg:-left-60"
+          className="absolute z-20 hidden md:flex -top-10 w-full md:h-[897px] md:-top-32 lg:-top-28 object-cover lg:object-contain lg:-left-60 xl:-left-72 2xl:-left-[22rem]"
         />
         <img
           src={Mobile}
