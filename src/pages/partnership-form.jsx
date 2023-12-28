@@ -1,21 +1,21 @@
 import Layout from "../components/layout"
 import PartnersForm from "../components/partnership/partners-form"
-import Ellipse from "../components/partnership/assets/ellipse.png"
-import Partners from "../components/partnership/assets/partners.png"
+import Mobile from "../components/partnership/assets/mobile.png"
+import Desktop from "../components/partnership/assets/desktop.png"
 
 export default function PartnerShipFormPage() {
   return (
     <Layout>
-      <div className="overflow-clip h-[1305px] relative md:h-[1283px] lg:h-[1065px]">
+      <div className=" min-h-[1305px] relative md:min-h-[1283px] lg:min-h-[1065px]">
         <img
-          src={Ellipse}
-          className="absolute top-0 left-0 w-full h-[769px] max-w-[939px]"
+          src={Desktop}
+          alt="Responsive Image"
+          className="absolute z-20 hidden md:flex -top-10 w-full md:h-[897px] md:-top-32 lg:-top-28 object-cover lg:object-contain lg:-left-60"
         />
-
         <img
-          src={Partners}
-          alt=""
-          className="absolute top-20 -right-24 w-[500px] h-[500px] rounded-[66px]"
+          src={Mobile}
+          alt="Responsive Image"
+          className="absolute z-20 h-[487px] -top-5 left-0 w-full md:hidden object-cover"
         />
         <PartnersForm />
       </div>
