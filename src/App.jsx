@@ -5,6 +5,7 @@ import AboutPage from "./pages/about"
 import PortfolioPage from "./pages/portfolio"
 import PartnershipPage from "./pages/partnership"
 import ContactPage from "./pages/contact"
+import PartnerShipFormPage from "./pages/partnership-form"
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/partnership",
     element: <PartnershipPage />,
+  },
+  {
+    path: "partnership-form",
+    element: <PartnerShipFormPage />,
   },
   {
     path: "/contact",
