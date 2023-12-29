@@ -6,12 +6,13 @@ export default {
     container: {
       center: true,
     },
-    screens: {
-      sm: "375px",
-      md: "744px",
-      lg: "1200px",
-    },
+
     extend: {
+      screens: {
+        sm: "375px",
+        md: "744px",
+        lg: "1200px",
+      },
       colors: {
         green_one: "#547A1F",
         green_two: "#699431",
