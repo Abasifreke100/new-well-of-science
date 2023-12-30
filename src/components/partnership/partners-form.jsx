@@ -35,9 +35,8 @@ export default function PartnersForm() {
   } = useForm({
     resolver: zodResolver(FormSchema),
   })
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     setStatus("pending")
-    console.log(data)
 
     emailjs
       .sendForm(
