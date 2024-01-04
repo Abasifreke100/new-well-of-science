@@ -10,7 +10,7 @@ import { m } from "framer-motion"
 
 export default function ShoppersBag() {
   return (
-    <section className="md:px-8 lg:px-20">
+    <section className="md:px-8 lg:px-20 overflow-clip">
       <div className="w-full h-[709px] bg-[#E9E5E2] rounded-b-[100px] absolute top-0 left-0 -z-10" />
       <div className="mb-16 md:mb-[120px]">
         <m.img

@@ -35,14 +35,17 @@ const PartnershipSwitch = () => {
                         <img src="/images/partnershippic1.png" alt="" />
                     </div>
                     {/* Second switcher */}
-                    <h2 className='font-gen_sans font-semibold ext-[16px] sm:text-[18px] md:text-[24px] mt-10 '>Embracing Sustainable Alternatives To Plastic </h2>
-                    <div className='flex flex-row gap-6  '>
+                    <h2 className='font-gen_sans font-semibold ext-[16px] sm:text-[18px] md:text-[24px] my-10 '>Embracing Sustainable Alternatives To Plastic </h2>
+                    <div className='flex flex-row '>
+                        <div className='bg-zinc-200 flex flex-row rounded-t-3xl  '>
                         <h4 
                         className={`  ${switchState2 === true ? 'bg-green_two text-white ' : 'bg-zinc-200' }  cursor-pointer p-5 rounded-t-3xl `}
                         onClick={() => setSwitchState2(true)}>Kenaf</h4>
                         <h4 
                         className={` ${switchState2 === false ? ' bg-green_two text-white ' : 'bg-zinc-200' } cursor-pointer p-5 rounded-t-3xl `}
                         onClick={() => setSwitchState2(false)}>Banana FIber</h4>
+
+                        </div>
                     </div>
                     {
                         switchState2 === true ? 
@@ -70,18 +73,18 @@ const PartnershipSwitch = () => {
                     }
                         </div>
                 :
-                    <div className='grid gir-cols-1 md:grid-cols-2 justify-items-center  text-[14px] md:text-[16px] '>
+                    <div className='grid gir-cols-1 md:grid-cols-2 items-center justify-items-center  text-[14px] md:text-[16px] -mb-28 '>
                         <div>
                             We specialize in offering strategic advisory services designed to elevate the innovative capabilities of organizations. Our collaborative approach involves closely partnering with clients to pinpoint opportunities for innovation, streamline processes, and cultivate creativity to address business challenges effectively. Our primary objective is to nurture a culture of innovation within the organization by implementing robust strategies and harnessing cutting-edge technologies in IT solutions development, prototyping, market research, and market entry. This ensures that our clients not only remain competitive but also adapt seamlessly to dynamic business environments
                         </div>
-                    <img src="/images/partnershippic2.png" alt="" className='w-[100%] md:w-[70%] justify-self-center ' />
+                    <img src="/images/partnershippic2.png" alt="" className='w-[100%] md:w-[60%] h-[100%] justify-self-center ' />
             </div>
             }
         
         </div>
         <div >
             <Button asChild className={""}>
-              <Link to={"/partnership"}>Partner with us</Link>
+              <Link to={"/partnership-form"}>Partner with us</Link>
             </Button>
         </div>
     </SectionPadding>
