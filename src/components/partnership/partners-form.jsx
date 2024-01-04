@@ -6,6 +6,8 @@ import ErrorIcon from "./assets/error-icon"
 import React, { useState } from "react"
 import Handshake from "./assets/handshake.svg"
 import { m } from "framer-motion"
+import { useRef } from "react"
+import emailjs from "@emailjs/browser"
 
 const FormSchema = z.object({
   nameOfCompany: z
@@ -24,6 +26,7 @@ const FormSchema = z.object({
 
 export default function PartnersForm() {
   const [status, setStatus] = useState("idle")
+  const formRef = useRef()
 
   const {
     register,
@@ -32,10 +35,24 @@ export default function PartnersForm() {
   } = useForm({
     resolver: zodResolver(FormSchema),
   })
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     setStatus("pending")
-    console.log(data)
-    setStatus("done")
+
+    emailjs
+      .sendForm(
+        "service_r1blhvf",
+        "template_blpfd54",
+        formRef.current,
+        "PtKad8KQjae9K4wCT"
+      )
+      .then(
+        () => {
+          setStatus("done")
+        },
+        () => {
+          setStatus("idle")
+        }
+      )
   }
 
   return (
@@ -46,7 +63,7 @@ export default function PartnersForm() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/70 z-40"
+            className="fixed inset-0 z-40 bg-black/70"
             onClick={() => setStatus("idle")}
           />
           <m.div
@@ -60,17 +77,17 @@ export default function PartnersForm() {
             }}
             className="fixed w-full h-[492px] md:w-[584px] rounded-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 px-8 md:px-[70px] py-[72px] overflow-clip"
           >
-            <div className="relative w-full h-full flex items-center justify-center flex-col ">
-              <div className="mb-4 z-50 relative">
+            <div className="relative flex flex-col items-center justify-center w-full h-full ">
+              <div className="relative z-50 mb-4">
                 <img src={Handshake} alt="successful" className="mx-auto" />
               </div>
 
-              <div className="mb-8 text-center z-50 relative">
+              <div className="relative z-50 mb-8 text-center">
                 <p className="font-semibold font-gen_sans text-dark_text text-2xl md:text-[40px] md:leading-[125%] mb-6">
                   Thank you for partnership request.
                 </p>
 
-                <p className="font-inter text-base font-normal text-normal_text">
+                <p className="text-base font-normal font-inter text-normal_text">
                   We&apos;ll give you a call or send a mail within 48 hours.
                 </p>
               </div>
@@ -131,13 +148,18 @@ export default function PartnersForm() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          ref={formRef}
+          className="flex flex-col gap-8"
+        >
           <div className="space-y-6">
             <div className="space-y-3">
               <Label htmlFor={"name"}>Name of company</Label>
               <Input
                 type="text"
                 id="nameOfCompany"
+                name="nameOfCompany"
                 placeholder="Name of company"
                 {...register("nameOfCompany")}
                 isError={errors.name?.message}
@@ -154,6 +176,7 @@ export default function PartnersForm() {
               <Input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="Email Address"
                 {...register("email")}
                 isError={errors.email?.message}
@@ -170,6 +193,7 @@ export default function PartnersForm() {
               <Input
                 type="number"
                 id="phone"
+                name="phoneNumber"
                 placeholder="1234567890"
                 {...register("phoneNumber")}
                 isError={errors.phoneNumber?.message}
