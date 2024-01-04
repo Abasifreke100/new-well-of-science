@@ -1,17 +1,17 @@
-import emailjs from "@emailjs/browser"
-import { useRef, useState } from "react"
-import { useForm } from "react-hook-form"
-import OverlayMessage from "./OverlayMessage"
-import { Button } from "./button"
+import emailjs from "@emailjs/browser";
+import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import OverlayMessage from "./OverlayMessage";
+import { Button } from "./button";
 
 const ContactForm = () => {
-  const [overlay, setOverlay] = useState(false)
-  const { register, handleSubmit, formState } = useForm()
+  const [status, setStatus] = useState("idle");
+  const { register, handleSubmit, formState } = useForm();
 
-  const formRef = useRef()
+  const formRef = useRef();
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = () => {
+    setStatus("pending");
     emailjs
       .sendForm(
         "service_r1blhvf",
@@ -21,14 +21,14 @@ const ContactForm = () => {
       )
       .then(
         () => {
-          setOverlay(true)
+          setStatus("done");
         },
         () => {
-          setOverlay(false)
+          setStatus("idle");
         }
-      )
-  }
-  const formError = formState.errors
+      );
+  };
+  const formError = formState.errors;
 
   return (
     <form
@@ -94,12 +94,16 @@ const ContactForm = () => {
           {...register("message", { required: true })}
         ></textarea>
       </div>
-      <Button asChild className={"flex"}>
-        <input type="submit" />
+      <Button type="submit" disabled={status === "pending"}>
+        {status === "pending"
+          ? "Submitting..."
+          : status === "done"
+          ? "Submitted"
+          : "Submit"}
       </Button>
-      {overlay ? <OverlayMessage /> : null}
+      {status === "done" ? <OverlayMessage /> : null}
     </form>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;
