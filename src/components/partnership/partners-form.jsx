@@ -8,6 +8,7 @@ import Handshake from "./assets/handshake.svg";
 import { m } from "framer-motion";
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { siteConfig } from "../../config/site";
 
 const FormSchema = z.object({
   nameOfCompany: z
@@ -28,6 +29,8 @@ export default function PartnersForm() {
   const [status, setStatus] = useState("idle");
   const formRef = useRef();
 
+  const { public_key, service_id, template_id } = siteConfig.form;
+
   const {
     register,
     handleSubmit,
@@ -38,21 +41,14 @@ export default function PartnersForm() {
   const onSubmit = () => {
     setStatus("pending");
 
-    emailjs
-      .sendForm(
-        "service_r1blhvf",
-        "template_blpfd54",
-        formRef.current,
-        "PtKad8KQjae9K4wCT"
-      )
-      .then(
-        () => {
-          setStatus("done");
-        },
-        () => {
-          setStatus("idle");
-        }
-      );
+    emailjs.sendForm(service_id, template_id, formRef.current, public_key).then(
+      () => {
+        setStatus("done");
+      },
+      () => {
+        setStatus("idle");
+      }
+    );
   };
 
   return (
