@@ -1,13 +1,13 @@
-import { Button } from "../ui/button"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import ErrorIcon from "./assets/error-icon"
-import React, { useState } from "react"
-import Handshake from "./assets/handshake.svg"
-import { m } from "framer-motion"
-import { useRef } from "react"
-import emailjs from "@emailjs/browser"
+import { Button } from "../ui/button";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import ErrorIcon from "./assets/error-icon";
+import React, { useState } from "react";
+import Handshake from "./assets/handshake.svg";
+import { m } from "framer-motion";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const FormSchema = z.object({
   nameOfCompany: z
@@ -22,11 +22,11 @@ const FormSchema = z.object({
   message: z
     .string({ required_error: "Please enter message" })
     .min(1, { message: "Please enter a message" }),
-})
+});
 
 export default function PartnersForm() {
-  const [status, setStatus] = useState("idle")
-  const formRef = useRef()
+  const [status, setStatus] = useState("idle");
+  const formRef = useRef();
 
   const {
     register,
@@ -34,9 +34,9 @@ export default function PartnersForm() {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(FormSchema),
-  })
+  });
   const onSubmit = () => {
-    setStatus("pending")
+    setStatus("pending");
 
     emailjs
       .sendForm(
@@ -47,13 +47,13 @@ export default function PartnersForm() {
       )
       .then(
         () => {
-          setStatus("done")
+          setStatus("done");
         },
         () => {
-          setStatus("idle")
+          setStatus("idle");
         }
-      )
-  }
+      );
+  };
 
   return (
     <>
@@ -92,7 +92,14 @@ export default function PartnersForm() {
                 </p>
               </div>
 
-              <Button size={"lg"} className={"mx-auto z-50"}>
+              <Button
+                size={"lg"}
+                className={"mx-auto z-50"}
+                onClick={() => {
+                  setStatus("idle");
+                  formRef?.current?.reset();
+                }}
+              >
                 Back to home
               </Button>
 
@@ -231,7 +238,7 @@ export default function PartnersForm() {
         </form>
       </div>
     </>
-  )
+  );
 }
 
 const Label = ({ htmlFor, children }) => {
@@ -242,8 +249,8 @@ const Label = ({ htmlFor, children }) => {
     >
       {children}
     </label>
-  )
-}
+  );
+};
 
 const Input = React.forwardRef(({ type = "text", isError, ...props }, ref) => {
   return (
@@ -255,7 +262,7 @@ const Input = React.forwardRef(({ type = "text", isError, ...props }, ref) => {
       {...props}
       ref={ref}
     />
-  )
-})
+  );
+});
 
-Input.displayName = "Input"
+Input.displayName = "Input";
