@@ -32,4 +32,10 @@ export const siteConfig = {
     facebook: "https://www.facebook.com/wellofscience/",
     linkedin: "https://www.linkedin.com/company/wellofscience/",
   },
-}
+
+  form: {
+    service_id: "service_r1blhvf",
+    template_id: "template_blpfd54",
+    public_key: "PtKad8KQjae9K4wCT",
+  },
+};
