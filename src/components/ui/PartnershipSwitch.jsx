@@ -73,8 +73,8 @@ const PartnershipSwitch = () => {
                     }
                         </div>
                 :
-                    <div className='grid gir-cols-1 md:grid-cols-2 items-center justify-items-center  text-[14px] md:text-[16px] -mb-28 '>
-                        <div>
+                    <div className='grid gir-cols-1 md:grid-cols-2 items-center justify-items-center  text-[14px] md:text-[16px] md:-mb-28 -mb-20  '>
+                        <div className='mb-10 md:m-0  ' >
                             We specialize in offering strategic advisory services designed to elevate the innovative capabilities of organizations. Our collaborative approach involves closely partnering with clients to pinpoint opportunities for innovation, streamline processes, and cultivate creativity to address business challenges effectively. Our primary objective is to nurture a culture of innovation within the organization by implementing robust strategies and harnessing cutting-edge technologies in IT solutions development, prototyping, market research, and market entry. This ensures that our clients not only remain competitive but also adapt seamlessly to dynamic business environments
                         </div>
                     <img src="/images/partnershippic2.png" alt="" className='w-[100%] md:w-[60%] h-[100%] justify-self-center ' />
