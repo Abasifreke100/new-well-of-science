@@ -1,16 +1,15 @@
-import InnovationIcon from "./assets/icons/innovation.jsx"
-import TechnologyIcon from "./assets/icons/technology.jsx"
-import SustainabilityIcon from "./assets/icons/sustainability.jsx"
-import PartnershipIcon from "./assets/icons/partnership.jsx"
-import LifestyleIcon from "./assets/icons/lifestyle.jsx"
-import ValueChainIcon from "./assets/icons/valuechain.jsx"
-import CircularityIcon from "./assets/icons/circularity.jsx"
-import Tree from "./assets/Tree.png"
-import Cycler from "./assets/Cycler.svg"
-import Renewables from "./assets/Renewables.png"
-import Cube from "./assets/cube-2.svg"
+import InnovationIcon from "./assets/icons/innovation.jsx";
+import TechnologyIcon from "./assets/icons/technology.jsx";
+import SustainabilityIcon from "./assets/icons/sustainability.jsx";
+import PartnershipIcon from "./assets/icons/partnership.jsx";
+import LifestyleIcon from "./assets/icons/lifestyle.jsx";
+import ValueChainIcon from "./assets/icons/valuechain.jsx";
+import CircularityIcon from "./assets/icons/circularity.jsx";
+import Tree from "./assets/Tree.png";
+import Renewables from "./assets/Renewables.png";
+import Cube from "./assets/cube-2.svg";
 
-import { m } from "framer-motion"
+import { m } from "framer-motion";
 
 const coreValues = [
   {
@@ -36,7 +35,7 @@ const coreValues = [
     description:
       "Fostering collaborations for sustainable socio-economic and environmental impact.",
   },
-]
+];
 
 const sus = [
   {
@@ -57,7 +56,7 @@ const sus = [
     description:
       "Enhancing sustainable production and consumption practices that ensure economic prosperity for present and future generations.",
   },
-]
+];
 
 export default function CoreValuesSection() {
   return (
@@ -129,7 +128,7 @@ export default function CoreValuesSection() {
             viewport={{ once: true }}
             className="text-2xl md:text-[32px] lg:text-[40px] leading-[130%] font-semibold text-white font-gen_sans"
           >
-            Weaving sustainability into the <br /> fabric of society
+            Weaving sustainability into the <br /> Fabrics of society
           </m.h3>
           <m.p
             initial={{ opacity: 0 }}
@@ -162,7 +161,7 @@ export default function CoreValuesSection() {
                     direction="left"
                   />
                 </div>
-              )
+              );
             }
 
             return (
@@ -174,7 +173,7 @@ export default function CoreValuesSection() {
                 delay={(index + 1) / 10}
                 direction="left"
               />
-            )
+            );
           })}
         </m.div>
       </div>
@@ -188,18 +187,6 @@ export default function CoreValuesSection() {
       />
 
       <m.img
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{
-          opacity: 1,
-          x: 0,
-          transition: { delay: 0.5, ease: "easeOut" },
-        }}
-        src={Cycler}
-        alt=""
-        className="absolute bottom-0 hidden left-28 lg:flex"
-      />
-
-      <m.img
         initial={{ scale: 0.2 }}
         whileInView={{
           scale: 1,
@@ -210,7 +197,7 @@ export default function CoreValuesSection() {
         className="absolute bottom-0 right-0 hidden lg:flex"
       />
     </section>
-  )
+  );
 }
 
 const Card = ({
@@ -246,5 +233,5 @@ const Card = ({
         <Icon fill={"#E4EBDB"} width={"186"} height={"186"} />
       </div>
     </m.div>
-  )
-}
+  );
+};
