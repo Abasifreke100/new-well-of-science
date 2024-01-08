@@ -1,12 +1,12 @@
-import { Button } from "../ui/button"
-import cube from "./assets/cube-2.svg"
-import LeftSlider from "./assets/left-slider.svg"
-import RightSlider from "./assets/right-slider.svg"
-import Tree from "./assets/Tree.svg"
-import bag from "./assets/bag.svg"
-import { m } from "framer-motion"
-import Arrow from "./assets/arrow.svg"
-import { Link } from "react-router-dom"
+import { Button } from "../ui/button";
+import cube from "./assets/cube-2.svg";
+import LeftSlider from "./assets/left-slider.svg";
+import RightSlider from "./assets/right-slider.svg";
+import Tree from "./assets/Tree.svg";
+import bag from "./assets/bag.svg";
+import { m } from "framer-motion";
+import Arrow from "./assets/arrow.svg";
+import { Link } from "react-router-dom";
 
 export default function FeaturesSection() {
   return (
@@ -65,7 +65,7 @@ export default function FeaturesSection() {
               }}
               className="w-48 md:w-[21.125rem] py-6 mx-auto text-base md:text-[32px] md:leading-[41.6px] lg:pb-16 font-semibold text-center md:pt-12 md:pb-20 text-white font-gen_sans"
             >
-              We are redefining the way to do business.
+              We are unlocking a sustainable future.
             </m.header>
 
             <m.img
@@ -135,5 +135,5 @@ export default function FeaturesSection() {
         className="absolute -left-20 -bottom-52 rotate-[165deg] -z-10"
       />
     </div>
-  )
+  );
 }

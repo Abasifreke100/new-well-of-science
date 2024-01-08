@@ -1,16 +1,16 @@
-import { useState } from "react"
-import ShoppersBagImg from "./assets/shoppersbag.png"
-import Mushroom from "./assets/mushroom.png"
-import MushRoomLabBg from "./assets/mushroom-bg.webp"
-import Cube from "./assets/cube-2.svg"
-import Bag from "./assets/bag.png"
-import { m } from "framer-motion"
+import { useState } from "react";
+import ShoppersBagImg from "./assets/shoppersbag.png";
+import Mushroom from "./assets/mushroom.png";
+import MushRoomLabBg from "./assets/mushroom-bg.webp";
+import Cube from "./assets/cube-2.svg";
+import Bag from "./assets/bag.png";
+import { m } from "framer-motion";
 
-import { Button } from "../ui/button"
-import { Link } from "react-router-dom"
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 export default function PortfolioSection() {
-  const [activeTab, setActiveTab] = useState(0)
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <section className="mb-[88px] md:mb-[120px] lg:mb-20 relative">
@@ -69,7 +69,7 @@ export default function PortfolioSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 const ShoppersBag = () => {
@@ -99,8 +99,8 @@ const ShoppersBag = () => {
         className="absolute hidden md:flex -right-24 bottom-7 w-[310px] h-[310px] rotate-12 lg:w-[401px] lg:h-[411px] lg:rotate-1 lg:bottom-0 lg:right-0"
       />
     </div>
-  )
-}
+  );
+};
 
 const MushroomLab = () => {
   return (
@@ -133,5 +133,5 @@ const MushroomLab = () => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
