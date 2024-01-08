@@ -82,7 +82,7 @@ export default function FeaturesSection() {
             <img
               src={Tree}
               alt="cube"
-              className="absolute -right-9 -bottom-2 w-[234px] h-[202px] "
+              className="absolute -right-9 md:right-2 lg:right-0 -bottom-2 w-[234px] h-[202px] "
             />
           </div>
         </div>
