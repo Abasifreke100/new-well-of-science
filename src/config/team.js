@@ -36,7 +36,7 @@ export const teamMembers = [
   },
   {
     name: "Rosie Ikpeme",
-    role: "Team member",
+    role: "Graphics designer",
     rotate: "-rotate-0",
     img: img5,
     roleBg: "green_four",
