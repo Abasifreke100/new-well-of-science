@@ -19,7 +19,7 @@ export default function FeaturesSection() {
             initial={{ opacity: 0 }}
             whileInView={{
               opacity: 1,
-              transition: { duration: 0.5, delay: 0.5 },
+              transition: { duration: 0.5, delay: 0.5 }
             }}
             className="absolute z-30 translate-x-10 md:-translate-x-10 -translate-y-[85%] top-1/2 lg:-rotate-90 left-1/2 lg:-translate-y-1/2"
           >
@@ -39,7 +39,7 @@ export default function FeaturesSection() {
               initial={{ opacity: 0 }}
               whileInView={{
                 opacity: 1,
-                transition: { duration: 0.5 },
+                transition: { duration: 0.5 }
               }}
               src={LeftSlider}
               alt="left "
@@ -61,7 +61,7 @@ export default function FeaturesSection() {
               whileInView={{
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.5, delay: 0.2 },
+                transition: { duration: 0.5, delay: 0.2 }
               }}
               className="w-48 md:w-[21.125rem] py-6 mx-auto text-base md:text-[32px] md:leading-[41.6px] lg:pb-16 font-semibold text-center md:pt-12 md:pb-20 text-white font-gen_sans"
             >
@@ -72,7 +72,7 @@ export default function FeaturesSection() {
               initial={{ opacity: 0 }}
               whileInView={{
                 opacity: 1,
-                transition: { duration: 0.5, delay: 0.7 },
+                transition: { duration: 0.5, delay: 0.7 }
               }}
               src={RightSlider}
               alt="right "
@@ -106,11 +106,11 @@ export default function FeaturesSection() {
           >
             The answer to this question was at the core of our business model
             during the development of ShoppersBag - our flagship reusable,
-            recyclable and biodegradable alternative to plastic shopping bags.{" "}
+            recyclable and biodegradable alternative to plastic shopping bags.{' '}
           </m.p>
 
-          <Button size={"lg"} variant={"outline"} className={"mx-auto"} asChild>
-            <Link to={"/portfolio"}>Learn more</Link>
+          <Button size={'lg'} variant={'outline'} className={'mx-auto'} asChild>
+            <Link to={'/portfolio'}>Learn more</Link>
           </Button>
         </div>
 
@@ -120,7 +120,7 @@ export default function FeaturesSection() {
             whileInView={{
               opacity: 1,
               x: 0,
-              transition: { duration: 0.5, delay: 0.4, ease: "easeInOut" },
+              transition: { duration: 0.5, delay: 0.4, ease: 'easeInOut' }
             }}
             viewport={{ once: true }}
             src={bag}
