@@ -14,49 +14,49 @@ import { m } from "framer-motion";
 
 const coreValues = [
   {
-    title: "Technology",
+    title: 'Technology',
     icon: TechnologyIcon,
-    description: "Maximizing impact through technology for sustainable growth.",
+    description: 'Maximizing impact through technology for sustainable growth.'
   },
   {
-    title: "Innovation",
+    title: 'Innovation',
     icon: InnovationIcon,
     description:
-      "Championing bold ideas and positive trends to achieve sustainable breakthroughs",
+      'Championing bold ideas and positive trends to achieve sustainable breakthroughs'
   },
   {
-    title: "Sustainability",
+    title: 'Sustainability',
     icon: SustainabilityIcon,
     description:
-      "Unlocking valuable data insights to promote circularity across diverse sectors.",
+      'Unlocking valuable data insights to promote circularity across diverse sectors.'
   },
   {
-    title: "Partnership",
+    title: 'Partnership',
     icon: PartnershipIcon,
     description:
-      "Fostering collaborations for sustainable socio-economic and environmental impact.",
-  },
+      'Fostering collaborations for sustainable socio-economic and environmental impact.'
+  }
 ];
 
 const sus = [
   {
-    title: "Lifestyle",
+    title: 'Lifestyle',
     icon: LifestyleIcon,
     description:
-      "Promoting sustainable habits among consumers by raising awareness about the environmental impact of their daily choices.",
+      'Promoting sustainable habits among consumers by raising awareness about the environmental impact of their daily choices.'
   },
   {
-    title: "ValueChain",
+    title: 'ValueChain',
     icon: ValueChainIcon,
     description:
-      "Collaborating with brands to establish and implement sustainable practices across their business processes by identifying and addressing potential sustainability concerns.",
+      'Collaborating with brands to establish and implement sustainable practices across their business processes by identifying and addressing potential sustainability concerns.'
   },
   {
-    title: "Circularity",
+    title: 'Circularity',
     icon: CircularityIcon,
     description:
-      "Enhancing sustainable production and consumption practices that ensure economic prosperity for present and future generations.",
-  },
+      'Enhancing sustainable production and consumption practices that ensure economic prosperity for present and future generations.'
+  }
 ];
 
 export default function CoreValuesSection() {
@@ -72,14 +72,14 @@ export default function CoreValuesSection() {
           >
             Our core values
           </m.h3>
-          <m.p
+          {/* <m.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1, transition: { delay: 0.5 } }}
             viewport={{ once: true }}
             className="text-sm font-medium text-white/90 font-inter"
           >
             Our core business values includes the following
-          </m.p>
+          </m.p> */}
         </header>
 
         <m.div
@@ -87,7 +87,7 @@ export default function CoreValuesSection() {
           initial={{ opacity: 0 }}
           whileInView={{
             opacity: 1,
-            transition: { duration: 0.5, staggerChildren: 0.2 },
+            transition: { duration: 0.5, staggerChildren: 0.2 }
           }}
         >
           <m.img
@@ -145,7 +145,7 @@ export default function CoreValuesSection() {
           initial={{ opacity: 0 }}
           whileInView={{
             opacity: 1,
-            transition: { duration: 0.5, staggerChildren: 0.3 },
+            transition: { duration: 0.5, staggerChildren: 0.3 }
           }}
           className="grid grid-cols-1 gap-10 lg:gap-8 place-items-start items-center lg:items-start justify-center w-fit  lg:w-[998px] lg:grid-cols-3 mx-auto pb-[227px] lg:pb-[245px]"
         >
@@ -180,7 +180,7 @@ export default function CoreValuesSection() {
       </div>
 
       <m.img
-        initial={{ opacity: 0, y: 100, x: "-50%" }}
+        initial={{ opacity: 0, y: 100, x: '-50%' }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
         src={Tree}
         alt=""
@@ -203,7 +203,7 @@ export default function CoreValuesSection() {
         initial={{ scale: 0.2 }}
         whileInView={{
           scale: 1,
-          transition: { duration: 0.5, ease: "easeOut" },
+          transition: { duration: 0.5, ease: 'easeOut' }
         }}
         src={Renewables}
         alt=""
@@ -218,20 +218,20 @@ const Card = ({
   description,
   Icon,
   delay = 0.2,
-  direction = "left",
+  direction = 'left'
 }) => {
   return (
     <m.div
       className="px-4 w-full max-w-[308px] min-h-[288px] md:min-h-[308px] md:w-[308px] pt-8 bg-white border border-[#D9D9D9] rounded-3xl relative overflow-clip"
-      initial={{ opacity: 0, x: direction == "left" ? -100 : 100 }}
+      initial={{ opacity: 0, x: direction == 'left' ? -100 : 100 }}
       whileInView={{
         opacity: 1,
         x: 1,
-        transition: { duration: 0.5, delay: delay },
+        transition: { duration: 0.5, delay: delay }
       }}
     >
       <div className="grid w-12 h-12 mb-10 place-items-center bg-[#4B7810] ml-auto rounded-full">
-        <Icon fill={"#fff"} width={"28"} height={"28"} />
+        <Icon fill={'#fff'} width={'28'} height={'28'} />
       </div>
 
       <p className="relative z-20 mb-4 text-lg font-semibold font-gen_sans text-dark_text">
@@ -243,7 +243,7 @@ const Card = ({
       </p>
 
       <div className="absolute bottom-0 -right-[60px] top-[139px] z-10">
-        <Icon fill={"#E4EBDB"} width={"186"} height={"186"} />
+        <Icon fill={'#E4EBDB'} width={'186'} height={'186'} />
       </div>
     </m.div>
   );

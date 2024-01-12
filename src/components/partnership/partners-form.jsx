@@ -1,75 +1,76 @@
-import { Button } from "../ui/button";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import ErrorIcon from "./assets/error-icon";
-import React, { useState } from "react";
-import Handshake from "./assets/handshake.svg";
-import { m } from "framer-motion";
-import { useRef } from "react";
-import emailjs from "@emailjs/browser";
-import { siteConfig } from "../../config/site";
+import { Button } from '../ui/button';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import ErrorIcon from './assets/error-icon';
+import React, { useState } from 'react';
+import Handshake from './assets/handshake.svg';
+import { m } from 'framer-motion';
+import { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import { siteConfig } from '../../config/site';
 
 const FormSchema = z.object({
   nameOfCompany: z
-    .string({ required_error: "Please enter name of company" })
-    .min(1, { message: "Please enter the company name" }),
+    .string({ required_error: 'Please enter name of company' })
+    .min(1, { message: 'Please enter the company name' }),
   email: z
-    .string({ required_error: "Please enter email address" })
-    .email({ message: "Invalid email address" }),
+    .string({ required_error: 'Please enter email address' })
+    .email({ message: 'Invalid email address' }),
   phoneNumber: z
-    .string({ required_error: "Please enter phone number" })
-    .length(11, { message: "Please enter a valid phone number" }),
+    .string({ required_error: 'Please enter phone number' })
+    .length(11, { message: 'Please enter a valid phone number' }),
   message: z
-    .string({ required_error: "Please enter message" })
-    .min(1, { message: "Please enter a message" }),
+    .string({ required_error: 'Please enter message' })
+    .min(1, { message: 'Please enter a message' })
 });
 
 export default function PartnersForm() {
-  const [status, setStatus] = useState("idle");
+  const [status, setStatus] = useState('idle');
   const formRef = useRef();
 
-  const { public_key, service_id, template_id } = siteConfig.form;
+  const { public_key, service_id } = siteConfig.form;
+  const template_id = 'template_83etf5m';
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm({
-    resolver: zodResolver(FormSchema),
+    resolver: zodResolver(FormSchema)
   });
   const onSubmit = () => {
-    setStatus("pending");
+    setStatus('pending');
 
     emailjs.sendForm(service_id, template_id, formRef.current, public_key).then(
       () => {
-        setStatus("done");
+        setStatus('done');
       },
       () => {
-        setStatus("idle");
+        setStatus('idle');
       }
     );
   };
 
   return (
     <>
-      {status === "done" ? (
+      {status === 'done' ? (
         <>
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-black/70"
-            onClick={() => setStatus("idle")}
+            onClick={() => setStatus('idle')}
           />
           <m.div
-            initial={{ opacity: 0, scale: 0.5, y: "-50%", x: "-50%" }}
+            initial={{ opacity: 0, scale: 0.5, y: '-50%', x: '-50%' }}
             animate={{
               opacity: 1,
               scale: 1,
-              y: "-50%",
-              x: "-50%",
-              transition: { duration: 0.5 },
+              y: '-50%',
+              x: '-50%',
+              transition: { duration: 0.5 }
             }}
             className="fixed w-full h-[492px] md:w-[584px] rounded-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 px-8 md:px-[70px] py-[72px] overflow-clip"
           >
@@ -89,10 +90,10 @@ export default function PartnersForm() {
               </div>
 
               <Button
-                size={"lg"}
-                className={"mx-auto z-50"}
+                size={'lg'}
+                className={'mx-auto z-50'}
                 onClick={() => {
-                  setStatus("idle");
+                  setStatus('idle');
                   formRef?.current?.reset();
                 }}
               >
@@ -158,13 +159,13 @@ export default function PartnersForm() {
         >
           <div className="space-y-6">
             <div className="space-y-3">
-              <Label htmlFor={"name"}>Name of company</Label>
+              <Label htmlFor={'name'}>Name of company</Label>
               <Input
                 type="text"
                 id="nameOfCompany"
                 name="nameOfCompany"
                 placeholder="Name of company"
-                {...register("nameOfCompany")}
+                {...register('nameOfCompany')}
                 isError={errors.name?.message}
               />
               {errors.nameOfCompany?.message && (
@@ -175,13 +176,13 @@ export default function PartnersForm() {
             </div>
 
             <div className="space-y-3">
-              <Label htmlFor={"email"}>Email Address</Label>
+              <Label htmlFor={'email'}>Email Address</Label>
               <Input
                 type="email"
                 id="email"
                 name="email"
                 placeholder="Email Address"
-                {...register("email")}
+                {...register('email')}
                 isError={errors.email?.message}
               />
               {errors.email?.message && (
@@ -192,13 +193,13 @@ export default function PartnersForm() {
             </div>
 
             <div className="space-y-3">
-              <Label htmlFor={"phone"}>Phone Number</Label>
+              <Label htmlFor={'phone'}>Phone Number</Label>
               <Input
                 type="number"
                 id="phone"
                 name="phoneNumber"
                 placeholder="1234567890"
-                {...register("phoneNumber")}
+                {...register('phoneNumber')}
                 isError={errors.phoneNumber?.message}
               />
               {errors.phoneNumber?.message && (
@@ -209,12 +210,12 @@ export default function PartnersForm() {
             </div>
 
             <div className="space-y-3">
-              <Label htmlFor={"message"}>Message</Label>
+              <Label htmlFor={'message'}>Message</Label>
               <textarea
                 name="message"
                 id="message"
                 className={` w-full empty:bg-[#F3F3F3] border border-[#D4D4D4] rounded-lg placeholder:text-[#8A8A8A] p-3 h-48 outline-[#8A8A8A]`}
-                {...register("message")}
+                {...register('message')}
               />
               {errors.message?.message && (
                 <div className="flex items-center gap-2 text-[#FF0000]">
@@ -224,12 +225,12 @@ export default function PartnersForm() {
             </div>
           </div>
 
-          <Button type="submit" disabled={status === "pending"}>
-            {status === "pending"
-              ? "Submitting..."
-              : status === "done"
-              ? "Submitted"
-              : "Submit"}
+          <Button type="submit" disabled={status === 'pending'}>
+            {status === 'pending'
+              ? 'Submitting...'
+              : status === 'done'
+              ? 'Submitted'
+              : 'Submit'}
           </Button>
         </form>
       </div>
@@ -248,11 +249,11 @@ const Label = ({ htmlFor, children }) => {
   );
 };
 
-const Input = React.forwardRef(({ type = "text", isError, ...props }, ref) => {
+const Input = React.forwardRef(({ type = 'text', isError, ...props }, ref) => {
   return (
     <input
       className={`h-[52px] w-full empty:bg-[#F3F3F3] border border-[#D4D4D4] rounded-lg placeholder:text-[#8A8A8A] px-3  ${
-        isError ? "outline-[#FF0000]" : "outline-[#8A8A8A]"
+        isError ? 'outline-[#FF0000]' : 'outline-[#8A8A8A]'
       }`}
       type={type}
       {...props}
@@ -261,4 +262,4 @@ const Input = React.forwardRef(({ type = "text", isError, ...props }, ref) => {
   );
 });
 
-Input.displayName = "Input";
+Input.displayName = 'Input';

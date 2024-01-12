@@ -1,32 +1,29 @@
-import emailjs from "@emailjs/browser";
-import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import OverlayMessage from "./OverlayMessage";
-import { Button } from "./button";
+import emailjs from '@emailjs/browser';
+import { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import OverlayMessage from './OverlayMessage';
+import { Button } from './button';
+import { siteConfig } from '../../config/site';
 
 const ContactForm = () => {
-  const [status, setStatus] = useState("idle");
+  const [status, setStatus] = useState('idle');
   const { register, handleSubmit, formState } = useForm();
 
   const formRef = useRef();
 
+  const { public_key, service_id } = siteConfig.form;
+  const template_id = 'template_r7bahqr';
+
   const onSubmit = () => {
-    setStatus("pending");
-    emailjs
-      .sendForm(
-        "service_r1blhvf",
-        "template_6utxzk7",
-        formRef.current,
-        "PtKad8KQjae9K4wCT"
-      )
-      .then(
-        () => {
-          setStatus("done");
-        },
-        () => {
-          setStatus("idle");
-        }
-      );
+    setStatus('pending');
+    emailjs.sendForm(service_id, template_id, formRef.current, public_key).then(
+      () => {
+        setStatus('done');
+      },
+      () => {
+        setStatus('idle');
+      }
+    );
   };
   const formError = formState.errors;
 
@@ -50,7 +47,7 @@ const ContactForm = () => {
           className="block w-full p-3 text-sm text-gray-900 border border-gray-300 rounded-lg shadow-sm bg-gray-50 focus:ring-primary-500 focus:border-primary-500 "
           placeholder="John Doe"
           required
-          {...register("fullName", { required: true })}
+          {...register('full_name', { required: true })}
         />
       </div>
       <div>
@@ -67,14 +64,14 @@ const ContactForm = () => {
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5  "
           placeholder="name@wellness.com"
           required
-          {...register("email", {
+          {...register('email', {
             pattern: {
               value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-              message: "Please put in a valid email",
-            },
+              message: 'Please put in a valid email'
+            }
           })}
         />
-        {formError.body && formError.body.type === "pattern" && (
+        {formError.body && formError.body.type === 'pattern' && (
           <span className="errors">Please put in a valid email</span>
         )}
       </div>
@@ -91,17 +88,17 @@ const ContactForm = () => {
           name="message"
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 "
           placeholder="Leave a Message..."
-          {...register("message", { required: true })}
+          {...register('message', { required: true })}
         ></textarea>
       </div>
-      <Button type="submit" disabled={status === "pending"}>
-        {status === "pending"
-          ? "Submitting..."
-          : status === "done"
-          ? "Submitted"
-          : "Submit"}
+      <Button type="submit" disabled={status === 'pending'}>
+        {status === 'pending'
+          ? 'Submitting...'
+          : status === 'done'
+          ? 'Submitted'
+          : 'Submit'}
       </Button>
-      {status === "done" ? <OverlayMessage /> : null}
+      {status === 'done' ? <OverlayMessage /> : null}
     </form>
   );
 };
