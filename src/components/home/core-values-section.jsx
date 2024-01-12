@@ -6,6 +6,7 @@ import LifestyleIcon from "./assets/icons/lifestyle.jsx";
 import ValueChainIcon from "./assets/icons/valuechain.jsx";
 import CircularityIcon from "./assets/icons/circularity.jsx";
 import Tree from "./assets/Tree.png";
+import Cycler from "./assets/Cycler.svg";
 import Renewables from "./assets/Renewables.png";
 import Cube from "./assets/cube-2.svg";
 
@@ -184,6 +185,18 @@ export default function CoreValuesSection() {
         src={Tree}
         alt=""
         className="absolute bottom-0 -translate-x-1/2 left-1/2"
+      />
+
+      <m.img
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: { delay: 0.5, ease: "easeOut" },
+        }}
+        src={Cycler}
+        alt=""
+        className="absolute bottom-0 hidden left-28 lg:flex"
       />
 
       <m.img
