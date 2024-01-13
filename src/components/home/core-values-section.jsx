@@ -1,15 +1,16 @@
-import InnovationIcon from './assets/icons/innovation.jsx';
-import TechnologyIcon from './assets/icons/technology.jsx';
-import SustainabilityIcon from './assets/icons/sustainability.jsx';
-import PartnershipIcon from './assets/icons/partnership.jsx';
-import LifestyleIcon from './assets/icons/lifestyle.jsx';
-import ValueChainIcon from './assets/icons/valuechain.jsx';
-import CircularityIcon from './assets/icons/circularity.jsx';
-import Tree from './assets/Tree.png';
-import Renewables from './assets/Renewables.png';
-import Cube from './assets/cube-2.svg';
+import InnovationIcon from "./assets/icons/innovation.jsx";
+import TechnologyIcon from "./assets/icons/technology.jsx";
+import SustainabilityIcon from "./assets/icons/sustainability.jsx";
+import PartnershipIcon from "./assets/icons/partnership.jsx";
+import LifestyleIcon from "./assets/icons/lifestyle.jsx";
+import ValueChainIcon from "./assets/icons/valuechain.jsx";
+import CircularityIcon from "./assets/icons/circularity.jsx";
+import Tree from "./assets/Tree.png";
+import Cycler from "./assets/Cycler.svg";
+import Renewables from "./assets/Renewables.png";
+import Cube from "./assets/cube-2.svg";
 
-import { m } from 'framer-motion';
+import { m } from "framer-motion";
 
 const coreValues = [
   {
@@ -184,6 +185,18 @@ export default function CoreValuesSection() {
         src={Tree}
         alt=""
         className="absolute bottom-0 -translate-x-1/2 left-1/2"
+      />
+
+      <m.img
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: { delay: 0.5, ease: "easeOut" },
+        }}
+        src={Cycler}
+        alt=""
+        className="absolute bottom-0 hidden left-28 lg:flex"
       />
 
       <m.img
