@@ -97,7 +97,7 @@ export default function ShoppersBag() {
           viewport={{ once: true }}
         >
           <p className="text-[#EBEBEB] text-center lg:text-left font-semibold font-gen_sans text-xl leading-[30px] md:text-2xl lg:text-[32px]">
-            Get the <span className="text-green-400">ShopperBag</span> App
+            Get the <span className="text-green-400">ShoppersBag</span> App
             Today.
           </p>
 
