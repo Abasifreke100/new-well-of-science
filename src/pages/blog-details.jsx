@@ -43,7 +43,7 @@ export default function BlogDetails() {
           ) : (
             <img
               src={blog?.data.image}
-              alt={blog.data.name}
+              alt={blog?.data.name}
               className="object-cover w-full h-full shadow-md rounded-2xl"
             />
           )}
@@ -75,7 +75,7 @@ export default function BlogDetails() {
           <div
             className="text-sm font-normal md:text-base"
             dangerouslySetInnerHTML={{
-              __html: formatTextForReadability(blog?.data.description)
+              __html: formatTextForReadability(blog?.data.description),
             }}
           />
         )}
