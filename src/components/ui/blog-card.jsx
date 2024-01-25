@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function BlogCard({ blog }) {
   return (
@@ -22,7 +22,9 @@ export default function BlogCard({ blog }) {
 
         <div
           className="text-sm font-normal break-words break-all text-normal_text line-clamp-2 md:text-base"
-          dangerouslySetInnerHTML={{ __html: blog.description }}
+          dangerouslySetInnerHTML={{
+            __html: blog.description
+          }}
         />
       </div>
     </Link>
