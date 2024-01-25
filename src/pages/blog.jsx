@@ -31,7 +31,7 @@ export default function BlogPage() {
             {isLoading ? null : (
               <>
                 <div className="absolute inset-0 w-full h-full bg-black/70" />
-                <div className="absolute flex flex-col items-start space-y-2 -translate-y-1/2 lg:space-y-5 left-10 top-1/2">
+                <div className="absolute flex flex-col items-start pr-5 space-y-2 -translate-y-1/2 lg:space-y-5 left-5 md:left-10 top-1/2">
                   <h1 className="max-w-2xl text-2xl font-bold text-left text-white md:text-3xl lg:text-4xl">
                     {initBlog?.name}
                   </h1>
