@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../hooks/use-fetch";
 import { siteConfig } from "../config/site";
 import Layout from "../components/layout";
+import { formatTextForReadability } from "../lib/utils";
 
 export default function BlogDetails() {
   const { blogId } = useParams();
@@ -73,7 +74,9 @@ export default function BlogDetails() {
         ) : (
           <div
             className="text-sm font-normal md:text-base"
-            dangerouslySetInnerHTML={{ __html: blog?.data.description }}
+            dangerouslySetInnerHTML={{
+              __html: formatTextForReadability(blog?.data.description)
+            }}
           />
         )}
       </div>
