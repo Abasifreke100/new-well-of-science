@@ -1,6 +1,6 @@
-import { useLocation } from "react-router-dom"
-import { Button } from "../ui/button"
-import { Link } from "react-router-dom"
+import { useLocation } from "react-router-dom";
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 import {
   MailIcon,
   PhoneIcon,
@@ -8,13 +8,13 @@ import {
   TwitterIcon,
   FacebookIcon,
   LinkedinIcon,
-} from "lucide-react"
-import { siteConfig } from "../../config/site"
+} from "lucide-react";
+import { siteConfig } from "../../config/site";
 
-import Logo from "../../assets/core-logo.webp"
+import Logo from "../../assets/core-logo.webp";
 
 export default function Footer() {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <footer className="p-10 bg-footer_bg ">
@@ -125,13 +125,13 @@ export default function Footer() {
               </div>
               <div className="flex flex-col gap-6">
                 <Link
-                  to={"/portfolio"}
+                  to={"/portfolio?tab=0"}
                   className="text-base font-normal text-light_text font-inter"
                 >
                   Shoppers bag
                 </Link>
                 <Link
-                  to={"/portfolio"}
+                  to={"/portfolio?tab=1"}
                   className="text-base font-normal text-light_text font-inter"
                 >
                   Mushroom lab
@@ -156,5 +156,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
