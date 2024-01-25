@@ -5,7 +5,7 @@ export default function BlogCard({ blog }) {
   return (
     <Link
       to={`/blog/${blog._id}`}
-      className="w-full p-3 bg-white shadow-md cursor-pointer select-none rounded-xl "
+      className="w-full p-3 bg-white shadow-md cursor-pointer select-none rounded-xl h-[410px] "
     >
       <div className="w-full overflow-hidden rounded-xl">
         <img
@@ -15,7 +15,7 @@ export default function BlogCard({ blog }) {
         />
       </div>
 
-      <div className="w-full px-4 py-4">
+      <div className="w-full px-1 py-4">
         <p className="text-lg font-semibold text-dark_text md:text-xl lg:text-2xl line-clamp-2">
           {blog.name}
         </p>
