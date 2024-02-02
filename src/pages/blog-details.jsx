@@ -18,7 +18,6 @@ import * as yup from "yup";
 import CustomPagination from "../components/CustomPagination";
 import { useCookies } from "react-cookie";
 
-
 const truncateAfterWords = (text, wordsCount) => {
   const words = text.split(" ");
   const truncatedWords = words.slice(0, wordsCount);
@@ -43,7 +42,6 @@ const RecentPost = () => {
     navigate(`/blog/${recent}`);
     setClickedPosts((prevClickedPosts) => [...prevClickedPosts, recent]);
   };
-
 
   return (
     <div className=" mt-6">
@@ -85,15 +83,11 @@ const RecentPost = () => {
   );
 };
 
-
-
 const schema = yup.object().shape({
   name: yup.string().required("Email field cannot be empty"),
   email: yup.string().required("Password field cannot be empty"),
   comment: yup.string().required("Password field cannot be empty"),
 });
-
-
 
 export default function BlogDetails() {
   const { blogId } = useParams();
@@ -104,7 +98,7 @@ export default function BlogDetails() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSearchSuccessful, setSearchSuccessful] = useState(false);
   const [searchText, setSearchText] = useState("");
-const [blogData , setBlogData] = useState({})
+  const [blogData, setBlogData] = useState({});
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const location = useLocation();
   const pageSize = 10;
@@ -113,16 +107,12 @@ const [blogData , setBlogData] = useState({})
   const [commentCookies, setCommentCookie, removeCommentCookie] = useCookies([
     "commentUserData",
   ]);
-    const [formData, setFormData] = useState({
-      name: "",
-      email: "",
-      website: "",
-      comment: "",
-      saveUserData: false,
-    });
+  const [rememberMe, setRememberMe] = useState(false);
+
   const queryKey = ["blog", blogId];
 
- 
+  const [cookies, setCookie] = useCookies(["name", "email", "website"]);
+
   const {
     data: blog,
     isLoading,
@@ -131,7 +121,6 @@ const [blogData , setBlogData] = useState({})
     const response = await axios.get(`${siteConfig.api_url}/post/${blogId}`);
     return response.data;
   });
-
 
   // console.log(blog?.data?.likes[0].total);
 
@@ -158,43 +147,38 @@ const [blogData , setBlogData] = useState({})
 
   const date = new Date(blog?.data.post.updatedAt);
 
-const handleLikeClick = async () => {
-  // Toggle the like state
-  setLiked((prevIsLiked) => !prevIsLiked);
-  setLikeCount(() =>
-    !isLiked ? blog.data.likes[0].total - 1 : blog.data.likes[0].total + 1
-  );
-
-  const likes = {
-    status: !isLiked ? 1 : 0, 
-  };
-
-  setLikeStatusCookie("likeStatus", !isLiked, { path: "/" });
-
-  try {
-    const response = await axios.post(
-      `${siteConfig.api_url}/post/like/${blogId}`,
-      likes
+  const handleLikeClick = async () => {
+    // Toggle the like state
+    setLiked((prevIsLiked) => !prevIsLiked);
+    setLikeCount(() =>
+      !isLiked ? blog.data.likes[0].total - 1 : blog.data.likes[0].total + 1
     );
 
-   await refetchBlog();
+    const likes = {
+      status: !isLiked ? 1 : 0,
+    };
 
-  } catch (error) {
-    console.error("Error posting like:", error);
-  }
-};
-  
+    setLikeStatusCookie("likeStatus", !isLiked, { path: "/" });
 
+    try {
+      const response = await axios.post(
+        `${siteConfig.api_url}/post/like/${blogId}`,
+        likes
+      );
 
-useEffect(() => {
-  const storedLikeStatus = likeStatusCookies.likeStatus;
+      await refetchBlog();
+    } catch (error) {
+      console.error("Error posting like:", error);
+    }
+  };
 
-  if (storedLikeStatus !== undefined) {
-    setLiked(storedLikeStatus);
-  }
-}, [likeStatusCookies]);
+  useEffect(() => {
+    const storedLikeStatus = likeStatusCookies.likeStatus;
 
-
+    if (storedLikeStatus !== undefined) {
+      setLiked(storedLikeStatus);
+    }
+  }, [likeStatusCookies]);
 
   const handleInputChange = (e) => {
     const newSearchQuery = e.target.value;
@@ -231,6 +215,7 @@ useEffect(() => {
     register,
     reset,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -241,7 +226,13 @@ useEffect(() => {
 
   const queryClient = useQueryClient();
 
-
+  useEffect(() => {
+    const shouldRemember = cookies.rememberMe;
+    setRememberMe(shouldRemember);
+    setValue("name", cookies.name);
+    setValue("email", cookies.email);
+    setValue("website", cookies.website);
+  }, [cookies]);
 
   const postComment = async (data) => {
     const response = await axios.post(`${siteConfig.api_url}/comments`, data);
@@ -265,16 +256,21 @@ useEffect(() => {
     },
   });
 
-
-
   const onSubmit = (data) => {
     const postData = {
       name: data.name,
       email: data.email,
       website: data.website,
       comment: data.comment,
-      post: blogId, 
+      post: blogId,
     };
+
+    if (rememberMe) {
+      setCookie("name", postData.name, { path: "/" });
+      setCookie("email", postData.email, { path: "/" });
+      setCookie("website", postData.website, { path: "/" });
+    }
+    setCookie("rememberMe", rememberMe.toString(), { path: "/" });
 
     mutate(postData);
   };
@@ -345,38 +341,6 @@ useEffect(() => {
   };
 
 
-
-
-
-    useEffect(() => {
-      const storedUserPreferences = commentCookies.commentUserData;
-
-      if (storedUserPreferences) {
-        setFormData({
-          ...formData,
-          ...storedUserPreferences,
-        });
-      }
-    }, [commentCookies.commentUserData]);
-
-    const handleCheckboxChange = (e) => {
-      const { name, checked } = e.target;
-
-      // Set the cookie with user preferences
-      setCommentCookie("userPreferences", {
-        ...formData,
-        [name]: checked,
-      });
-
-      // Update the form data
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: checked,
-      }));
-    };
-
-
-  console.log(commentCookies);
 
   
 
@@ -678,8 +642,8 @@ useEffect(() => {
                   type="checkbox"
                   name="saveUserData"
                   id="saveUserData"
-                  checked={formData.saveUserData}
-                  onChange={handleCheckboxChange}
+                  checked={rememberMe}
+                  onChange={() => setRememberMe(!rememberMe)}
                 />
                 <label htmlFor="saveUserData" className="text-[#828282]">
                   {" "}
