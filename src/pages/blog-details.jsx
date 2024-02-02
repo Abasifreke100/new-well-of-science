@@ -17,11 +17,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import CustomPagination from "../components/CustomPagination";
 import { useCookies } from "react-cookie";
+import LinesEllipsis from "react-lines-ellipsis";
 
 const truncateAfterWords = (text, wordsCount) => {
   const words = text.split(" ");
   const truncatedWords = words.slice(0, wordsCount);
   return truncatedWords.join(" ") + (words.length > wordsCount ? "..." : "");
+};
+
+const extractPlainText = (htmlContent) => {
+  const tempElement = document.createElement("div");
+  tempElement.innerHTML = htmlContent;
+  return tempElement.textContent || tempElement.innerText;
 };
 
 const RecentPost = () => {
@@ -37,7 +44,6 @@ const RecentPost = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   const handleNavigate = (recent) => {
     navigate(`/blog/${recent}`);
     setClickedPosts((prevClickedPosts) => [...prevClickedPosts, recent]);
@@ -67,14 +73,14 @@ const RecentPost = () => {
               >
                 {recent.name}
               </h4>
-              <p
-                className="text-[#828282] text-[14px] w-[120px] mt-2 leading-5"
-                dangerouslySetInnerHTML={{
-                  __html: formatTextForReadability(
-                    `${truncateAfterWords(recent?.description || "", 5)}`
-                  ),
-                }}
-              ></p>
+              <LinesEllipsis
+                className="text-[#828282] text-[14px] w-[150px] mt-2 truncate leading-5  h-6"
+                text={extractPlainText(recent.description)}
+                maxLine="1"
+                ellipsis="..."
+                trimRight
+                basedOn="letters"
+              />
             </div>
           </div>
         ))}
@@ -88,6 +94,8 @@ const schema = yup.object().shape({
   email: yup.string().required("Password field cannot be empty"),
   comment: yup.string().required("Password field cannot be empty"),
 });
+
+
 
 export default function BlogDetails() {
   const { blogId } = useParams();
@@ -108,7 +116,7 @@ export default function BlogDetails() {
     "commentUserData",
   ]);
   const [rememberMe, setRememberMe] = useState(false);
-
+const [editorValue, setEditorValue] = useState("");
   const queryKey = ["blog", blogId];
 
   const [cookies, setCookie] = useCookies(["name", "email", "website"]);
@@ -122,7 +130,19 @@ export default function BlogDetails() {
     return response.data;
   });
 
-  // console.log(blog?.data?.likes[0].total);
+
+
+ useEffect(() => {
+   if (blog?.data?.post?.description) {
+     setEditorValue(blog.data.post.description);
+   }
+ }, [blog]);
+
+  
+  const handleChange = (value) => {
+    setEditorValue(value);
+  };
+  
 
   const {
     data: comments,
@@ -147,36 +167,45 @@ export default function BlogDetails() {
 
   const date = new Date(blog?.data.post.updatedAt);
 
-  const handleLikeClick = async () => {
-    // Toggle the like state
-    setLiked((prevIsLiked) => !prevIsLiked);
-    setLikeCount(() =>
-      !isLiked ? blog.data.likes[0].total - 1 : blog.data.likes[0].total + 1
+const handleLikeClick = async () => {
+  // Toggle the like state
+  setLiked((prevIsLiked) => !prevIsLiked);
+
+  setLikeCount((prevLikeCount) =>
+    !isLiked
+      ? (blog?.data?.likes[0]?.total || 0) - 1
+      : (blog?.data?.likes[0]?.total || 0) + 1
+  );
+
+  const likes = {
+    status: !isLiked ? 1 : 0,
+  };
+
+  setLikeStatusCookie("likeStatus", !isLiked, { path: "/" });
+
+  try {
+    const response = await axios.post(
+      `${siteConfig.api_url}/post/like/${blogId}`,
+      likes
     );
 
-    const likes = {
-      status: !isLiked ? 1 : 0,
-    };
+    await refetchBlog();
+  } catch (error) {
+    console.error("Error posting like:", error);
+  }
+};
 
-    setLikeStatusCookie("likeStatus", !isLiked, { path: "/" });
-
-    try {
-      const response = await axios.post(
-        `${siteConfig.api_url}/post/like/${blogId}`,
-        likes
-      );
-
-      await refetchBlog();
-    } catch (error) {
-      console.error("Error posting like:", error);
-    }
-  };
 
   useEffect(() => {
     const storedLikeStatus = likeStatusCookies.likeStatus;
 
     if (storedLikeStatus !== undefined) {
-      setLiked(storedLikeStatus);
+          const shouldSetLiked =
+            blog?.data?.likes && blog.data.likes[0]?.total !== undefined;
+  if (shouldSetLiked) {
+    setLiked(storedLikeStatus);
+  }
+      // setLiked(storedLikeStatus);
     }
   }, [likeStatusCookies]);
 
@@ -342,7 +371,7 @@ export default function BlogDetails() {
 
 
 
-  
+
 
   return (
     <Layout>
@@ -408,14 +437,18 @@ export default function BlogDetails() {
                   ))}
               </div>
             ) : (
-              <div
-                className="text-sm font-normal md:text-base"
-                dangerouslySetInnerHTML={{
-                  __html: formatTextForReadability(
-                    blog?.data.post.description || ""
-                  ),
-                }}
-              />
+              <div className="mt-2">
+                {/* <h2>{post?.data?.name}</h2> */}
+                {/* <ReactQuill
+              theme="snow"
+              value={editorValue}
+              onChange={handleChange}
+              modules={modules}
+              formats={formats}
+              className="h-[300px]"
+            /> */}
+                <div dangerouslySetInnerHTML={{ __html: editorValue }} />
+              </div>
             )}
 
             <div className=" my-3 flex flex-col md:flex-row gap-2 md:gap-6 mt-8">
@@ -432,7 +465,7 @@ export default function BlogDetails() {
                 ) : (
                   <IoIosHeartEmpty size={30} />
                 )}
-                {blog?.data?.likes?.length > 0 && (
+                {blog?.data?.likes?.length >= 0 && (
                   <p>
                     {blog?.data?.likes[0]?.total && blog?.data?.likes[0]?.total}{" "}
                     {blog?.data?.likes[0]?.total < 2 ? "Like" : "Likes"}
