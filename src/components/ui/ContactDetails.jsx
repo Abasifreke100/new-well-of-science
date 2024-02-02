@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import SectionPadding from './SectionPadding'
 import { Mail, MapPin, PhoneCallIcon } from 'lucide-react'
 import ContactForm from './ContactForm'
@@ -13,7 +12,7 @@ const ContactDetails = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-10  my-10  '>
             <div className='relative'>
                 <h1 className='font-gen_sans font-semibold text-[20px] sm:text-[24px] md:text-[32px]  my-5 '> Hi👋, drop us a message</h1>
-                <p clas>Nothing inspires us better than a message from those we seek to serve. Whenever you reach out to us, you fuel our drive.</p>
+                <p>Nothing inspires us better than a message from those we seek to serve. Whenever you reach out to us, you fuel our drive.</p>
                 <div className='flex flex-row gap-6 my-6 '>
                     <div className='bg-green_four p-3 rounded-full self-center '>
                         <MapPin color='#fff' size={30} />

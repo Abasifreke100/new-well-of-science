@@ -1,18 +1,19 @@
-import { Button } from "../ui/button"
-import ShoppersBagImg from "./assets/shoppersbag.png"
-import AppleIcon from "./assets/apple-icon"
-import AndroidIcon from "./assets/android-icon"
-import { ChevronRight } from "lucide-react"
-import Phone from "./assets/phone.png"
-import Bag from "./assets/bag.png"
-import Arrow from "./assets/arrow.svg"
-import { m } from "framer-motion"
+import { Button } from "../ui/button";
+// import ShoppersBagImg from "./assets/shoppersbag.png";
+import AppleIcon from "./assets/apple-icon";
+import AndroidIcon from "./assets/android-icon";
+import { ChevronRight } from "lucide-react";
+import Phone from "./assets/phone.png";
+import Bag from "./assets/bag.png";
+import Arrow from "./assets/arrow.svg";
+import { m } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function ShoppersBag() {
   return (
     <section className="md:px-8 lg:px-20 overflow-clip">
       <div className="w-full h-[709px] bg-[#E9E5E2] rounded-b-[100px] absolute top-0 left-0 -z-10" />
-      <div className="mb-16 md:mb-[120px]">
+      {/* <div className="mb-16 md:mb-[120px]">
         <m.img
           src={ShoppersBagImg}
           alt="shoppers-bag"
@@ -25,7 +26,7 @@ export default function ShoppersBag() {
           }}
           viewport={{ once: true }}
         />
-      </div>
+      </div> */}
 
       <m.div
         className="rounded-3xl md:rounded-[64px] lg:rounded-[100px] bg-[#276085] px-4 pt-10 pb-20 md:px-10 md:py-20 lg:pt-20 lg:px-20 lg:pb-40 relative mb-10 md:mb-[148px] lg:mb-20"
@@ -47,7 +48,7 @@ export default function ShoppersBag() {
             viewport={{ once: true }}
           >
             ShoppersBag is a{" "}
-            <span className="text-[#029834]">
+            <span className="text-green-400">
               {" "}
               reusable, biodegradable, recyclable{" "}
             </span>{" "}
@@ -79,8 +80,9 @@ export default function ShoppersBag() {
             single-use plastic (SUP) reduction metrics that show the number of
             single-use plastics saved from polluting the environment. <br />{" "}
             <br /> At ShoppersBag, we strive to create a community of
-            environmentally-aware shoppers who actively work towards reducing
-            single-use plastic waste pollution in their locality.
+            eco-conscious shoppers who actively work towards reducing single-use
+            plastic waste pollution in their locality through the{" "}
+            <strong>Bring Your Bag to Store (BYBTS) </strong> campaign.
           </m.p>
         </div>
 
@@ -95,7 +97,8 @@ export default function ShoppersBag() {
           viewport={{ once: true }}
         >
           <p className="text-[#EBEBEB] text-center lg:text-left font-semibold font-gen_sans text-xl leading-[30px] md:text-2xl lg:text-[32px]">
-            Get the <span className="text-[#093]">ShopperBag</span> App Today.
+            Get the <span className="text-green-400">ShoppersBag</span> App
+            Today.
           </p>
 
           <div className="flex flex-col gap-6 md:flex-row">
@@ -115,9 +118,12 @@ export default function ShoppersBag() {
             </Button>
           </div>
 
-          <p className="flex items-center gap-2 text-sm font-inter text-[#E6E6E6] font-medium lg:text-base underline">
+          <Link
+            to={"https://shoppersbag.co/"}
+            className="flex items-center gap-2 text-sm font-inter text-[#E6E6E6] font-medium lg:text-base underline"
+          >
             <span>Learn more about ShoppersBag</span> <ChevronRight />
-          </p>
+          </Link>
         </m.div>
 
         <div>
@@ -145,5 +151,5 @@ export default function ShoppersBag() {
         />
       </m.div>
     </section>
-  )
+  );
 }

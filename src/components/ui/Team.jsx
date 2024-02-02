@@ -14,13 +14,6 @@ const Team = () => {
         <div>
             <h2 className='font-gen_sans text-[20px] sm:text-[32px] md:text-[40px] font-semibold text-center my-10 '>The Team</h2>
             <div className='grid md:grid-cols-[1fr_2fr_1fr] grid-cols-1 align-middle content-center items-center  gap-6 '>
-                {/* <div className='flex flex-col justify-center '>
-                    <img src={etiat1} alt="" />
-                    <div className='bg-white  rounded-2xl text-center text-[20px] shadow-xl justify-center mx-1 my-6 -rotate-6 '>
-                        <h4 className='border-[1px] rounded-t-2xl p-2 '>Etia Nwaenang</h4>
-                        <h4 className='bg-pink rounded-b-2xl p-2 '>Co-founder</h4>
-                    </div>
-                </div> */}
                 <motion.div
                 initial={{
                     x:-200
@@ -32,7 +25,7 @@ const Team = () => {
                     duration:1,
                 }}
                 >
-                    <TeamNamePic role={'Co-Founder'} img={etiat2} name={'Etia Nwaenang'} roleBg={'pink'} rotate={'-rotate-6'} className />
+                    <TeamNamePic role={'Co-Founder'} img={etiat2} name={'Etia Nwaenang'} roleBg={"pink"} rotate={'-rotate-6'} className />
                     
                 </motion.div>
                 <motion.div 

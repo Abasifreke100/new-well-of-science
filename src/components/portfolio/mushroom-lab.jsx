@@ -1,43 +1,43 @@
-import BG from "./assets/bg.webp"
-import Mushroom from "./assets/mushroom.svg"
-import Img1 from "./assets/1.webp"
-import Img2 from "./assets/2.webp"
-import Img3 from "./assets/3.webp"
+import BG from "./assets/bg.webp";
+import Mushroom from "./assets/mushroom.svg";
+import Img1 from "./assets/1.webp";
+import Img2 from "./assets/2.webp";
+import Img3 from "./assets/3.webp";
 
-import Mushrooms from "./assets/mushrooms.png"
-import { m } from "framer-motion"
+import Mushrooms from "./assets/mushrooms.png";
+import { m } from "framer-motion";
 
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../ui/accordion"
-import { Button } from "../ui/button"
+} from "../ui/accordion";
+import { Button } from "../ui/button";
 
 const items = [
   {
     id: "1",
-    title: "Sustainable Livelihood",
+    title: "Sustainable Livelihoods",
     description:
-      "We empower smallholders and local communities through training, resources, and support for mushroom cultivation. Facilitating increased production of mushroom in Nigeria enhance their income and improve their livelihoods.",
+      "We empower smallholder farmers and local communities to increase the production of mushrooms through training, resources, and access to the market, to improve their economic livelihoods.",
     img: Img1,
   },
   {
     id: "2",
     title: "Environmental Stewardship",
     description:
-      "We champion sustainable practices by harnessing wood waste to grow high-quality oyster mushrooms. By doing so, we not only reduce environmental impact but also contribute to the conservation of forest resources",
+      "We champion sustainable practices by harnessing organic waste to grow high-quality oyster mushrooms. Through our work, we are enhancing environmental sustainability, and also contributing to resource conservation.",
     img: Img2,
   },
   {
     id: "3",
-    title: "Nutritious Food And Culinary Innovation",
+    title: "Food Fortification and Healthy Nutrition",
     description:
-      "Our commitment to promoting mushroom consumption extends to the culinary world. We offer a wide variety of delicious, healthy, and versatile mushroom products, inspiring a new era of nutritious and creative cooking",
+      "We are dedicated to combating malnutrition and promoting healthy nutrition through our commitment to mushroom consumption. Our range of delicious, healthy, and versatile mushroom products aims to inspire a new era of nutritious and healthy living.",
     img: Img3,
   },
-]
+];
 
 export default function MushroomLab() {
   return (
@@ -92,8 +92,8 @@ export default function MushroomLab() {
             }}
             viewport={{ once: true }}
           >
-            Mushroom Lab is poised to transform the lives of{" "}
-            <span className="text-[#91CC41]">10,000 </span> households of farms
+            Mushroom Lab is poised to transform the livelihoods of{" "}
+            <span className="text-[#91CC41]">10,000 </span> smallholder farmers
             in Africa through mushroom farming and production.
           </m.p>
           <p className="text-sm font-medium lg:text-base font-inter text-light_text mb-11">
@@ -127,7 +127,7 @@ export default function MushroomLab() {
                       </div>
                     </AccordionContent>
                   </AccordionItem>
-                )
+                );
               })}
             </Accordion>
           </>
@@ -157,5 +157,5 @@ export default function MushroomLab() {
         </div>
       </div>
     </>
-  )
+  );
 }

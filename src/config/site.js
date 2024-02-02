@@ -19,6 +19,10 @@ export const siteConfig = {
       name: "Partnership",
       href: "/partnership",
     },
+    {
+      name: "Blog",
+      href: "/blog",
+    },
   ],
 
   contact: {
@@ -32,4 +36,11 @@ export const siteConfig = {
     facebook: "https://www.facebook.com/wellofscience/",
     linkedin: "https://www.linkedin.com/company/wellofscience/",
   },
-}
+
+  form: {
+    service_id: "service_sxntgog",
+    public_key: "T4N7Cw-PtAqFYmc5d",
+  },
+
+  api_url: "https://wellofsciencebackend.adaptable.app/api/v1",
+};

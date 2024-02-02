@@ -10,8 +10,10 @@ export default {
     extend: {
       screens: {
         sm: "375px",
+        sml: "640px",
         md: "744px",
         lg: "1200px",
+        msl: "1024px",
       },
       colors: {
         green_one: "#547A1F",
@@ -48,4 +50,4 @@ export default {
     },
   },
   plugins: [],
-}
+};
