@@ -51,7 +51,7 @@ const RecentPost = () => {
 
       <div className="flex flex-col  lg:flex-col gap-6">
         {recentPost.data.response.slice(0, 3).map((recent) => (
-          <div className="flex gap-4 mt-6">
+          <div className="flex gap-4 mt-6" key={recent._id}>
             <div className="w-[80px] h-[80px] border rounded-md overflow-hidden">
               <img
                 src={recent.image}
@@ -265,14 +265,6 @@ useEffect(() => {
     },
   });
 
-const setCommentUserPreferences = (data) => {
-  setCommentCookie("commentUserData", {
-    ...data,
-    name: data.name,
-    email: data.email,
-    website: data.website,
-  });
-};
 
 
   const onSubmit = (data) => {
@@ -284,12 +276,6 @@ const setCommentUserPreferences = (data) => {
       post: blogId, 
     };
 
-    if (data.saveUserData) {
-      // Assuming you have a function to set the user preferences in cookies
-      setCommentUserPreferences(postData);
-    }
-
-    // Rest of your code
     mutate(postData);
   };
 
@@ -335,6 +321,11 @@ const setCommentUserPreferences = (data) => {
         )}&via=${encodeURIComponent(
           sharedContent.url
         )}&media=${encodeURIComponent(sharedContent.imageUrl)}`;
+        break;
+      case "whatsapp":
+        shareUrl = `whatsapp://send?text=${encodeURIComponent(
+          `${sharedContent.title} - ${sharedContent.url}`
+        )}`;
         break;
       case "instagram":
         const instagramShareUrl = `https://www.instagram.com/share?url=${encodeURIComponent(
