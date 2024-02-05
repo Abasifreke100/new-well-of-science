@@ -77,6 +77,8 @@ export default function BlogDetails() {
     return response.data;
   });
 
+
+
   const {
     data: posts,
     isLoading: loadingPosts,
@@ -304,6 +306,8 @@ console.log("Enable query" , enableQuery);
     setCurrentPage(newPage);
   };
 
+  console.log(blog);
+
   const handleShare = (platform) => {
     if (!blog) {
       console.error("Blog data is not available");
@@ -315,11 +319,11 @@ console.log("Enable query" , enableQuery);
     // Share blog post on social media
 
     const sharedContent = {
-      title: blog.data.name,
-      date: new Date(blog?.data.updatedAt),
+      title: blog.data.post.name,
+      date: new Date(blog?.data.post.updatedAt),
       url: "https://your-website-url.com",
-      imageUrl: blog.data.image,
-      description: blog.data.description,
+      imageUrl: blog.data.post.image,
+      description: blog.data.post.description,
     };
 
     switch (platform) {
@@ -463,12 +467,13 @@ console.log("Enable query" , enableQuery);
               </div>
 
               <div class="flex justify-around gap-4 items-center ">
-                <div
+                <p>Share on</p>
+                {/* <div
                   class="border hover:bg-[#1877f2] w-8 h-8 fill-[#1877f2] hover:fill-white border-blue-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-blue-500/50 cursor-pointer"
                   onClick={() => handleShare("facebook")}
                 >
                   <Facebook />
-                </div>
+                </div> */}
                 <div
                   class="border hover:bg-[#1d9bf0] w-8 h-8 fill-[#1d9bf0] hover:fill-white border-blue-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-sky-500/50 cursor-pointer"
                   onClick={() => handleShare("twitter")}
@@ -510,6 +515,50 @@ console.log("Enable query" , enableQuery);
               recentPost={posts}
               isLoading={loadingPosts}
               query={query}
+            />
+          </div>
+        </div>
+
+        <div className="my-8 px-4 lg:px-[212px] bg-[#f9fafa] flex flex-col items-center py-4">
+          <div className="w-full">
+            <h5 className="flex items-center text-[20px] gap-3 text-[#232323]">
+              {" "}
+              <FaRegComment />
+              <span>Comments</span>
+            </h5>
+
+            {isLoadi ? (
+              <p>Loading comments...</p>
+            ) : comments?.data?.response?.length > 0 ? (
+              comments.data.response.map((comment) => (
+                <div
+                  className="bg-[#ffffff] p-4 rounded-[8px] my-4 w-full"
+                  key={comment._id}
+                >
+                  <h5 className="text-[11px] text-blue-500">{comment.name}</h5>
+                  <p className="text-[14px]">{comment.comment}</p>
+                  {comment._id && (
+                    <ReplyComments
+                      commentId={comment._id}
+                      currentPage={currentPage}
+                    />
+                  )}
+                </div>
+              ))
+            ) : (
+              <p className=" mt-4 ml-8">
+                No comments yet, be the first to drop a comment.
+              </p>
+            )}
+          </div>
+
+          <div className=" w-full">
+            <CustomPagination
+              totalItems={comments?.data?.pagination?.total}
+              itemsPerPage={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+              refetch={refetch}
             />
           </div>
         </div>
@@ -618,50 +667,6 @@ console.log("Enable query" , enableQuery);
                 disabled={isLoad} // Add this line
               />
             </form>
-          </div>
-        </div>
-
-        <div className="my-8 px-4 lg:px-[212px] bg-[#f9fafa] flex flex-col items-center py-4">
-          <div className="w-full">
-            <h5 className="flex items-center text-[20px] gap-3 text-[#232323]">
-              {" "}
-              <FaRegComment />
-              <span>Comments</span>
-            </h5>
-
-            {isLoadi ? (
-              <p>Loading comments...</p>
-            ) : comments?.data?.response?.length > 0 ? (
-              comments.data.response.map((comment) => (
-                <div
-                  className="bg-[#ffffff] p-4 rounded-[8px] my-4 w-full"
-                  key={comment._id}
-                >
-                  <h5 className="text-[11px] text-blue-500">{comment.name}</h5>
-                  <p className="text-[14px]">{comment.comment}</p>
-                  {comment._id && (
-                    <ReplyComments
-                      commentId={comment._id}
-                      currentPage={currentPage}
-                    />
-                  )}
-                </div>
-              ))
-            ) : (
-              <p className=" mt-4 ml-8">
-                No comments yet, be the first to drop a comment.
-              </p>
-            )}
-          </div>
-
-          <div className=" w-full">
-            <CustomPagination
-              totalItems={comments?.data?.pagination?.total}
-              itemsPerPage={pageSize}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-              refetch={refetch}
-            />
           </div>
         </div>
       </>
