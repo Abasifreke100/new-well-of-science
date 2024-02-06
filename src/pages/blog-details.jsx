@@ -15,7 +15,7 @@ import { fetchRecentPost } from "../api/config";
 import { useEffect, useRef, useState } from "react";
 import { RecentPost } from "../components/SearchResult";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
-import { FaRegComment } from "react-icons/fa";
+import { FaLinkedin, FaLinkedinIn, FaRegComment, FaWhatsapp } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
@@ -24,9 +24,15 @@ import * as yup from "yup";
 import CustomPagination from "../components/CustomPagination";
 import { useCookies } from "react-cookie";
 import LinesEllipsis from "react-lines-ellipsis";
-import { Facebook, Twitter, Instagram, Whatsapp, Telegram} from "../assets/reusables/SocialMedia";
+import { Facebook, Twitter, Instagram, Whatsapp, Telegram } from "../assets/reusables/SocialMedia";
+import { TiSocialFacebook } from "react-icons/ti";
 import { toast } from "react-toastify";
 import { ReplyComments } from "../components/ReplyComponent";
+import { format, formatDistance } from "date-fns";
+import { FaXTwitter } from "react-icons/fa6";
+import { MdReplyAll } from "react-icons/md";
+import ReplyComment from "../components/ReplyComment";
+import { CiShare2 } from "react-icons/ci";
 
 const schema = yup.object().shape({
   name: yup.string().required("Email field cannot be empty"),
@@ -50,6 +56,8 @@ export default function BlogDetails() {
   const [enableQuery, setEnableQuery] = useState(true);
   const [searchedPost, setSearchedPost] = useState(null);
   const [recentPost, setRecentPost] = useState(null);
+  const [reply, setReply] = useState(false)
+  const [selectedCommentId, setSelectedCommentId] = useState(null);
   const [loading, setLoading] = useState(true);
   const pageSize = 10;
   const [likeStatusCookies, setLikeStatusCookie, removeLikeStatusCookie] =
@@ -96,7 +104,7 @@ export default function BlogDetails() {
   );
 
 console.log("Enable query" , enableQuery);
-
+ const presentDay = new Date();
 
   console.log(posts);
 
@@ -214,6 +222,7 @@ console.log("Enable query" , enableQuery);
   //   fetchData()
   //   }
   //  },[])
+  
 
   useEffect(() => {
     if (blog?.data?.post?.description) {
@@ -306,7 +315,7 @@ console.log("Enable query" , enableQuery);
     setCurrentPage(newPage);
   };
 
-  console.log(blog);
+  // console.log(blog);
 
   const handleShare = (platform) => {
     if (!blog) {
@@ -332,40 +341,31 @@ console.log("Enable query" , enableQuery);
           sharedContent.url
         )}&title=${encodeURIComponent(
           sharedContent.title
-        )}&description=${encodeURIComponent(
-          sharedContent.description
         )}&picture=${encodeURIComponent(sharedContent.imageUrl)}`;
         break;
+
       case "twitter":
         shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
           sharedContent.title
-        )}&url=${encodeURIComponent(
-          sharedContent.url
-        )}&hashtags=${encodeURIComponent(
-          sharedContent.description
-        )}&via=${encodeURIComponent(
-          sharedContent.url
-        )}&media=${encodeURIComponent(sharedContent.imageUrl)}`;
+        )}&url=${encodeURIComponent(sharedContent.url)}&via=wellofscience`;
+        break;
+
         break;
       case "whatsapp":
-         shareUrl = `whatsapp://send?text=${encodeURIComponent(
-      `${sharedContent.title} - ${sharedContent.url}`
-    )}`;
-    // Open the link in a new window
-    window.open(shareUrl, "_blank");
-    break;
-      case "instagram":
-        // const instagramShareUrl = `https://www.instagram.com/share?url=${encodeURIComponent(
-        //   sharedContent.url
-        // )}&media=${encodeURIComponent(
-        //   sharedContent.imageUrl
-        // )}&description=${encodeURIComponent(sharedContent.description)}`;
-        // window.open(instagramShareUrl, "_blank", "width=600,height=400");
-         toast.success("Instagram restricts sharing content directly from the web to prevent spam and abuse", {
-           position: toast.POSITION.TOP_RIGHT,
-           autoClose: 3000, // Duration in milliseconds
-         });
-        return;
+        shareUrl = `https://wa.me/1234567890?text=${encodeURIComponent(
+          `${sharedContent.title} - ${sharedContent.url}`
+        )}`;
+        window.open(shareUrl, "_blank");
+        break;
+
+      case "linkedin":
+        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+          sharedContent.url
+        )}&title=${encodeURIComponent(
+          sharedContent.title
+        )}&source=${encodeURIComponent("Your Website Name")}`;
+        break;
+      
       default:
         console.error("Unsupported platform for sharing");
         return;
@@ -379,7 +379,7 @@ console.log("Enable query" , enableQuery);
     <Layout>
       <>
         <div className="grid grid-cols-12 py-10 px-8 ">
-          <div className=" col-span-12 lg:col-span-9  lg:px-10  ">
+          <div className=" col-span-12 lg:col-span-9  lg:px-24  ">
             <button
               onClick={() => window.history.back()}
               className="flex items-center gap-2 mb-5"
@@ -405,11 +405,13 @@ console.log("Enable query" , enableQuery);
               {isLoading ? (
                 <div className="w-full h-full bg-gray-100 animate-pulse" />
               ) : (
-                <img
-                  src={blog?.data.post.image}
-                  alt={blog?.data.post.name}
-                  className="object-cover w-full h-full shadow-md rounded-2xl"
-                />
+                <>
+                  <img
+                    src={blog?.data.post.image}
+                    alt={blog?.data.post.name}
+                    className="object-cover w-full h-full shadow-md rounded-2xl"
+                  />
+                </>
               )}
 
               {isLoading ? null : (
@@ -420,12 +422,6 @@ console.log("Enable query" , enableQuery);
                 {blog?.data.post.name}
               </h1>
             </div>
-
-            {isLoading ? (
-              <p className="h-6 bg-gray-100 w-80 animate-pulse" />
-            ) : (
-              <p className="mb-6 font-medium">{date.toDateString()}</p>
-            )}
 
             {isLoading ? (
               <div className="space-y-2">
@@ -443,48 +439,93 @@ console.log("Enable query" , enableQuery);
                 <div dangerouslySetInnerHTML={{ __html: editorValue }} />
               </div>
             )}
-
-            <div className=" my-3 flex flex-col md:flex-row gap-2 md:gap-6 mt-8">
-              <div
-                className="flex  items-center gap-4"
-                onClick={handleLikeClick}
-              >
-                {isLiked ? (
-                  <IoIosHeart
-                    size={30}
-                    color="red"
-                    // style={{ backgroundColor: "red" }}
-                  />
-                ) : (
-                  <IoIosHeartEmpty size={30} />
-                )}
-                {blog?.data?.likes?.length >= 0 && (
-                  <p>
-                    {blog?.data?.likes[0]?.total && blog?.data?.likes[0]?.total}{" "}
-                    {blog?.data?.likes[0]?.total < 2 ? "Like" : "Likes"}
+            {isLoading ? (
+              <p className="h-6 bg-gray-100 w-80 animate-pulse" />
+            ) : (
+              <div className="flex flex-col md:flex-row items-start lg:items-center justify-between md:w-[629px]  py-3">
+                <div className="flex items-center gap-2">
+                  <div className=" p-[1px] px-[6px] rounded-[3px] bg-[#547a1f] text-white">
+                    <CiShare2 />
+                  </div>
+                  <p className="text-[#9b9b9b] text-[13px] font-[501]">
+                    by Admin at{" "}
+                    {new Date(blog.data.post.updatedAt).toLocaleDateString()}{" "}
+                    {format(blog?.data.post.updatedAt, "hh:mm a")}
                   </p>
-                )}
+                  <hr className="w-[1px] h-[22px] bg-gray-400" />
+                  <p className="font-medium text-[13px]">49 Comments</p>
+                </div>
+                <div className="">
+                  <div
+                    className="flex  items-center gap-4 mt-2 md:mt-0"
+                    onClick={handleLikeClick}
+                  >
+                    {isLiked ? (
+                      <IoIosHeart
+                        size={25}
+                        color="red"
+                        // style={{ backgroundColor: "red" }}
+                      />
+                    ) : (
+                      <IoIosHeartEmpty size={25} />
+                    )}
+                    {blog?.data?.likes?.length >= 0 && (
+                      <p>
+                        {blog?.data?.likes[0]?.total &&
+                          blog?.data?.likes[0]?.total}{" "}
+                        {blog?.data?.likes[0]?.total < 2 ? "Like" : "Likes"}
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
-
-              <div class="flex justify-around gap-4 items-center ">
-                <p>Share on</p>
-                {/* <div
+            )}
+            <div>
+              <p>Share this Story</p>
+              {/* <div
                   class="border hover:bg-[#1877f2] w-8 h-8 fill-[#1877f2] hover:fill-white border-blue-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-blue-500/50 cursor-pointer"
                   onClick={() => handleShare("facebook")}
                 >
                   <Facebook />
                 </div> */}
+              <div className="flex  items-center gap-3">
                 <div
-                  class="border hover:bg-[#1d9bf0] w-8 h-8 fill-[#1d9bf0] hover:fill-white border-blue-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-sky-500/50 cursor-pointer"
-                  onClick={() => handleShare("twitter")}
+                  className="bg-[#4267b2] w-[149px] h-[35.5px] text-[12px] mt-3 text-[#ffffff] rounded-[5px] gap-2 flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:bg-opacity-80 hover:translate-y-[-5px] ease-in"
+                  onClick={() => handleShare("facebook")}
+                  style={{ transitionDuration: 650 }}
                 >
-                  <Twitter />
+                  <TiSocialFacebook size={20} />{" "}
+                  <span className="hidden md:block">Share</span>
+                </div>
+                <div
+                  className="bg-[#232323] w-[149px] h-[35.5px] text-[12px] mt-3 text-[#ffffff] rounded-[5px] gap-2 flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:bg-opacity-90 hover:translate-y-[-5px] ease-in"
+                  onClick={() => handleShare("twitter")}
+                  style={{ transitionDuration: 650 }}
+                >
+                  <FaXTwitter /> 
+                  <span className="hidden md:block">Tweet</span>
+                </div>
+                <div
+                  className="bg-[#25d366] w-[149px] h-[35.5px] text-[12px] mt-3 text-[#ffffff] rounded-[5px] gap-2 flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:bg-opacity-90 hover:translate-y-[-5px] ease-in"
+                  onClick={() => handleShare("whatsapp")}
+                  style={{ transitionDuration: 650 }}
+                >
+                  <FaWhatsapp size={20} /> 
+                  <span className="hidden md:block">Share</span>
+                </div>
+                <div
+                  className="bg-[#0077b5] w-[149px] h-[35.5px] text-[12px] mt-3 text-[#ffffff] rounded-[5px] gap-2 flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:bg-opacity-90 hover:translate-y-[-5px] ease-in"
+                  onClick={() => handleShare("linkedin")}
+                  style={{ transitionDuration: 650 }}
+                >
+                  <FaLinkedin size={20} /> 
+                  <span className="hidden md:block">Share</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className=" col-span-12 mt-4 lg:mt-0 lg:col-span-3  px-4">
+          <div className=" col-span-12 mt-4 lg:mt-0 lg:col-span-3  md:px-4">
             <h4>Search Post</h4>
             <div className="border border-[#e4e4e4] mt-4 w-full rounded-md h-10 flex items-center p-4 gap-3">
               <input
@@ -532,11 +573,35 @@ console.log("Enable query" , enableQuery);
             ) : comments?.data?.response?.length > 0 ? (
               comments.data.response.map((comment) => (
                 <div
-                  className="bg-[#ffffff] p-4 rounded-[8px] my-4 w-full"
+                  className="bg-[#ffffff] shadow-md p-4 rounded-[8px] my-4 mt-8 w-full leading-5"
                   key={comment._id}
                 >
-                  <h5 className="text-[11px] text-blue-500">{comment.name}</h5>
-                  <p className="text-[14px]">{comment.comment}</p>
+                  <h5 className="text-[12px] text-[#939494] font-[501]">
+                    {comment.name} replies ~{" "}
+                    <span className="text-[#000000] text-[12px]">
+                      {formatDistance(presentDay, new Date(comment?.createdAt))}{" "}
+                      ago
+                    </span>{" "}
+                  </h5>
+                  <div className="">
+                    <p className="text-[15px]">{comment.comment}</p>{" "}
+                  </div>
+                  <span
+                    className="text-[10px] hover:underline cursor-pointer"
+                    onClick={() =>
+                      setSelectedCommentId((prevId) =>
+                        prevId === comment._id ? null : comment._id
+                      )
+                    }
+                  >
+                    Reply
+                  </span>
+                  {selectedCommentId === comment._id && (
+                    <ReplyComment
+                      setSelectedCommentId={setSelectedCommentId}
+                      commentId={comment._id}
+                    />
+                  )}
                   {comment._id && (
                     <ReplyComments
                       commentId={comment._id}
