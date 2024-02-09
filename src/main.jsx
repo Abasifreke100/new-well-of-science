@@ -12,6 +12,7 @@ import ContactPage from "./pages/contact";
 import PartnerShipFormPage from "./pages/partnership-form";
 import BlogDetails from "./pages/blog-details";
 import BlogPage from "./pages/blog";
+import { UploadProvider } from "./hooks/UseContext";
 
 
 
@@ -59,9 +60,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+      <UploadProvider>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <ReactQueryDevtools />
     </QueryClientProvider>
+      </UploadProvider>
   </React.StrictMode>
 );
