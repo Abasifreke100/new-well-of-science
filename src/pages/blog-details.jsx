@@ -49,6 +49,7 @@ export default function BlogDetails() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSearchSuccessful, setSearchSuccessful] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [replyText, setReplyText] = useState("");
   const [blogData, setBlogData] = useState({});
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -56,7 +57,8 @@ export default function BlogDetails() {
   const [enableQuery, setEnableQuery] = useState(true);
   const [searchedPost, setSearchedPost] = useState(null);
   const [recentPost, setRecentPost] = useState(null);
-  const [reply, setReply] = useState(false)
+  const [postReplyLoading, setPostReplyLoading] = useState(false);
+  const [reply, setReply] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
   const [loading, setLoading] = useState(true);
   const pageSize = 10;
@@ -67,11 +69,10 @@ export default function BlogDetails() {
   ]);
   const [rememberMe, setRememberMe] = useState(false);
   const [editorValue, setEditorValue] = useState("");
+  const [commentId, setCommentId] = useState(null);
   const queryKey = ["blog", blogId];
 
   const [cookies, setCookie] = useCookies(["name", "email", "website"]);
-
-  
 
   // Fetch Blog Content
 
@@ -85,7 +86,7 @@ export default function BlogDetails() {
     return response.data;
   });
 
-
+  // Fetch Reply
 
   const {
     data: posts,
@@ -98,41 +99,39 @@ export default function BlogDetails() {
     {
       enabled: enableQuery,
       onSuccess: () => {
-        setEnableQuery(false)
-      }
+        setEnableQuery(false);
+      },
     }
   );
 
-console.log("Enable query" , enableQuery);
- const presentDay = new Date();
+  console.log("Enable query", enableQuery);
+  const presentDay = new Date();
 
   console.log(posts);
 
   // Fetch Comments
 
- const {
-   data: comments,
-   isLoading: isLoadi, // Corrected property name
-   refetch,
- } = useQuery(
-   "comments",
-   () => fetchRecentPost(`/comments/${blogId}?&currentPage=${currentPage}`),
-   {
-     enabled: true,
-   }
- );
+  const {
+    data: comments,
+    isLoading: isLoadi, // Corrected property name
+    refetch,
+  } = useQuery(
+    "comments",
+    () => fetchRecentPost(`/comments/${blogId}?&currentPage=${currentPage}`),
+    {
+      enabled: true,
+    }
+  );
 
-   useEffect(() => {
-     refetch();
-   }, [currentPage]);
-  
-  
-  
+  useEffect(() => {
+    refetch();
+  }, [currentPage]);
+
   useEffect(() => {
     if (!!query === false) {
-    setEnableQuery(true)
-  }
-},[query])
+      setEnableQuery(true);
+    }
+  }, [query]);
   // Refetch comments
   // useEffect(() => {
   //   refetch();
@@ -196,7 +195,7 @@ console.log("Enable query" , enableQuery);
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-   setEnableQuery(true)
+      setEnableQuery(true);
     }
   };
 
@@ -222,7 +221,6 @@ console.log("Enable query" , enableQuery);
   //   fetchData()
   //   }
   //  },[])
-  
 
   useEffect(() => {
     if (blog?.data?.post?.description) {
@@ -365,7 +363,7 @@ console.log("Enable query" , enableQuery);
           sharedContent.title
         )}&source=${encodeURIComponent("Your Website Name")}`;
         break;
-      
+
       default:
         console.error("Unsupported platform for sharing");
         return;
@@ -374,6 +372,8 @@ console.log("Enable query" , enableQuery);
     // Open a new window to share the content
     window.open(shareUrl, "_blank", "width=600,height=400");
   };
+
+
 
   return (
     <Layout>
@@ -502,7 +502,7 @@ console.log("Enable query" , enableQuery);
                   onClick={() => handleShare("twitter")}
                   style={{ transitionDuration: 650 }}
                 >
-                  <FaXTwitter /> 
+                  <FaXTwitter />
                   <span className="hidden md:block">Tweet</span>
                 </div>
                 <div
@@ -510,7 +510,7 @@ console.log("Enable query" , enableQuery);
                   onClick={() => handleShare("whatsapp")}
                   style={{ transitionDuration: 650 }}
                 >
-                  <FaWhatsapp size={20} /> 
+                  <FaWhatsapp size={20} />
                   <span className="hidden md:block">Share</span>
                 </div>
                 <div
@@ -518,7 +518,7 @@ console.log("Enable query" , enableQuery);
                   onClick={() => handleShare("linkedin")}
                   style={{ transitionDuration: 650 }}
                 >
-                  <FaLinkedin size={20} /> 
+                  <FaLinkedin size={20} />
                   <span className="hidden md:block">Share</span>
                 </div>
               </div>
@@ -577,7 +577,7 @@ console.log("Enable query" , enableQuery);
                   key={comment._id}
                 >
                   <h5 className="text-[12px] text-[#939494] font-[501]">
-                    {comment.name} replies ~{" "}
+                    {comment.name}'s comment ~{" "}
                     <span className="text-[#000000] text-[12px]">
                       {formatDistance(presentDay, new Date(comment?.createdAt))}{" "}
                       ago
@@ -600,6 +600,12 @@ console.log("Enable query" , enableQuery);
                     <ReplyComment
                       setSelectedCommentId={setSelectedCommentId}
                       commentId={comment._id}
+                      // handlePostReply={handlePostReply}
+                      replyText={replyText}
+                      setReplyText={setReplyText}
+                      postReplyLoading={postReplyLoading}
+                      setPostReplyLoading={setPostReplyLoading}
+                      currentPage={currentPage}
                     />
                   )}
                   {comment._id && (
