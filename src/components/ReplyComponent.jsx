@@ -73,7 +73,6 @@ export function ReplyComments({ commentId, currentPage, reply }) {
     );
   }
  
-console.log("CurrentRwply" ,currentResponseReply);
 
 
   
@@ -118,7 +117,7 @@ console.log("CurrentRwply" ,currentResponseReply);
          });
        };
 
-
+console.log("comment" ,replyComment);
             // Call refetchReplyComment inside the loop
 
             return (
@@ -164,7 +163,7 @@ console.log("CurrentRwply" ,currentResponseReply);
                         <div key={res._id}>
                           <h5 className="text-[10px] text-[#939494] font-[501] mt-1 flex items-center">
                             <TiTickOutline />{" "}
-                            {replyComment?.name ? replyComment?.name : "admin"}{" "}
+                            {res?.name ? res?.name : "admin"}{" "}
                             replies ~{" "}
                             <span className="text-[#000000]">
                               {formatDistance(
