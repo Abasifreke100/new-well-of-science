@@ -36,12 +36,23 @@ const extractPlainText = (htmlContent) => {
   return tempElement.textContent || tempElement.innerText;
 };
 
-export const RecentPost = ({ recentPost, isLoading, query }) => {
+export const RecentPost = ({
+  recentPost,
+  isLoading,
+  query,
+  refetchPosts,
+  refetch,
+  refetchCommentCount,
+  refetchBlog,
+  setCurrentPage,
+}) => {
   const text =
     "There was a gathering of 196 countries including Nigeria at the UN Climate Change Conference (COP21) in Paris, France, on 12 December 2015 where all the countries in attendance signed an agreement known as “The Paris Agreement” to legally start a combined move to achieve the 17 sustainable development goals on or before 2040.";
 
   const [clickedPosts, setClickedPosts] = useState([]);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   // const { data: recentPost, isLoading } = useQuery("recentPost", () =>
   //   fetchRecentPost("/post")
   // );
@@ -49,21 +60,36 @@ export const RecentPost = ({ recentPost, isLoading, query }) => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  const handleNavigate = (recent) => {
-    navigate(`/blog/${recent}`);
-    setClickedPosts((prevClickedPosts) => [...prevClickedPosts, recent]);
+  const handleNavigate = async (recent) => {
+    try {
+      // Navigate to the new URL
+      navigate(`/blog/${recent}`);
+
+      // Update the state and refetch posts
+      setClickedPosts((prevClickedPosts) => [...prevClickedPosts, recent]);
+
+      // Refetch data from the queryClient
+      await queryClient.refetchQueries(["blogPosts"]);
+      await refetchBlog()
+      await refetchPosts();
+      await refetch();
+      await refetchCommentCount();
+      await setCurrentPage(1)
+    } catch (error) {
+      console.error("Error while navigating:", error);
+    }
   };
-  console.log( !!query);
+  console.log(!!query);
 
   return (
     <>
       {!!query ? (
-        <div className=" mt-6">
-          <div className="flex flex-col  lg:flex-col gap-6">
+        <div className=" mt-6 ">
+          <div className="flex flex-col  lg:flex-col gap-6 border-t border-b overflow-y-auto h-[410px] py-2">
             {recentPost.data.response.length > 0 ? (
               recentPost.data.response.map((recent) => (
                 <div className="flex gap-4 mt-6" key={recent._id}>
-                  <div className="w-[80px] h-[80px] border rounded-md overflow-hidden">
+                  <div className="w-[80px] h-[80px] border rounded-md overflow-hidden ">
                     <img
                       src={recent.image}
                       alt=""

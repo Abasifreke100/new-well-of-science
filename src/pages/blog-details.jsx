@@ -74,6 +74,8 @@ export default function BlogDetails() {
 
   const [cookies, setCookie] = useCookies(["name", "email", "website"]);
 
+ 
+ 
   // Fetch Blog Content
 
   const {
@@ -86,6 +88,21 @@ export default function BlogDetails() {
     return response.data;
   });
 
+
+     const {
+       data: commentCount,
+       isLoading: commentCountLoading,
+       refetch: refetchCommentCount,
+     } = useQuery(["commentCount"], async () => {
+       const response = await axios.get(
+         `${siteConfig.api_url}/comments/count/${blog?.data?.post?._id}`
+       );
+
+       return response.data;
+     });
+
+  
+  
   // Fetch Reply
 
   const {
@@ -309,6 +326,8 @@ export default function BlogDetails() {
     mutate(postData);
   };
 
+  refetchCommentCount()
+
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
@@ -373,6 +392,9 @@ export default function BlogDetails() {
     window.open(shareUrl, "_blank", "width=600,height=400");
   };
 
+
+  // console.log("Blog" , blog.data.post._id);
+  // console.log("Comment Count" , commentCount.data);
 
 
   return (
@@ -453,7 +475,12 @@ export default function BlogDetails() {
                     {format(blog?.data.post.updatedAt, "hh:mm a")}
                   </p>
                   <hr className="w-[1px] h-[22px] bg-gray-400" />
-                  <p className="font-medium text-[13px]">49 Comments</p>
+                  {commentCount?.data && (
+                    <p className="font-medium text-[13px]">
+                      {commentCount?.data ? commentCount?.data : "..."}{" "}
+                      {commentCount?.data > 1 ? "Comments" : "Comment"}
+                    </p>
+                  )}{" "}
                 </div>
                 <div className="">
                   <div
@@ -556,6 +583,11 @@ export default function BlogDetails() {
               recentPost={posts}
               isLoading={loadingPosts}
               query={query}
+              refetchPosts={refetchPosts}
+              refetch={refetch}
+              refetchCommentCount={refetchCommentCount}
+              refetchBlog={refetchBlog}
+              setCurrentPage={setCurrentPage}
             />
           </div>
         </div>
