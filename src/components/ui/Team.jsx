@@ -1,4 +1,3 @@
-import React from 'react'
 import SectionPadding from './SectionPadding'
 import etiat1 from '/images/etiat1.png'
 import etiat2 from '/images/etiat2.png'
@@ -41,7 +40,7 @@ const Team = () => {
                 className='bg-green_four text-white rounded-3xl p-6  '>
                     {/* <div className={`bg-[url(${lightLogo})]  `}> */}
                         <svg xmlns="http://www.w3.org/2000/svg" width="80" height="4" viewBox="0 0 80 4" fill="none">
-                        <path d="M2 2H78" stroke="#CCCCCC" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M2 2H78" stroke="#CCCCCC" strokeWidth="4" strokeLinecap="round"/>
                         </svg>
                         <h2 className='text-[20px] sm:text-[24px] md:text-[32px] font-gen_sans py-6 '>Our Story</h2>
                         <motion.p 
@@ -56,7 +55,7 @@ const Team = () => {
                         transition={{
                             duration:0.4,
                         }}
-                        className={`font-gen_sans bg-[url(/images/lightlogo.png)] w-[100%] bg-center bg-no-repeat `}>Our co-founders, Etiat Nwaenang and Ubong Inyang are brilliant tech enthusiasts and social entrepreneurs, prowling the sustainability and tech business landscape for opportunities to effect a positive change in the environment and impact as many lives as possible.
+                        className={`font-gen_sans bg-[url(/images/lightlogo.png)] w-[100%] bg-center bg-no-repeat `}>Our co-founders, Etia Nwaenang and Ubong Inyang are brilliant tech enthusiasts and social entrepreneurs, prowling the sustainability and tech business landscape for opportunities to effect a positive change in the environment and impact as many lives as possible.
                         <br />
                         <br />
                         This call to action, known as the Sustainable Development Goals (SDGs), was all the motivation Etia and Ubong needed to align their business goals with the global movement towards sustainability while creating positive economic, social, and environmental impact.
@@ -89,11 +88,11 @@ const Team = () => {
             
         </div>
     </SectionPadding>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-10 my-40 bg-[#F4F4F4] px-4 md:px-24 py-10 rounded-[100px]  '>
+    <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 my-40 bg-[#F4F4F4] px-4 md:px-24 py-10 rounded-[100px]  '>
         {
             teamMembers.map(({name, img, role, roleBg, rotate }) => {
                 return(
-                    <TeamNamePic img={img} name={name} role={role} roleBg={roleBg} rotate={rotate}  />
+                    <TeamNamePic key={name} img={img} name={name} role={role} roleBg={roleBg} rotate={rotate}  />
                 )
             })
         }

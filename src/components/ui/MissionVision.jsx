@@ -1,4 +1,3 @@
-import React from 'react'
 import SectionPadding from './SectionPadding'
 import { Crosshair, Eye } from 'lucide-react'
 import { motion } from 'framer-motion'

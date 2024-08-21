@@ -22,8 +22,8 @@ export default function BlogPage() {
               <div className="w-full h-full bg-gray-100 animate-pulse" />
             ) : (
               <img
-                src={initBlog.image}
-                alt={initBlog.name}
+                src={initBlog?.image}
+                alt={initBlog?.name}
                 className="object-cover w-full h-full shadow-md "
               />
             )}
@@ -41,9 +41,11 @@ export default function BlogPage() {
                       __html: initBlog?.description,
                     }}
                   />
-                  <Button className={"py-2 px-5 "}>
-                    <Link to={`/blog/${initBlog._id}`}>Read more..</Link>
-                  </Button>
+                  {blogs?.data?.response && (
+                    <Button className={"py-2 px-5 "}>
+                      <Link to={`/blog/${initBlog?._id}`}>Read more..</Link>
+                    </Button>
+                  )}
                 </div>
               </>
             )}
@@ -55,11 +57,11 @@ export default function BlogPage() {
         </h2>
 
         <div className="grid grid-cols-1 gap-10 px-4 sml:grid-cols-2 msl:grid-cols-3 lg:grid-cols-3 md:px-10">
-          {isLoading
+          {isLoading || !blogs?.data?.response
             ? Array(9)
                 .fill(0)
                 .map((_, idx) => <BlogCardSkeleton key={idx} />)
-            : blogs.data.response.map((item) => (
+            : blogs?.data?.response.map((item) => (
                 <BlogCard key={item._id} blog={item} />
               ))}
         </div>

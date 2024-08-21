@@ -23,6 +23,10 @@ export const siteConfig = {
       name: "Blog",
       href: "/blog",
     },
+    {
+      name:'Green Club',
+      href: '/green-club-for-schools'
+    }
   ],
 
   contact: {
