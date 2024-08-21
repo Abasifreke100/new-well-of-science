@@ -4,34 +4,36 @@ import img3 from "/images/pic3.png";
 import img4 from "/images/pic4.png";
 import img5 from "/images/pic5.png";
 import img6 from "/images/pic6.png";
+import img7 from "/images/pic7.jpg";
+import img8 from "/images/pic8.jpg";
 
 export const teamMembers = [
+  // {
+  //   name: "Mbetobong John",
+  //   role: "Sustainability C.O",
+  //   rotate: "rotate-0",
+  //   img: img1,
+  //   roleBg: "green_four",
+  // },
+  // {
+  //   name: "Akan Ebong",
+  //   role: "Media & comm. lead",
+  //   rotate: "-rotate-0",
+  //   img: img2,
+  //   roleBg: "green_four",
+  // },
   {
-    name: "Mbetobong John",
-    role: "Sustainability C.O",
-    rotate: "rotate-0",
-    img: img1,
+    name: "Kelechi D. Ajuomiwe",
+    role: "Project Manager, Mushroom Lab",
+    rotate: "-rotate-0",
+    img: img8,
     roleBg: "green_four",
   },
   {
-    name: "Akan Ebong",
-    role: "Media & comm. lead",
+    name: "Graham Edidiong",
+    role: "Project Manager, Green Clubs for School",
     rotate: "-rotate-0",
-    img: img2,
-    roleBg: "green_four",
-  },
-  {
-    name: "Blessing Blaise",
-    role: "Sales lead",
-    rotate: "-rotate-0",
-    img: img3,
-    roleBg: "green_four",
-  },
-  {
-    name: "Gabriel Edward",
-    role: "Data analyst",
-    rotate: "-rotate-0",
-    img: img4,
+    img: img7,
     roleBg: "green_four",
   },
   {

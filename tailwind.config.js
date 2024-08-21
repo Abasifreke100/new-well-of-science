@@ -10,10 +10,14 @@ export default {
     extend: {
       screens: {
         sm: "375px",
+        ssml:"573px",
         sml: "640px",
         md: "744px",
+        mmd:"768px",
         lg: "1200px",
+        mssl:"1000px",
         msl: "1024px",
+        customMd:"481px"
       },
       colors: {
         green_one: "#547A1F",
@@ -47,7 +51,21 @@ export default {
         "accordion-down": "accordion-down 0.4s ease-out",
         "accordion-up": "accordion-up 0.4s ease-out",
       },
+      backgroundClip: {
+        text: 'text',
+      },
+
     },
   },
-  plugins: [],
+  plugins: [function ({ addUtilities }) {
+    addUtilities({
+      '.bg-clip-text': {
+        '-webkit-background-clip': 'text',
+        'background-clip': 'text',
+      },
+      '.text-fill-transparent': {
+        'color': 'transparent',
+      },
+    });
+  },],
 };

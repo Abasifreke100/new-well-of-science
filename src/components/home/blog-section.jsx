@@ -11,7 +11,7 @@ export default function BlogSection() {
     <section className="relative py-10 bg-white">
       <header className="pt-4 pb-10 mx-auto mb-10 space-y-6 text-center px-7 md:mb-12">
         <h5 className="text-dark_text font-semibold font-gen_sans text-2xl md:text-[32px] leading-[130%] lg:text-[40px] ">
-          Explore our Blog
+         Our Blog
         </h5>
       </header>
 
@@ -20,7 +20,7 @@ export default function BlogSection() {
           ? Array(3)
               .fill(0)
               .map((_, idx) => <BlogCardSkeleton key={idx} />)
-          : blogs.data.response
+          : blogs?.data?.response
               .splice(0, 3)
               .map((item) => <BlogCard key={item._id} blog={item} />)}
       </div>

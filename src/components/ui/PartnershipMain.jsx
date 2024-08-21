@@ -1,4 +1,3 @@
-import React from 'react'
 import SectionPadding from './SectionPadding'
 import {motion} from 'framer-motion'
 
