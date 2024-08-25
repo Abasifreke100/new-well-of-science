@@ -5,11 +5,10 @@ const GreenClubActivities = () => {
   return (
     <section className="px-8 py-10 ">
       <motion.h2
-        className="text-5xl font-extrabold  text-center bg-[url('/images/backgroundgoals.png')]  bg-clip-text text-fill-transparent mb-16 py-3 pb-5"
+        className="text-5xl font-medium font-gen_sans text-center  mb-16 py-3 pb-5"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        style={{ fontFamily: "'Pacifico', cursive" }}
       >
         Green Club Activities
       </motion.h2>
@@ -33,8 +32,7 @@ const GreenClubActivities = () => {
                 transition={{ duration: 0.3 }}
               >
                 <h3
-                  className="text-3xl text-green_four font-semibold  mb-4"
-                  style={{ fontFamily: "'Pacifico', cursive" }}
+                  className="text-3xl font-gen_sans text-green_four font-semibold  mb-4"
                 >
                   {activity.category}
                 </h3>

@@ -1,32 +1,8 @@
 import { motion } from "framer-motion";
+import { objectiveStepData } from "../../../store/data/green-club";
 
 const ObjectiveStep = () => {
-  const objectiveStepData = [
-    {
-      title: "Environmental Education & Awareness",
-      description:
-        "Through workshops, seminars, excursions, and hands-on sessions, we foster a deep understanding of environmental issues and sustainable practices among students.",
-      image: "images/green-club/obj_step_one.png",
-    },
-    {
-      title: "Support for Functional Clubs",
-      description:
-        "We assist schools and students in establishing and maintaining active Green Clubs that spearhead environmental activities.",
-      image: "images/green-club/obj_step_two.png",
-    },
-    {
-      title: "Skill Development",
-      description:
-        "Our programs focus on nurturing leadership and problem-solving abilities, enabling students to manage sustainability projects and influence their networks.",
-      image: "images/green-club/obj_step_three.png",
-    },
-    {
-      title: "Mentorship",
-      description:
-        "We guide club members in implementing sustainability initiatives, promoting eco-friendly habits, and fostering a culture of environmental stewardship in schools.",
-      image: "images/green-club/obj_step_four.png",
-    },
-  ];
+ 
 
   return (
     <div className=" py-8 p-4 msl:p-12 ">
@@ -67,7 +43,9 @@ const ObjectiveStep = () => {
                 transition={{ duration: 0.4 }} // Adjust duration as needed
                 className="absolute h-full w-full top-0 p-2 bg-green_two flex items-center justify-center text-center"
               >
-                <p className="text-sm text-green-50 font-medium">{data.description}</p>
+                <p className="text-sm text-green-50 font-gen_sans font-medium">
+                  {data.description}
+                </p>
               </motion.div>
             </div>
           );

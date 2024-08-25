@@ -15,7 +15,7 @@ const Vision = () => {
           opacity: 1,
           transition: { duration: 0.8, ease: "easeInOut" },
         }}
-        className="mt-3 text-xl md:text-2xl font-medium z-30 bg-[url('/images/backgroundgoals.png')]  bg-clip-text text-fill-transparent"
+        className="mt-3 text-xl md:text-2xl font-medium z-30"
       >
         Welcome to <br />
         <span className="font-semibold text-3xl md:text-4xl">Green Club</span>
@@ -37,9 +37,6 @@ const Vision = () => {
           className="relative w-[75%] md:w-[50%] msl:w-[35%] bg-[url('/images/green-club/green-club.jpg')] rounded-md overflow-hidden bg-cover  h-[390px] p-3"
         >
           <div className="absolute inset-0  w-full h-full hero-gradient" />
-          <h2 className="md:text-[43px] font-medium  mt-4 text-white">
-          Towards a <span className="bg-[url('/images/backgroundgoals.png')]  bg-clip-text text-fill-transparent">Greener</span>, more Sustainable Future
-          </h2>
           
         </motion.div>
           <div

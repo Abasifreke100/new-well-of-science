@@ -42,7 +42,7 @@ const KeyMetrics = () => {
   };
 
   return (
-    <section ref={ref} className="px-8 py-20 bg-gray-100 relative overflow-hidden">
+    <section ref={ref} className="px-8 py-20 bg-gray-100 font-gen_sans relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-green-200 via-blue-200 to-yellow-200 opacity-50 -z-10 animate-gradient" />
       <motion.div
         className="max-w-7xl mx-auto text-center relative"
@@ -50,7 +50,7 @@ const KeyMetrics = () => {
         animate={controls}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-4xl font-bold mb-12">Key Metrics</h2>
+        <h2 className="text-4xl font-medium font-gen_sans mb-12">Key Metrics</h2>
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           initial={{ opacity: 0, y: 20 }}
@@ -66,16 +66,16 @@ const KeyMetrics = () => {
             { icon: <FaWater className="text-4xl text-blue-400" />, label: "Water Sachets Collected (kg)", count: waterSachetsCount },
           ].map((metric, index) => (
             <motion.div
-              key={index}
-              className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
+              key={metric.label}
+              className="bg-white p-6 rounded-lg shadow-lg flex  font-gen_sans flex-col items-center hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 * index }}
               whileHover={{ scale: 1, rotate: 2 }}
             >
               {metric.icon}
-              <h3 className="text-xl font-semibold mb-2">{metric.label}</h3>
-              <p className="text-3xl font-bold">{metric.count}</p>
+              <h3 className="text-xl font-medium mb-2  mt-2">{metric.label}</h3>
+              <p className="text-3xl font-semibold">{metric.count}</p>
             </motion.div>
           ))}
         </motion.div>

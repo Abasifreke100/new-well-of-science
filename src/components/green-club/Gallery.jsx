@@ -25,8 +25,7 @@ const Gallery = () => {
           transition={{ duration: 0.6 }}
         >
           <h2
-            className="text-4xl font-bold mb-4"
-            style={{ fontFamily: "'Pacifico', cursive" }}
+            className="text-4xl font-gen_sans font-medium mb-4"
           >
             Gallery
           </h2>
@@ -102,7 +101,7 @@ const Gallery = () => {
            onClick={(e) => e.stopPropagation()}
            className="bg-white py-3 px-3 mssl:p-8 h-[510px] rounded-lg shadow-lg w-[320px] customMd:w-[420px] md:w-[500px] lg:w-[700px] overflow"
           >
-            <p style={{ fontFamily: "'Pacifico', cursive" }} className="">Our Collection</p>
+            <p  className="font-semibold">Our Collection</p>
             {/* <button
               onClick={closeModal}
               className="absolute top-0 right-4 text-gray-600 hover:text-gray-800"
