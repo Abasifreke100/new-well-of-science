@@ -47,8 +47,8 @@ const TextAnimation = ({
     }, [isText1Animated]);
   
     return (
-      <div className="text-container z-30 text-[27px] md:text-5xl flex flex-col w-fit font-semibold">
-        <h1 ref={textRef1} className="animated-text">
+      <div className="text-container font-gen_sans  z-30 text-[27px] md:text-5xl flex flex-col w-fit font-medium">
+        <h1 ref={textRef1} className="animated-text ">
           {text1}
         </h1>
         <h2

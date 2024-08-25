@@ -86,3 +86,32 @@ export const data = [
     imgSrc: "/images/green-club/gallery-image-six.jpg",
   },
 ];
+
+
+
+export  const objectiveStepData = [
+  {
+    title: "Environmental Education & Awareness",
+    description:
+      "Through workshops, seminars, excursions, and hands-on sessions, we foster a deep understanding of environmental issues and sustainable practices among students.",
+    image: "images/green-club/obj_step_one.png",
+  },
+  {
+    title: "Support for Functional Clubs",
+    description:
+      "We assist schools and students in establishing and maintaining active Green Clubs that spearhead environmental activities.",
+    image: "images/green-club/obj_step_two.png",
+  },
+  {
+    title: "Skill Development",
+    description:
+      "Our programs focus on nurturing leadership and problem-solving abilities, enabling students to manage sustainability projects and influence their networks.",
+    image: "images/green-club/obj_step_three.png",
+  },
+  {
+    title: "Mentorship",
+    description:
+      "We guide club members in implementing sustainability initiatives, promoting eco-friendly habits, and fostering a culture of environmental stewardship in schools.",
+    image: "images/green-club/obj_step_four.png",
+  },
+];

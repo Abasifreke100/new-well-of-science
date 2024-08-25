@@ -55,7 +55,7 @@ const CardSlider = ({ cards }) => {
           </p>
         </div>
         <div className="flex-1 ml-2">
-          <p className="mt-3 msl:mt-20 text-2xl font-medium">{currentCard.title}</p>
+          <p className="mt-3 msl:mt-20 text-2xl font-semibold">{currentCard.title}</p>
           <p className="mt-3 text-md">{currentCard.description}</p>
         </div>
       </motion.div>
@@ -119,7 +119,7 @@ const SDG = () => {
               />
             </div>
           </div>
-          <button className="bg-green_one px-3 py-2 border-none outline-none rounded-3xl text-sm font-medium h-fit text-green-50">
+          <button className="bg-green_one px-3 py-2 border-none cursor-default outline-none rounded-3xl text-sm font-medium h-fit text-green-50">
             Join us now
           </button>
         </div>
