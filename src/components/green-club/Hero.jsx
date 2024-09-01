@@ -41,7 +41,7 @@ const Hero = () => {
           ></motion.div>
         </div>
         <div className="  max-md:px-4 ml-4 md:ml-12">
-          <h1 className=" relative z-2 max-md:mb-5 text-[48px] text-green_three md:text-[72px] max-sm:leading-[60px] max-md:leading-[80px] lg:text-[60px] font-semibold ">
+          <h1 className=" relative z-2 max-md:mb-5 text-[48px] text-green_three md:text-[72px] max-sm:leading-[40px] max-md:leading-[46px] lg:text-[60px] font-semibold ">
             {" "}
             Green Clubs for Schools
           </h1>
