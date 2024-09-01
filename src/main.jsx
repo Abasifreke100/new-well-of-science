@@ -13,7 +13,7 @@ import PartnerShipFormPage from "./pages/partnership-form";
 import BlogDetails from "./pages/blog-details";
 import BlogPage from "./pages/blog";
 import { UploadProvider } from "./hooks/UseContext";
-import GreenClubPage from "./pages/green-club/page";
+import GreenClub from "./pages/green-club/page";
 
 
 
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
   },
   {
     path:"green-club-for-schools",
-    element: <GreenClubPage />
+    element: <GreenClub />
   }
 ]);
 
