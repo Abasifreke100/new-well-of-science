@@ -68,9 +68,11 @@ const SDG = () => {
         >
           <div className="overflow-auto md:flex flex-col md:space-y-20 flex-1 py-20 md:p-10 p-5 my-6    justify-between md:min-w-[400px]">
             <p className=" text-xl md:text-2xl mb-6 font-medium text-[#7d8590]">
-              <span className="text-white font-medium">GitHub Sponsors</span>{" "}
-              lets you support your favorite open source maintainers and
-              projects.
+              <span className="text-white font-medium">
+                SDG 13: Climate Action
+              </span>{" "}
+              Promoting activities that reduce carbon footprints, enhance waste
+              management, and raise awareness about climate change
             </p>
             <div>
               <a
@@ -110,23 +112,6 @@ const SDG = () => {
               </a>
             </div>
           </div>
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ type: "tween" }}
-            className="rounded-r-md overflow-hidden flex items-center"
-          >
-            <img
-              className="responsive js-build-in-item build-in-scale-fade build-in-animate origin-bottom-right"
-              width="1288"
-              height="992"
-              loading="lazy"
-              decoding="async"
-              alt=""
-              aria-hidden="true"
-              src="/3.png"
-            />
-          </motion.div>
         </HoverCard>
       </div>
       <div className="flex flex-col md:flex-row gap-10 ">
@@ -138,9 +123,11 @@ const SDG = () => {
         >
           <div className="md:flex flex-col flex-1 p-8 sm:p-10 lg:py-16 lg:pl-16 lg:pr-32">
             <p className=" text-xl md:text-2xl mb-6 font-medium text-[#7d8590]">
-              <span className="text-white font-semibold">Dependabot</span> makes
-              it easy to find and fix vulnerable dependencies in your supply
-              chain.
+              <span className="text-white font-semibold">
+                SDG 4: Quality Education
+              </span>{" "}
+              Advocating for the integration of environmental education into
+              school curriculums, enriching students&apos; knowledge and skills.
             </p>
             <div>
               <a
@@ -191,9 +178,10 @@ const SDG = () => {
         >
           <div className="md:flex flex-col  flex-1 p-8 sm:p-10 lg:py-16 lg:pl-16 lg:pr-32 ">
             <p className=" text-xl md:text-2xl mb-6 font-medium text-[#7d8590]">
-              <span className="text-white font-semibold">Code scanning</span>is
-              GitHub’s static code analysis tool that helps you remediate issues
-              in your code.
+              <span className="text-white font-semibold">
+                SDG 15: Life on Land
+              </span>   Supporting initiatives to protect and restore ecosystems, promote
+              biodiversity, and combat deforestation.
             </p>
             <div>
               <a

@@ -103,10 +103,11 @@ const Collaboration = () => {
                       {item.title}
                     </motion.h4>
                     <motion.p
-                      className=""
+                      className="font-medium"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.5 }}
+                      
                     >
                       {item.description}
                     </motion.p>
