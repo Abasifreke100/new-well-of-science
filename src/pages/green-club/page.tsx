@@ -10,11 +10,11 @@ import Gallery from "../../components/green-club/Gallery";
 
 const GreenClub = () => {
   return (
-    <Layout className="py-0">
+    <Layout className="py-0 bg-black ">
       <div className="h-[500px] relative bg-center   bg-[url('/images/green-club/green-club.jpg')]  text-white  bg-cover flex flex-col items-center justify-center text-center">
         <div className="absolute inset-0 z-30 w-full h-full hero-gradient" />
       </div>
-      <div className="max-w-[1440px] bg-black  xl:px-20 overflow-hidden md:px-0 sm:px-7 mx-auto">
+      <div className="max-w-[1440px]  xl:px-20 overflow-hidden md:px-0 sm:px-7 mx-auto">
         <Hero />
         <Productivity />
         <Security />
