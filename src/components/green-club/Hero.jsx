@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 const Hero = () => {
   return (
-    <div className="relative  max-w-[1280px]  lg:pt-32 md:px-10 mx-auto pt-16 ">
+    <div className="relative  max-w-[1280px]  md:px-10 mx-auto pt-16 ">
       <div className="flex">
         <div className="relative ">
           <div className="mx-auto my-3 ">
@@ -16,7 +16,7 @@ const Hero = () => {
                 version="1.1"
                 width="24"
                 data-view-component="true"
-                className="text-white"
+                className=""
               >
                 <path d="M15.22 4.97a.75.75 0 0 1 1.06 0l6.5 6.5a.75.75 0 0 1 0 1.06l-6.5 6.5a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L21.19 12l-5.97-5.97a.75.75 0 0 1 0-1.06Zm-6.44 0a.75.75 0 0 1 0 1.06L2.81 12l5.97 5.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-6.5-6.5a.75.75 0 0 1 0-1.06l6.5-6.5a.75.75 0 0 1 1.06 0Z"></path>
               </svg>
@@ -41,19 +41,12 @@ const Hero = () => {
           ></motion.div>
         </div>
         <div className="  max-md:px-4 ml-4 md:ml-12">
-          <h1 className=" relative z-2 max-md:mb-5 text-[48px] text-green_three md:text-[72px] max-sm:leading-[40px] max-md:leading-[46px] lg:text-[60px] font-semibold ">
-            {" "}
-            Green Clubs for Schools
-          </h1>
-          <p className="relative z-1 text-[24px] md:text-[28px]  lg:text-[32px] leading-[30px] md:leading-[36px] lg:leading-[44px] mb-5 md:mb-2 md:10/12  lg:w-9/12 text-[#7d8590]">
-            Championing Sustainability Across Schools and Campuses in Nigeria
-          </p>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.3 }}
             viewport={{ once: true }}
-            className="text-[28px] md:text-[40px] max-md:leading-8 max-lg:leading-10 lg:text-3xl mb-7 font-medium text-white js-build-in-item build-in-slideX-left build-in-animate"
+            className="text-[28px] md:text-[40px] max-md:leading-8 max-lg:leading-10 lg:text-3xl mb-7 font-medium  js-build-in-item build-in-slideX-left build-in-animate"
             style={{ transitionDelay: "300ms" }}
           >
             Join our mission to empower students across Nigeria to take

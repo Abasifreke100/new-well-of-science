@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 
 const Productivity = () => {
-
   return (
     <div className="max-w-[1280px] mx-auto">
       <div className="flex md:pl-10 space-x-3 md:space-x-10">
@@ -21,7 +20,7 @@ const Productivity = () => {
               version="1.1"
               width="24"
               data-view-component="true"
-              className="octicon octicon-vision mt-3 text-white"
+              className="octicon octicon-vision mt-3"
             >
               <path d="M12 4.5C6.48 4.5 2 8.97 2 12s4.48 7.5 10 7.5 10-3.48 10-7.5S17.52 4.5 12 4.5zm0 13c-3.62 0-6.5-2.88-6.5-6.5S8.38 5.5 12 5.5 18.5 8.38 18.5 12 15.62 17.5 12 17.5zm0-10a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"></path>
             </svg>
@@ -40,7 +39,7 @@ const Productivity = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.3 }}
             viewport={{ once: true }}
-            className="text-[20px] md:text-2xl mb-7 font-medium text-white js-build-in-item build-in-slideX-left build-in-animate"
+            className="text-[20px] md:text-2xl mb-7 font-medium js-build-in-item build-in-slideX-left build-in-animate"
             style={{ transitionDelay: "200ms" }}
           >
             Vision
@@ -50,7 +49,7 @@ const Productivity = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.3 }}
             viewport={{ once: false }}
-            className="text-[28px] md:text-[40px] max-md:leading-8 max-lg:leading-10 lg:text-3xl mb-7 font-medium text-white js-build-in-item build-in-slideX-left build-in-animate"
+            className="text-[28px] md:text-[40px] max-md:leading-8 max-lg:leading-10 lg:text-3xl mb-7 font-medium js-build-in-item build-in-slideX-left build-in-animate"
             style={{ transitionDelay: "300ms" }}
           >
             <span className="text-green_four">Sustainable future </span>
@@ -61,13 +60,6 @@ const Productivity = () => {
           </motion.h3>
         </div>
       </div>
-      {/* <motion.div
-        initial={{ height: 0 }}
-        whileInView={{ height: "160px" }}
-        transition={{ delay: 0.3 }}
-        viewport={{ once: false }}
-        className="md:ml-10 ml-3 h-[160px] mt-[-20px] w-[3px] rounded-md bg-gradient-to-b from-transparent via-[#ea6045] to-[#ffa28b]"
-      ></motion.div> */}
     </div>
   );
 };
