@@ -1,6 +1,5 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
-
 
 const calc = (x, y) => [
   -(y - window.innerHeight / 2) / 360,
@@ -8,10 +7,17 @@ const calc = (x, y) => [
   1.02,
 ];
 
-const trans = (x, y) => `perspective(900px) rotateX(${-x}deg) rotateY(${-y}deg)`;
+const trans = (x, y) =>
+  `perspective(900px) rotateX(${-x}deg) rotateY(${-y}deg)`;
 
-const HoverCard = ({children, backgroundColor, direction, left, className}) => {
-    const [hovered, setIsHovered] = useState(false)
+const HoverCard = ({
+  children,
+  backgroundColor,
+  direction,
+  left,
+  className,
+}) => {
+  const [hovered, setIsHovered] = useState(false);
   const [springProps, set] = useSpring(() => ({
     xys: [0, 0, 1],
     config: { mass: 5, tension: 6000, friction: 1000 },
@@ -25,28 +31,34 @@ const HoverCard = ({children, backgroundColor, direction, left, className}) => {
       setCursorCoords({ x, y });
     };
 
-    window.addEventListener('mousemove', handleMousePosition);
+    window.addEventListener("mousemove", handleMousePosition);
 
     return () => {
-      window.removeEventListener('mousemove', handleMousePosition);
+      window.removeEventListener("mousemove", handleMousePosition);
     };
   }, []);
 
   const calcTranslate = (coordinate, containerSize, itemSize) =>
-    ((coordinate / containerSize) * (containerSize - itemSize));
+    (coordinate / containerSize) * (containerSize - itemSize);
 
-  const translateX = typeof window !== 'undefined' ? calcTranslate(cursorCoords.x, window.innerWidth, 600) : 0;
-  const translateY = typeof window !== 'undefined' ? calcTranslate(cursorCoords.y, window.innerHeight, 500) : 0;
+  const translateX =
+    typeof window !== "undefined"
+      ? calcTranslate(cursorCoords.x, window.innerWidth, 600)
+      : 0;
+  const translateY =
+    typeof window !== "undefined"
+      ? calcTranslate(cursorCoords.y, window.innerHeight, 500)
+      : 0;
 
   const handleMouseMove = (event) => {
     const { clientX: x, clientY: y } = event;
     set({ xys: calc(x, y) });
-    setIsHovered(true)
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
     set({ xys: [0, 0, 1] });
-    setIsHovered(false)
+    setIsHovered(false);
   };
 
   return (
@@ -56,21 +68,29 @@ const HoverCard = ({children, backgroundColor, direction, left, className}) => {
       onMouseLeave={handleMouseLeave}
       style={{ transform: springProps.xys.to(trans) }}
     >
-        <div className={`z-[1] relative ${className ? className : "bg-[#273813]"} h-full border-[#30363d] border-[0.5px] rounded-xl shadow-xl md:flex ${direction} justify-between `}>
-            {children}
+      <div
+        className={`z-[1] relative ${
+          className || "bg-[#273813] shadow-xl"
+        }  h-full border-[#30363d1c] border-[0.5px] rounded-xl  md:flex ${direction} justify-between `}
+      >
+        {children}
         <div
-            className={`absolute w-[500px] border-none  bottom-[50px] h-[1000px] z-[-1] back ${hovered ? "opacity-95": "opacity-0"} `}
-            style={{
-            transform: `translateX(${translateX}px) translateY(${2*translateY}px)`,
+          className={`absolute w-[500px] border-none  bottom-[50px] h-[1000px] z-[-1] back ${
+            hovered ? "opacity-95" : "opacity-0"
+          } `}
+          style={{
+            transform: `translateX(${translateX}px) translateY(${
+              2 * translateY
+            }px)`,
             background: backgroundColor,
-            borderRadius: '100%',
-            mixBlendMode: 'soft-light',
+            borderRadius: "100%",
+            mixBlendMode: "soft-light",
             left: left,
-            willChange: 'transform',
-            transition: 'transform 0.2s cubic-bezier',
-            }}
+            willChange: "transform",
+            transition: "transform 0.2s cubic-bezier",
+          }}
         ></div>
-        </div>
+      </div>
     </animated.div>
   );
 };

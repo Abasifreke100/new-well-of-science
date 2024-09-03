@@ -43,7 +43,7 @@ const KeyMetricOverview = () => {
 
   return (
     <section ref={ref} className="  font-gen_sans relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-green-200 via-blue-200 to-yellow-200 opacity-50 -z-10 animate-gradient" />
+      {/* <div className="absolute inset-0 bg-gradient-to-r from-green-200 via-blue-200 to-yellow-200 opacity-50 -z-10 animate-gradient" /> */}
       <motion.div
         className="text-center relative"
         initial={{ opacity: 0, scale: 0.9 }}
@@ -66,7 +66,7 @@ const KeyMetricOverview = () => {
           ].map((metric, index) => (
             <motion.div
               key={metric.label}
-              className="border text-white p-6 rounded-lg shadow-lg flex  font-gen_sans flex-col items-center hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
+              className="border  p-6 rounded-lg shadow-lg flex  font-gen_sans flex-col items-center hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 * index }}

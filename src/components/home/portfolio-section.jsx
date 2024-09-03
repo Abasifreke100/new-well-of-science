@@ -77,7 +77,7 @@ export default function PortfolioSection() {
           </m.div>
 
           <m.div
-            className={`flex items-center h-7 md:h-10 lg:h-14 rounded-md w-full gap-2 ${
+            className={`flex items-center h-7 md:h-10 lg:h-14 justify-center rounded-md w-full gap-2 ${
               activeTab == 2
                 ? "border-2 border-[#497511] opacity-100"
                 : "border border-[#D9D9d9] opacity-30 cursor-pointer"
@@ -88,7 +88,7 @@ export default function PortfolioSection() {
             <p
               className={`${
                 activeTab == 2 ? "text-[#009933]" : "text-dark_text"
-              }  text-[11px] md:text-[14px] lg:text-xl font-gen_sans md:text-2xl font-semibold pl-3`}
+              }  text-[11px] md:text-[14px] lg:text-xl  font-gen_sans md:text-2xl font-semibold `}
             >
               Green Club
             </p>
