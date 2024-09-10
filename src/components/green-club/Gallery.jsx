@@ -100,7 +100,7 @@ const Gallery = () => {
       <div className="w-full flex flex-col">
         {activeTab === "secondary" && (
           <div className="p-4">
-            <Marquee gradient gradientColor={"#547A1F"} gradientWidth={70}>
+            <Marquee gradient  gradientWidth={10}>
               <div className="flex space-x-4">
                 {data.map((datum) => (
                   <div key={datum.id} className="flex gap-4 items-center">
@@ -117,7 +117,7 @@ const Gallery = () => {
         )}
         {activeTab === "tertiary" && (
           <div className="p-4">
-            <Marquee gradient gradientColor={"#547A1F"} gradientWidth={70}>
+            <Marquee gradient gradientWidth={10}>
               <div className="flex space-x-4">
                 {data.map((datum) => (
                   <div key={datum.id} className="flex gap-4 items-center">
@@ -182,7 +182,7 @@ const Gallery = () => {
         initial={{ height: 0 }}
         whileInView={{ height: "160px" }}
         transition={{ delay: 0.2 }}
-        className=" md:ml-10 ml-3 h-[160px] mt-[20px] w-[3px] rounded-md bg-gradient-to-b from-transparent bg-gradient-to-b to-[#7ee787]"
+        className=" md:ml-10 ml-3 h-[160px] mt-[20px] w-[3px] rounded-md bg-gradient-to-b from-transparent to-[#7ee787]"
       ></motion.div>
     </div>
   );

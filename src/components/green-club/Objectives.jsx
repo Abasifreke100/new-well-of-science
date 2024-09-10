@@ -62,7 +62,7 @@ const Objectives = () => {
             backgroundColor="#EEEEF0"
             direction=""
             left="0"
-            className=" border border-gray-100  outline-none shadow-2xl shadow-green-100"
+            className=" border border-gray-100 h-full outline-none shadow-2xl shadow-green-100"
           >
             <motion.div
               // variants={item}

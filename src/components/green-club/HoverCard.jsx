@@ -70,8 +70,8 @@ const HoverCard = ({
     >
       <div
         className={`z-[1] relative ${
-          className || "bg-[#273813] shadow-xl"
-        }  h-full border-[#30363d1c] border-[0.5px] rounded-xl  md:flex ${direction} justify-between `}
+          className || "bg-[#273813] shadow-xl h-full"
+        }   border-[#30363d1c] border-[0.5px] rounded-xl  md:flex ${direction} justify-between `}
       >
         {children}
         <div

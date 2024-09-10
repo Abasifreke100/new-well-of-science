@@ -44,9 +44,9 @@ const EnquiriesForm = () => {
           Join a Green Club
         </h2>
         <p className="text-gray-600 mb-8 text-center">
-          Interested in joining a Green Club at your school? Complete the form
-          below, and we&apos;ll help you get started on your sustainability
-          journey.
+          Interested in starting a Green Club in your school? Complete the form
+          below and we&apos;ll help you get started on your
+          Sustainability journey.
         </p>
         <form
           ref={formRef}
