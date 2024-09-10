@@ -1,6 +1,6 @@
 const InnovationConsulting = () => {
   return (
-    <div className="grid gir-cols-1 md:grid-cols-2 items-center justify-items-center  text-[14px] md:text-[16px] md:-mb-28 -mb-20  ">
+    <div className="grid gir-cols-1 md:grid-cols-2 mt-10  justify-items-center  text-[14px] md:text-[16px] md:-mb-28 -mb-20  ">
       <div className="mb-10 md:m-0  ">
         At Well of Science Limited, we provide strategic advisory and digital
         solution development services to help organizations unlock their full

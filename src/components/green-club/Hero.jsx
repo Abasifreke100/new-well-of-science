@@ -49,57 +49,46 @@ const Hero = () => {
             className="text-[28px] md:text-[40px] max-md:leading-8 max-lg:leading-10 lg:text-3xl mb-7 font-medium  js-build-in-item build-in-slideX-left build-in-animate"
             style={{ transitionDelay: "300ms" }}
           >
-            Join our mission to empower students across Nigeria to take
-            meaningful action for the environment. Green Clubs for Schools are
-            environmental clubs established in secondary and tertiary
-            institutions, designed to inspire and equip young minds with the
-            tools to become the next generation of environmental leaders.
-            Currently piloting in 10 tertiary institutions and 70 secondary
-            schools across Akwa Ibom and Rivers States, we are committed to
-            creating a network of eco-conscious students ready to make a
-            difference
+            Green Clubs for Schools are environmental clubs established in
+            secondary and tertiary institutions, designed to inspire and equip
+            young minds with the tools to become the next generation of
+            environmental leaders. Currently piloting in 10 tertiary
+            institutions and 70 secondary schools across Akwa Ibom and Rivers
+            States, we are committed to creating a network of eco-conscious
+            students ready to make a difference.
           </motion.p>
           <div className=" my-20">
-            <p className="text-[16px] leading-[24px] text-[#7d8590]">
-              Trusted by the world&apos;s leading&nbsp;organizations&nbsp;↘︎
+            <p className="text-[20px] leading-[24px] text-[#7d8590]">
+              Our partners
             </p>
             <div className="flex flex-wrap justify-between items-center">
               <Marquee autoFill className="flex ">
                 <img
-                  src="https://github.githubassets.com/images/modules/site/home-campaign/logos/stripe.svg"
-                  alt="Stripe logo"
-                  height="44"
-                  className="my-3 scale-90"
+                  src="./images/images_partners/aks.png"
+                  alt="akwa-ibom-state-university"
+                  className="my-3 h-28 scale-90"
                 />
                 <img
-                  src="https://github.githubassets.com/images/modules/site/home-campaign/logos/pinterest.svg"
-                  alt="Pinterest logo"
-                  height="44"
-                  className="my-3 scale-90"
+                  src="./images/images_partners/access-bank.png"
+                  alt="access_bank"
+                  className="my-3 scale-90 h-16 w-60 "
                 />
                 <img
-                  src="https://github.githubassets.com/images/modules/site/home-campaign/logos/kpmg.svg"
-                  alt="KPMG logo"
-                  height="44"
-                  className="my-3 scale-90"
+                  src="./images/images_partners/ritman-u.png"
+                  alt="ritman-university"
+                  className="my-3 scale-90 h-28"
                 />
                 <img
-                  src="https://github.githubassets.com/images/modules/site/home-campaign/logos/mercedes.svg"
-                  alt="Mercedes-Benz logo"
-                  height="44"
-                  className="my-3 w-[200px]"
-                />
-                <img
-                  src="https://github.githubassets.com/images/modules/site/home-campaign/logos/pg.svg"
-                  alt="P&amp;G logo"
+                  src="./images/images_partners/ph.png"
+                  alt="university of portharcourt"
                   height="32"
-                  className="my-3 scale-90"
+                  className="my-3 scale-90 h-20"
                 />
                 <img
-                  src="https://github.githubassets.com/images/modules/site/home-campaign/logos/telus.svg"
-                  alt="Telus logo"
-                  height="32"
-                  className="my-3 scale-90"
+                  src="./images/images_partners/uniuyo.png"
+                  alt="universiy of uyo"
+                  height="44"
+                  className="my-3 h-32 w-[180px]"
                 />
               </Marquee>
             </div>

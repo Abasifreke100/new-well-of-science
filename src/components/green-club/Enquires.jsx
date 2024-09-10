@@ -37,7 +37,10 @@ const EnquiriesForm = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-medium mb-6 text-center text-gray-800">
+        <h2
+          className="text-3xl font-medium mb-6 text-center text-gray-800"
+          id="green-club-enquires"
+        >
           Join a Green Club
         </h2>
         <p className="text-gray-600 mb-8 text-center">

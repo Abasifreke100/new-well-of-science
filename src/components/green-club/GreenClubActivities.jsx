@@ -50,9 +50,9 @@ const Collaboration = () => {
             className="text-[28px] md:text-[40px] max-md:leading-8 max-lg:leading-10 lg:text-5xl mb-7 font-medium  js-build-in-item build-in-slideX-left build-in-animate"
             style={{ transitionDelay: "300ms" }}
           >
-            <span className="text-[#ffa28b]">Engage </span>
-            in workshops, seminars, and educational trips that provide insights
-            into climate change, biodiversity, and sustainable practices.{" "}
+            <span className="text-[#ffa28b]">Engaging </span>
+            in these environmental activities equips students with the skills to
+            promote sustainability
           </h3>
         </motion.div>
       </div>
@@ -84,8 +84,6 @@ const Collaboration = () => {
                     key={item.title}
                     backgroundColor="#EEEEF0"
                     className=" shadow-lg border border-gray-100 flex flex-col rounded-lg p-8  hover:shadow-2xl"
-                    // whileHover={{ scale: 1.05, rotate: 1 }}
-                    // transition={{ duration: 0.3 }}
                   >
                     <motion.h4
                       className="text-2xl font-medium  mb-2"
@@ -96,7 +94,7 @@ const Collaboration = () => {
                       {item.title}
                     </motion.h4>
                     <motion.p
-                      className="font-medium text-xl md:text-2xl"
+                      className="font-medium text-xl md:text-2xl text-gray-500"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.5 }}
