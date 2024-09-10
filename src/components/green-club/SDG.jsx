@@ -57,14 +57,14 @@ const SDG = () => {
       </motion.div>
       {/* TODO:WORK ON THE SVG CARDS AND MAKE THEM RESPONSIVE */}
       <div className="grid  grid-cols-12 gap-3 h-fit  w-full">
-        <div className="col-span-12 lg:col-span-4">
+        <div className="col-span-12 lg:col-span-4  ">
           <HoverCard
             backgroundColor="#EEEEF0"
             direction=""
             left="0"
-            className="border border-gray-100 h-full "
+            className="border border-gray-100 h-[500px] "
           >
-            <div className="overflow-auto flex flex-col msl:flex-row lg:flex-col space-y-6 items-center md:space-y-10 msl:space-y-0 lg:space-y-10 flex-1 h-full p-4 md:p-10  my-6   md:min-w-[400px]">
+            <div className="overflow-auto flex flex-col msl:flex-row lg:flex-col space-y-6 items-center md:space-y-10 msl:space-y-0 lg:space-y-10 flex-1 h-full p-4 md:p-10 msl:p-6 my-6   md:min-w-[400px]">
               <p className=" text-xl  w-full  font-medium text-[#7d8590]">
                 <span className=" font-medium text-green_four">
                   SDG 13: Climate Action
@@ -80,14 +80,14 @@ const SDG = () => {
             </div>
           </HoverCard>
         </div>
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+        <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
           <HoverCard
             backgroundColor="#EEEEF0"
             direction=""
             left="0"
-            className="border border-gray-100  h-full"
+            className="border border-gray-100  h-[500px]"
           >
-            <div className="overflow-auto flex flex-col  space-y-6 items-center md:space-y-10  flex-1 h-full p-4 md:p-10  my-6   md:min-w-[400px]">
+            <div className="overflow-auto flex flex-col  space-y-6 items-center md:space-y-10  flex-1 h-full p-4 md:p-10 msl:p-6  my-6   md:min-w-[400px]">
               <p className=" text-xl  w-full  font-medium text-[#7d8590]">
                 <span className=" font-medium text-green_four">
                   SDG 4: Quality Education
@@ -104,14 +104,14 @@ const SDG = () => {
             </div>
           </HoverCard>
         </div>
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+        <div className="col-span-12 md:col-span-6 lg:col-span-4  ">
           <HoverCard
             backgroundColor="#EEEEF0"
             direction=""
             left="0"
-            className="border border-gray-100 h-full"
+            className="border border-gray-100 h-[500px]"
           >
-            <div className="overflow-auto flex flex-col space-y-6 items-center md:space-y-10 msl:space-y-20 lg:space-y-14 flex-1 h-full p-4 md:p-10 msl:p-6 my-6   md:min-w-[400px]">
+            <div className="overflow-auto flex flex-col space-y-6 items-center md:space-y-10 msl:space-y-20 lg:space-y-16 flex-1 h-full p-4 md:p-10 msl:p-6 my-6   md:min-w-[400px]">
               <p className=" text-xl  w-full  font-medium text-[#7d8590]">
                 <span className=" font-medium text-green_four">
                   SDG 15: Life on Land

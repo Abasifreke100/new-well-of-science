@@ -48,7 +48,7 @@ const KeyMetrics = () => {
             className="text-[28px] md:text-[40px] max-md:leading-8 max-lg:leading-10 lg:text-5xl mb-7 font-medium  js-build-in-item build-in-slideX-left build-in-animate"
             style={{ transitionDelay: "300ms" }}
           >
-            Our impact is demonstrated by the data
+            Our impact is data driven
           </h3>
         </motion.div>
       </div>
