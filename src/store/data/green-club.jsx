@@ -1,3 +1,11 @@
+import image1 from "../../assets/green-club/climate-action.png";
+import image2 from "../../assets/green-club/gallery-image-one.jpg";
+import image3 from "../../assets/green-club/gallery-image-two.jpg";
+import image4 from "../../assets/green-club/gallery-image-three.jpg";
+import image5 from "../../assets/green-club/gallery-image-four.jpg";
+import image6 from "../../assets/green-club/gallery-image-five.jpg";
+import image7 from "../../assets/green-club/gallery-image-six.jpg";
+
 export const cardsData = [
   {
     id: "#13",
@@ -36,7 +44,8 @@ export const activities = [
       },
       {
         title: "Waste-to-Trees Programme",
-        description: "Participate in our campus-wide recycling initiative. Collect PET plastic bottles and metal cans to fund tree-planting activities, enhancing your campus’s green spaces.",
+        description:
+          "Participate in our campus-wide recycling initiative. Collect PET plastic bottles and metal cans to fund tree-planting activities, enhancing your campus’s green spaces.",
       },
     ],
   },
@@ -45,51 +54,50 @@ export const activities = [
     items: [
       {
         title: "Environmental Education",
-        description: "Engage in workshops, seminars, and educational trips that provide insights into climate change, biodiversity, and sustainable practices.",
+        description:
+          "Engage in workshops, seminars, and educational trips that provide insights into climate change, biodiversity, and sustainable practices.",
       },
       {
         title: "Hands-on Projects",
-        description: "Get involved in practical projects like tree planting, creating school gardens, waste repurposing tasks, and organizing clean-up drives. These activities offer hands-on experience in environmental stewardship.",
+        description:
+          "Get involved in practical projects like tree planting, creating school gardens, waste repurposing tasks, and organizing clean-up drives. These activities offer hands-on experience in environmental stewardship.",
       },
     ],
   },
 ];
 
-
 export const data = [
   {
     id: 1,
-    imgSrc: "/images/green-club/climate-action.png",
+    imgSrc: image1,
   },
   {
     id: 2,
-    imgSrc: "/images/green-club/gallery-image-one.jpg",
+    imgSrc: image2,
   },
   {
     id: 3,
-    imgSrc: "/images/green-club/gallery-image-two.jpg",
+    imgSrc: image3,
   },
   {
     id: 4,
-    imgSrc: "/images/green-club/gallery-image-three.jpg",
+    imgSrc: image4,
   },
   {
     id: 5,
-    imgSrc: "/images/green-club/gallery-image-four.jpg",
+    imgSrc: image5,
   },
   {
     id: 6,
-    imgSrc: "/images/green-club/gallery-image-five.jpg",
+    imgSrc: image6,
   },
   {
     id: 7,
-    imgSrc: "/images/green-club/gallery-image-six.jpg",
+    imgSrc: image7,
   },
 ];
 
-
-
-export  const objectiveStepData = [
+export const objectiveStepData = [
   {
     title: "Environmental Education & Awareness",
     description:

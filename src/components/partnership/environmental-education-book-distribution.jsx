@@ -8,7 +8,7 @@ const EnvironmentalEducationBookDistribution = () => {
           </button>
         </div>
       </div>
-      <div className="grid gir-cols-1 md:grid-cols-2 items-center justify-items-center  text-[14px] md:text-[16px] md:-mb-28 -mb-20  ">
+      <div className="grid gir-cols-1 md:grid-cols-2  justify-center mt-10  text-[14px] md:text-[16px] md:-mb-28 -mb-20  ">
         <div className="mb-10 md:m-0  ">
        Partnering in the distribution of environmental books written by our
         co-founders, such as <span className="italic">&quot;Akon and Friends,&quot;</span> for primary and secondary

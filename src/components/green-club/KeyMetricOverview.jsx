@@ -20,12 +20,12 @@ const KeyMetricOverview = () => {
         opacity: 1,
         transition: { duration: 1.5 },
       });
-      animateCounter(setTertiaryClubsCount, 50);
-      animateCounter(setSecondaryClubsCount, 30);
-      animateCounter(setTreesPlantedCount, 500);
-      animateCounter(setPlasticBottlesCount, 200);
-      animateCounter(setMetalCansCount, 100);
-      animateCounter(setWaterSachetsCount, 75);
+      animateCounter(setTertiaryClubsCount, 10);
+      animateCounter(setSecondaryClubsCount, 70);
+      animateCounter(setTreesPlantedCount, 200);
+      animateCounter(setPlasticBottlesCount, 0);
+      animateCounter(setMetalCansCount, 0);
+      animateCounter(setWaterSachetsCount, 0);
     }
   }, [inView, controls]);
 

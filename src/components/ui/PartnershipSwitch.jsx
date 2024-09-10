@@ -1,4 +1,3 @@
-import { useState } from "react";
 import SectionPadding from "./SectionPadding";
 import { Button } from "./button";
 import { Link } from "react-router-dom";
@@ -30,7 +29,7 @@ const PartnershipSwitch = () => {
         <EnvironmentalEducationBookDistribution />
       </div>
       <div>
-        <Button asChild className={""}>
+        <Button asChild className={"mt-5"}>
           <Link to={"/partnership-form"}>Partner with us</Link>
         </Button>
       </div>

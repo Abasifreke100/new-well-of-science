@@ -8,7 +8,7 @@ const BringYourBagToShopCampaign = () => {
           </button>
         </div>
       </div>
-      <div className="grid gir-cols-1 md:grid-cols-2 items-center justify-items-center  text-[14px] md:text-[16px] md:-mb-28 -mb-20  ">
+      <div className="grid gir-cols-1 md:grid-cols-2 items-start mt-10 justify-center  text-[14px] md:text-[16px] md:-mb-28 -mb-20  ">
         <div className="mb-10 md:m-0  ">
           The movement to eliminate single-use plastic bags is a collective
           effort. We&apos;ve curated the &quot;Bring Your Bag to Shop&quot;
