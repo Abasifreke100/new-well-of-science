@@ -28,7 +28,7 @@ export default function PortfolioSection() {
 
       <header className="pt-4 pb-10 mx-auto mb-10 space-y-6 text-center px-7 md:mb-16">
         <h5 className="text-dark_text font-semibold font-gen_sans text-2xl md:text-[32px] leading-[130%] lg:text-[40px] ">
-          Explore our portfolio
+         See what makes us standout
         </h5>
 
         <p className="text-sm font-inter lg:text-base">
