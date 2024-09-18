@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Marquee from "react-fast-marquee";
-import { data } from "../../store/data/green-club";
+import { data, tertiaryInstitutionsData } from "../../store/data/green-club";
 import { Button } from "../ui/button";
 
 const Gallery = () => {
   const [activeTab, setActiveTab] = useState("secondary");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const visibleImages = 6; // Initially show 4 images
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -100,14 +101,19 @@ const Gallery = () => {
       <div className="w-full flex flex-col">
         {activeTab === "secondary" && (
           <div className="p-4">
-            <Marquee gradient  gradientWidth={10}>
+            <Marquee gradient gradientWidth={10}>
               <div className="flex space-x-4">
-                {data.map((datum) => (
-                  <div key={datum.id} className="flex gap-4 items-center">
+                {data.slice(0, visibleImages).map((datum, index) => (
+                  <div
+                    key={datum.id}
+                    className={`flex gap-4 items-center ${
+                      index === 0 && "ml-3"
+                    }`}
+                  >
                     <img
                       src={datum.imgSrc}
                       alt=""
-                      className="w-44 h-60 object-cover rounded-lg "
+                      className="w-44 h-60 object-cover rounded-lg"
                     />
                   </div>
                 ))}
@@ -119,15 +125,22 @@ const Gallery = () => {
           <div className="p-4">
             <Marquee gradient gradientWidth={10}>
               <div className="flex space-x-4">
-                {data.map((datum) => (
-                  <div key={datum.id} className="flex gap-4 items-center">
-                    <img
-                      src={datum.imgSrc}
-                      alt=""
-                      className="w-44 h-60 object-cover rounded-lg "
-                    />
-                  </div>
-                ))}
+                {tertiaryInstitutionsData
+                  .slice(0, visibleImages)
+                  .map((datum, index) => (
+                    <div
+                      key={datum.id}
+                      className={`flex gap-4 items-center ${
+                        index === 0 && "ml-3"
+                      }`}
+                    >
+                      <img
+                        src={datum.imgSrc}
+                        alt=""
+                        className="w-44 h-60 object-cover rounded-lg"
+                      />
+                    </div>
+                  ))}
               </div>
             </Marquee>
           </div>
@@ -159,20 +172,33 @@ const Gallery = () => {
             </button> */}
             <motion.div className=" relative overflow-y-scroll h-[400px] mt-5">
               <div className="gallery ">
-                {data.map((item) => (
-                  <div
-                    key={item.id}
-                    className="pics relative overflow-hidden group rounded-md"
-                  >
-                    <img
-                      src={item.imgSrc}
-                      alt=""
-                      style={{ width: "100%" }}
-                      className="group-hover:scale-150 transition-transform duration-300 ease-in-out"
-                    />
-                    <div className="absolute inset-0 z-10 w-full h-full hero-gradient" />
-                  </div>
-                ))}
+                {activeTab === "secondary"
+                  ? data.map((item) => (
+                      <div
+                        key={item.id}
+                        className="pics relative overflow-hidden group rounded-md"
+                      >
+                        <img
+                          src={item.imgSrc}
+                          alt=""
+                          style={{ width: "100%" }}
+                          className="group-hover:scale-150 transition-transform duration-300 ease-in-out"
+                        />
+                      </div>
+                    ))
+                  : tertiaryInstitutionsData.map((item) => (
+                      <div
+                        key={item.id}
+                        className="pics relative overflow-hidden group rounded-md"
+                      >
+                        <img
+                          src={item.imgSrc}
+                          alt=""
+                          style={{ width: "100%" }}
+                          className="group-hover:scale-150 transition-transform duration-300 ease-in-out"
+                        />
+                      </div>
+                    ))}
               </div>
             </motion.div>
           </motion.div>
