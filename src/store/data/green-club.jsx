@@ -1,10 +1,32 @@
-import image1 from "../../assets/green-club/climate-action.png";
-import image2 from "../../assets/green-club/gallery-image-one.jpg";
-import image3 from "../../assets/green-club/gallery-image-two.jpg";
-import image4 from "../../assets/green-club/gallery-image-three.jpg";
-import image5 from "../../assets/green-club/gallery-image-four.jpg";
-import image6 from "../../assets/green-club/gallery-image-five.jpg";
-import image7 from "../../assets/green-club/gallery-image-six.jpg";
+import image1 from "../../assets/Camera Roll/IMG-20240917-WA0033.jpg";
+import image2 from "../../assets/Camera Roll/IMG-20240917-WA0034.jpg";
+import image3 from "../../assets/Camera Roll/IMG-20240917-WA0035.jpg";
+import image4 from "../../assets/Camera Roll/IMG-20240917-WA0036.jpg";
+import image5 from "../../assets/Camera Roll/IMG-20240917-WA0037.jpg";
+import image6 from "../../assets/Camera Roll/IMG-20240917-WA0038.jpg";
+import image7 from "../../assets/Camera Roll/IMG-20240917-WA0039.jpg";
+import image8 from "../../assets/Camera Roll/IMG-20240917-WA0040.jpg";
+import image9 from "../../assets/Camera Roll/IMG-20240917-WA0041.jpg";
+import image10 from "../../assets/Camera Roll/IMG-20240917-WA0042.jpg";
+import image11 from "../../assets/Camera Roll/IMG-20240917-WA0043.jpg";
+import image12 from "../../assets/Camera Roll/IMG-20240917-WA0044.jpg";
+import image13 from "../../assets/Camera Roll/IMG-20240917-WA0045.jpg";
+import image14 from "../../assets/Camera Roll/IMG-20240917-WA0046.jpg";
+import image15 from "../../assets/Camera Roll/IMG-20240917-WA0048.jpg";
+
+
+// tertiary institution
+import image16 from "../../assets/Saved Pictures/IMG-20240917-WA0022.jpg"
+import image17 from "../../assets/Saved Pictures/IMG-20240917-WA0023.jpg"
+import image18 from "../../assets/Saved Pictures/IMG-20240917-WA0024.jpg"
+import image19 from "../../assets/Saved Pictures/IMG-20240917-WA0025.jpg"
+import image20 from "../../assets/Saved Pictures/IMG-20240917-WA0026.jpg"
+import image21 from "../../assets/Saved Pictures/IMG-20240917-WA0027.jpg"
+import image22 from "../../assets/Saved Pictures/IMG-20240917-WA0028.jpg"
+import image23 from "../../assets/Saved Pictures/IMG-20240917-WA0029.jpg"
+import image24 from "../../assets/Saved Pictures/IMG-20240917-WA0030.jpg"
+import image25 from "../../assets/Saved Pictures/IMG-20240917-WA0031.jpg"
+import image26 from "../../assets/Saved Pictures/IMG-20240917-WA0032.jpg"
 
 export const cardsData = [
   {
@@ -94,6 +116,76 @@ export const data = [
   {
     id: 7,
     imgSrc: image7,
+  },
+  {
+    id: 8,
+    imgSrc: image8,
+  }, {
+    id: 9,
+    imgSrc: image9,
+  },
+  {
+    id: 10,
+    imgSrc: image10,
+  },
+  {
+    id: 11,
+    imgSrc: image11,
+  },
+  {
+    id: 12,
+    imgSrc: image12,
+  }, {
+    id: 13,
+    imgSrc: image13,
+  }, {
+    id: 14,
+    imgSrc: image14,
+  }, {
+    id: 15,
+    imgSrc: image15,
+  },
+];
+
+export const tertiaryInstitutionsData = [
+  {
+    id: 16,
+    imgSrc: image16,
+  },
+  {
+    id: 17,
+    imgSrc: image17,
+  },
+  {
+    id: 18,
+    imgSrc: image18,
+  },
+  {
+    id: 19,
+    imgSrc: image19,
+  },
+  {
+    id: 20,
+    imgSrc: image20,
+  },
+  {
+    id: 21,
+    imgSrc: image21,
+  }, {
+    id: 22,
+    imgSrc: image22,
+  }, {
+    id: 23,
+    imgSrc: image23,
+  }, {
+    id: 24,
+    imgSrc: image24,
+  }, {
+    id: 25,
+    imgSrc: image25,
+  }, {
+    id: 26,
+    imgSrc: image26,
   },
 ];
 
