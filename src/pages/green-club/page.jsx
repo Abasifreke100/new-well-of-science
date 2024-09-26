@@ -13,12 +13,16 @@ import { motion } from "framer-motion";
 const GreenClub = () => {
   return (
     <Layout className="py-0 pt-20">
-      <div className="relative bg-gradient-to-b from-white via-green-50 to-[#f6fef9] py-10 md:py-20">
-        <div className="flex flex-col lg:flex-row items-center max-w-[1280px] md:px-10 mx-auto relative h-full space-y-8 lg:space-y-0 lg:space-x-10">
+      {/* Hero Section */}
+      <div className="relative bg-[url('/images/green-club/wellofscience-greenclub.jpg')] flex items-center justify-center bg-cover bg-center py-10 md:py-20 h-[500px] lg:h-[800px]">
+        {/* Subtle Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-green-700/30 to-green-300/20"></div>
+
+        <div className="relative flex flex-col lg:flex-row items-center max-w-[1280px] md:px-10 mx-auto h-fit space-y-8 lg:space-y-0 lg:space-x-10">
           {/* Hero Text Section */}
-          <div className="w-full lg:w-1/2 lg:ml-6 text-center lg:text-start">
+          <div className="w-full lg:w-1/2 lg:ml-6 text-center lg:text-start text-white z-10">
             <motion.h1
-              className="text-green_three text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
+              className="text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
               initial={{ x: -20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
@@ -26,47 +30,28 @@ const GreenClub = () => {
               Green Clubs for Schools
             </motion.h1>
             <motion.p
-              className="text-green_three text-xl md:text-2xl lg:text-3xl font-semibold leading-snug md:leading-relaxed mt-4 lg:mt-6"
+              className="text-xl md:text-2xl lg:text-3xl font-semibold leading-snug md:leading-relaxed mt-4 lg:mt-6"
               initial={{ x: -20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
             >
               Championing Sustainability Across Schools and Campuses in Nigeria
             </motion.p>
-            <motion.img
-              src="/images/vector38.png"
-              className="absolute top-0 right-10 w-10 h-10"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 4 }}
-              alt="Floating Leaf"
-            />
 
             <a href="#green-club-enquires" className="scroll-smooth">
               <Button
                 asChild
-                className="mt-7 inline-block px-8 py-4 bg-green_three hover:bg-green_two text-white text-lg rounded-full shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
+                className="mt-7 inline-block px-8 py-4 bg-green_three text-white text-lg rounded-full transition-transform transform hover:scale-95"
               >
                 <p>Join us now</p>
               </Button>
             </a>
           </div>
-
-          {/* Hero Image Section */}
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-            <motion.img
-              src="/images/green-club/wellofscience-greenclub.jpg"
-              alt="Green Club Activity"
-              className="lg:h-[500px] w-full lg:w-auto scale-90 mt-3 shadow-lg border rounded-md hover:scale-95 transition-transform duration-500"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            />
-          </div>
         </div>
       </div>
 
       {/* Main Sections */}
-      <div className="max-w-[1440px] bg-gradient-to-b from-[#f6fef9] to-white via-green-50  xl:px-20 overflow-hidden sm:px-7 mx-auto">
+      <div className="max-w-[1440px] xl:px-20 overflow-hidden sm:px-7 mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

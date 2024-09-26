@@ -24,7 +24,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="max-w-[1280px] mx-auto">
+    <div className="max-w-[1280px] mx-auto mb-4 mt-12">
       <div className="flex md:pl-7 space-x-3 md:space-x-10">
         <div className="flex flex-col items-center">
           <motion.div
@@ -43,15 +43,7 @@ const Gallery = () => {
             >
               <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-4-5.59l-3-3c-.39-.39-1.02-.39-1.41 0l-4 4L5 13.83 6.41 12l4 4 3-3 3.59 3.59L17 13.41z"></path>
             </svg>
-
-            <span className="absolute left-0 top-0 h-full w-full home-campaign-glowing-icon-glow-2 z-3"></span>
           </motion.div>
-          <motion.div
-            initial={{ height: 0 }}
-            whileInView={{ height: "100%" }}
-            transition={{ delay: 0.8 }}
-            className=" h-full w-[3px] mt-7 rounded-md bg-gradient-to-b from-[#ffd6cc] via-[#ec6547] to-transparent"
-          ></motion.div>
         </div>
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -66,11 +58,11 @@ const Gallery = () => {
             Gallery
           </h2>
           <h3
-            className="text-[28px] md:text-[40px] max-md:leading-8 max-lg:leading-10 lg:text-5xl  font-medium  js-build-in-item build-in-slideX-left build-in-animate"
+            className="text-[28px] md:text-[40px] max-md:leading-8 max-lg:leading-10 lg:text-3xl font-medium  js-build-in-item build-in-slideX-left build-in-animate"
             style={{ transitionDelay: "300ms" }}
           >
-            <span className="text-[#ffa28b]">
-              Explore our Green Clubs in action!.
+            <span className="text-green_four">
+              Explore our Green Clubs in action!
             </span>{" "}
             Scroll through photos of students participating in environmental
             activities or click &quot;See More&quot; to view an expanded
@@ -79,24 +71,28 @@ const Gallery = () => {
         </motion.div>
       </div>
       <div className="flex justify-center  space-x-4 mb-8">
-        <button
-          onClick={() => handleTabClick("secondary")}
-          className={`px-4 py-3 rounded-full md:ml-7 border-none outline-none text-[13px] md:text-xl font-medium ${
-            activeTab === "secondary"
-              ? "bg-green_one text-white"
-              : "bg-gray-200"
-          }`}
-        >
-          Secondary School
-        </button>
-        <button
-          onClick={() => handleTabClick("tertiary")}
-          className={`px-4 py-3 rounded-full ml-7 border-none outline-none text-[13px] md:text-xl font-medium ${
-            activeTab === "tertiary" ? "bg-green_one text-white" : "bg-gray-200"
-          }`}
-        >
-          Tertiary Schools
-        </button>
+        <div className="bg-gray-200 p-1 rounded-full">
+          <button
+            onClick={() => handleTabClick("secondary")}
+            className={`px-4 py-3 rounded-full  border-none outline-none text-[13px] md:text-xl font-medium ${
+              activeTab === "secondary"
+                ? "bg-green_one text-white"
+                : "bg-gray-200"
+            }`}
+          >
+            Secondary School
+          </button>
+          <button
+            onClick={() => handleTabClick("tertiary")}
+            className={`px-4 py-3 rounded-full  border-none outline-none text-[13px] md:text-xl font-medium ${
+              activeTab === "tertiary"
+                ? "bg-green_one text-white"
+                : "bg-gray-200"
+            }`}
+          >
+            Tertiary Schools
+          </button>
+        </div>
       </div>
       <div className="w-full flex flex-col">
         {activeTab === "secondary" && (
@@ -204,12 +200,6 @@ const Gallery = () => {
           </motion.div>
         </div>
       )}
-      <motion.div
-        initial={{ height: 0 }}
-        whileInView={{ height: "160px" }}
-        transition={{ delay: 0.2 }}
-        className=" md:ml-10 ml-3 h-[160px] mt-[20px] w-[3px] rounded-md bg-gradient-to-b from-transparent to-[#7ee787]"
-      ></motion.div>
     </div>
   );
 };

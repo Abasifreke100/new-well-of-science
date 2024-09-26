@@ -4,7 +4,7 @@ import HoverCard from "./HoverCard";
 const SDG = () => {
   return (
     <div className="max-w-[1280px] mx-auto ">
-      <motion.div className="flex md:pl-10 space-x-3 md:space-x-10">
+      <motion.div className="flex md:pl-10 space-x-3 md:space-x-10 mt-12">
         <div className="flex flex-col items-center ">
           <motion.div
             initial={{ opacity: 0 }}
@@ -25,14 +25,8 @@ const SDG = () => {
             >
               <path d="M12 4.5C6.48 4.5 2 8.97 2 12s4.48 7.5 10 7.5 10-3.48 10-7.5S17.52 4.5 12 4.5zm0 13c-3.62 0-6.5-2.88-6.5-6.5S8.38 5.5 12 5.5 18.5 8.38 18.5 12 15.62 17.5 12 17.5zm0-10a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"></path>
             </svg>
-            <span className="absolute left-0 top-2 h-[40%] w-full home-campaign-glowing-icon-glow-1 z-3"></span>
           </motion.div>
-          <motion.div
-            initial={{ height: 0 }}
-            whileInView={{ height: "100%" }}
-            transition={{ duration: 0.4, delay: 0.6 }}
-            className=" h-full w-[3px] rounded-md bg-gradient-to-b  from-[#7ee787]"
-          ></motion.div>
+        
         </div>
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -55,7 +49,6 @@ const SDG = () => {
           </h3>
         </motion.div>
       </motion.div>
-      {/* TODO:WORK ON THE SVG CARDS AND MAKE THEM RESPONSIVE */}
       <div className="grid  grid-cols-12 gap-3 h-fit  w-full">
         <div className="col-span-12 lg:col-span-4  ">
           <HoverCard
@@ -128,12 +121,6 @@ const SDG = () => {
           </HoverCard>
         </div>
       </div>
-      <motion.div
-        initial={{ height: 0 }}
-        whileInView={{ height: "160px" }}
-        transition={{ delay: 0.2 }}
-        className=" md:ml-10 ml-3 h-[160px] mt-[-20px] w-[3px] rounded-md bg-gradient-to-b from-transparent via-[#797ef9] to-[#abb4ff]"
-      ></motion.div>
     </div>
   );
 };
