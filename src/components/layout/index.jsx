@@ -7,7 +7,7 @@ export default function Layout({ children,className}) {
   return (
     <MotionWrapper>
       <Header />
-      <main className={`${className || "relative py-20"}`}>
+      <main className={`${className || "relative py-20"} `}>
         <ScrollToTop />
         {children}
       </main>
