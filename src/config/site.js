@@ -24,9 +24,9 @@ export const siteConfig = {
       href: "/blog",
     },
     {
-      name:'Green Club',
-      href: '/green-club-for-schools'
-    }
+      name: "Green Club",
+      href: "/green-club-for-schools",
+    },
   ],
 
   contact: {
@@ -36,9 +36,10 @@ export const siteConfig = {
   },
 
   socials: {
-    twitter: "https://twitter.com/wellofscience",
+    twitter: "https://x.com/Well0fScience1",
     facebook: "https://www.facebook.com/wellofscience/",
-    linkedin: "https://www.linkedin.com/company/wellofscience/",
+    linkedin:
+      "https://www.linkedin.com/company/well-of-science/posts/?feedView=all&viewAsMember=true",
   },
 
   form: {

@@ -20,7 +20,7 @@ const GreenClub = () => {
 
         <div className="relative flex flex-col lg:flex-row items-center max-w-[1280px] md:px-10 mx-auto h-fit space-y-8 lg:space-y-0 lg:space-x-10">
           {/* Hero Text Section */}
-          <div className="w-full lg:w-1/2 lg:ml-6 text-center lg:text-start text-white z-10">
+          <div className="w-full  lg:ml-6 text-center lg:text-start text-white z-10">
             <motion.h1
               className="text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
               initial={{ x: -20, opacity: 0 }}

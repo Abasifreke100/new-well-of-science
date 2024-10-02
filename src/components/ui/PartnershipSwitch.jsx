@@ -13,7 +13,7 @@ const PartnershipSwitch = () => {
         <h2 className="font-gen_sans font-semibold ext-[20px] sm:text-[24px] md:text-[32px] ">
           Partnership
         </h2>
-        <div className="flex flex-row gap-6 overflow-x-scroll border-b-[1px] mb-5 text-[14px] md:text-[16px] ">
+        <div className="flex flex-row gap-6  border-b-[1px] mb-5 text-[14px] md:text-[16px] ">
           <div>
             <button
               className={`whitespace-nowrap  border-b-4 border-green_two 

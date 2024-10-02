@@ -1,7 +1,7 @@
 const EnvironmentalEducationBookDistribution = () => {
   return (
       <div className="py-16 mt-9">
-      <div className="flex flex-row gap-6 overflow-x-scroll border-b-[1px] mb-5 text-[14px] md:text-[16px] ">
+      <div className="flex flex-row gap-6  border-b-[1px] mb-5 text-[14px] md:text-[16px] ">
         <div>
           <button className="whitespace-nowrap  border-b-4 border-green_two  bg-white cursor-pointer pt-5 pb-1">
           Environmental Education Book Distribution
