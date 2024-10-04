@@ -1,21 +1,11 @@
-import {
-  Link,
-  useLocation,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
-import useFetch from "../hooks/use-fetch";
+import { useParams } from "react-router-dom";
 import { siteConfig } from "../config/site";
-import Layout from "../components/layout";
-import { formatTextForReadability } from "../lib/utils";
-import imageTest from "../assets/core-logo.webp";
 import { useQuery } from "react-query";
 import { fetchRecentPost } from "../api/config";
 import { useEffect, useRef, useState } from "react";
 import { RecentPost } from "../components/SearchResult";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
-import { FaLinkedin, FaLinkedinIn, FaRegComment, FaWhatsapp } from "react-icons/fa";
+import { FaLinkedin, FaRegComment, FaWhatsapp } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
@@ -23,16 +13,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import CustomPagination from "../components/CustomPagination";
 import { useCookies } from "react-cookie";
-import LinesEllipsis from "react-lines-ellipsis";
-import { Facebook, Twitter, Instagram, Whatsapp, Telegram } from "../assets/reusables/SocialMedia";
 import { TiSocialFacebook } from "react-icons/ti";
-import { toast } from "react-toastify";
 import { ReplyComments } from "../components/ReplyComponent";
 import { format, formatDistance } from "date-fns";
 import { FaXTwitter } from "react-icons/fa6";
-import { MdReplyAll } from "react-icons/md";
 import ReplyComment from "../components/ReplyComment";
 import { CiShare2 } from "react-icons/ci";
+import ShareButton from "../components/blog/reusables/ShareButton";
+import CommentForm from "../components/blog/CommentForm";
+import { handleShare } from "../store/data/blog";
+import Layout from "../components/layout";
+import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   name: yup.string().required("Email field cannot be empty"),
@@ -40,43 +31,26 @@ const schema = yup.object().shape({
   comment: yup.string().required("Password field cannot be empty"),
 });
 
+
+
 export default function BlogDetails() {
   const { blogId } = useParams();
-  const [searchResults, setSearchResults] = useState([]);
   const [isLiked, setLiked] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [likeCount, setLikeCount] = useState(0);
-  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isSearchSuccessful, setSearchSuccessful] = useState(false);
-  const [searchText, setSearchText] = useState("");
   const [replyText, setReplyText] = useState("");
-  const [blogData, setBlogData] = useState({});
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("query"));
+  const [query, setQuery] = useState("");
   const [enableQuery, setEnableQuery] = useState(true);
-  const [searchedPost, setSearchedPost] = useState(null);
-  const [recentPost, setRecentPost] = useState(null);
   const [postReplyLoading, setPostReplyLoading] = useState(false);
-  const [reply, setReply] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
-  const [loading, setLoading] = useState(true);
   const pageSize = 10;
-  const [likeStatusCookies, setLikeStatusCookie, removeLikeStatusCookie] =
-    useCookies(["likeStatus"]);
-  const [commentCookies, setCommentCookie, removeCommentCookie] = useCookies([
-    "commentUserData",
-  ]);
+  const [likeStatusCookies, setLikeStatusCookie] = useCookies(["likeStatus"]);
   const [rememberMe, setRememberMe] = useState(false);
   const [editorValue, setEditorValue] = useState("");
-  const [commentId, setCommentId] = useState(null);
   const queryKey = ["blog", blogId];
 
   const [cookies, setCookie] = useCookies(["name", "email", "website"]);
-
- 
- 
-  // Fetch Blog Content
 
   const {
     data: blog,
@@ -88,43 +62,30 @@ export default function BlogDetails() {
     return response.data;
   });
 
+  const { data: commentCount, refetch: refetchCommentCount } = useQuery(
+    ["commentCount"],
+    async () => {
+      const response = await axios.get(
+        `${siteConfig.api_url}/comments/count/${blog?.data?.post?._id}`
+      );
 
-     const {
-       data: commentCount,
-       isLoading: commentCountLoading,
-       refetch: refetchCommentCount,
-     } = useQuery(["commentCount"], async () => {
-       const response = await axios.get(
-         `${siteConfig.api_url}/comments/count/${blog?.data?.post?._id}`
-       );
+      return response.data;
+    }
+  );
 
-       return response.data;
-     });
-
-  
-  
-  // Fetch Reply
 
   const {
     data: posts,
     isLoading: loadingPosts,
     refetch: refetchPosts,
-    isFetching,
-  } = useQuery(
-    "posts",
-    () => fetchRecentPost(`/post${query ? `?name=${query}` : ""}`),
-    {
-      enabled: enableQuery,
-      onSuccess: () => {
-        setEnableQuery(false);
-      },
-    }
-  );
+  } = useQuery("posts", () => fetchRecentPost(`/post`), {
+    enabled: !!enableQuery,
+    onSuccess: () => {
+      setEnableQuery(false);
+    },
+  });
 
-  console.log("Enable query", enableQuery);
   const presentDay = new Date();
-
-  console.log(posts);
 
   // Fetch Comments
 
@@ -140,26 +101,11 @@ export default function BlogDetails() {
     }
   );
 
-  useEffect(() => {
-    refetch();
-  }, [currentPage]);
-
-  useEffect(() => {
-    if (!!query === false) {
-      setEnableQuery(true);
-    }
-  }, [query]);
-  // Refetch comments
-  // useEffect(() => {
-  //   refetch();
-  // }, [blogId, currentPage, refetch]);
-
-  // Post likes on click of the love icon
 
   const handleLikeClick = async () => {
     setLiked((prevIsLiked) => !prevIsLiked);
 
-    setLikeCount((prevLikeCount) =>
+    setLikeCount(() =>
       !isLiked
         ? (blog?.data?.likes[0]?.total || 0) - 1
         : (blog?.data?.likes[0]?.total || 0) + 1
@@ -172,18 +118,13 @@ export default function BlogDetails() {
     setLikeStatusCookie("likeStatus", !isLiked, { path: "/" });
 
     try {
-      const response = await axios.post(
-        `${siteConfig.api_url}/post/like/${blogId}`,
-        likes
-      );
+      await axios.post(`${siteConfig.api_url}/post/like/${blogId}`, likes);
 
       await refetchBlog();
     } catch (error) {
       console.error("Error posting like:", error);
     }
   };
-
-  // Set Likes based of already storesd likeStatusCookies
 
   useEffect(() => {
     const storedLikeStatus = likeStatusCookies.likeStatus;
@@ -194,50 +135,9 @@ export default function BlogDetails() {
       if (shouldSetLiked) {
         setLiked(storedLikeStatus);
       }
-      // setLiked(storedLikeStatus);
+      // setLiked(stor/edLikeStatus);
     }
   }, [likeStatusCookies]);
-
-  // Event handlers for search results
-
-  const handleInputChange = (e) => {
-    const newSearchQuery = e.target.value;
-    setQuery(newSearchQuery);
-    setSearchParams({
-      query: newSearchQuery,
-    });
-
-    console.log("Updated Search Query:", newSearchQuery);
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      setEnableQuery(true);
-    }
-  };
-
-  // const {
-  //   data: recentPost,
-  //   isLoading: loading,
-  //   refetch: refetchRecent,
-  // } = useQuery(
-  //   "recentPost",
-  //   () => fetchRecentPost(`/post${query ? `?name=${query}` : " "}`),
-  //   {
-  //     enabled: false,
-  //   }
-  // );
-
-  //  useEffect(() => {
-
-  //  fetchData();
-  //  }, []);
-
-  // useEffect(() => {
-  //   if (!query) {
-  //   fetchData()
-  //   }
-  //  },[])
 
   useEffect(() => {
     if (blog?.data?.post?.description) {
@@ -245,18 +145,7 @@ export default function BlogDetails() {
     }
   }, [blog]);
 
-  const handleChange = (value) => {
-    setEditorValue(value);
-  };
-
-  useEffect(() => {
-    setIsPageLoaded(true);
-  }, []);
-
-  const date = new Date(blog?.data.post.updatedAt);
-
   const {
-    getValues,
     register,
     reset,
     handleSubmit,
@@ -292,12 +181,7 @@ export default function BlogDetails() {
     return response.data;
   };
 
-  const {
-    mutate,
-    isLoading: isLoad,
-    isError,
-    error,
-  } = useMutation(postComment, {
+  const { mutate, isLoading: isLoad } = useMutation(postComment, {
     onSuccess: () => {
       queryClient.invalidateQueries("recentPost");
       reset();
@@ -326,79 +210,58 @@ export default function BlogDetails() {
     mutate(postData);
   };
 
-  refetchCommentCount()
+  // refetchCommentCount();
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
 
-  // console.log(blog);
-
-  const handleShare = (platform) => {
-    if (!blog) {
-      console.error("Blog data is not available");
-      return;
-    }
-
-    let shareUrl;
-
-    // Share blog post on social media
-
-    const sharedContent = {
-      title: blog.data.post.name,
-      date: new Date(blog?.data.post.updatedAt),
-      url: "https://your-website-url.com",
-      imageUrl: blog.data.post.image,
-      description: blog.data.post.description,
-    };
-
-    switch (platform) {
-      case "facebook":
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-          sharedContent.url
-        )}&title=${encodeURIComponent(
-          sharedContent.title
-        )}&picture=${encodeURIComponent(sharedContent.imageUrl)}`;
-        break;
-
-      case "twitter":
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-          sharedContent.title
-        )}&url=${encodeURIComponent(sharedContent.url)}&via=wellofscience`;
-        break;
-
-        break;
-      case "whatsapp":
-        shareUrl = `https://wa.me/1234567890?text=${encodeURIComponent(
-          `${sharedContent.title} - ${sharedContent.url}`
-        )}`;
-        window.open(shareUrl, "_blank");
-        break;
-
-      case "linkedin":
-        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-          sharedContent.url
-        )}&title=${encodeURIComponent(
-          sharedContent.title
-        )}&source=${encodeURIComponent("Your Website Name")}`;
-        break;
-
-      default:
-        console.error("Unsupported platform for sharing");
-        return;
-    }
-
-    // Open a new window to share the content
-    window.open(shareUrl, "_blank", "width=600,height=400");
+  // SEO OPTIMIZATION
+  const schemaMarkup = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: blog?.data.post.name,
+    image: blog?.data.post.image,
+    datePublished: blog?.data.post.createdAt,
+    dateModified: blog?.data.post.updatedAt,
+    author: {
+      "@type": "Person",
+      name: "Admin",
+    },
+    articleBody: blog?.data.post.description,
   };
-
-
-  // console.log("Blog" , blog.data.post._id);
-  // console.log("Comment Count" , commentCount.data);
 
 
   return (
     <Layout>
+      <Helmet>
+        <title>
+          {blog?.data.post.name
+            ? `${blog.data.post.name} - My Blog`
+            : "My Blog"}
+        </title>
+        <meta
+          name="description"
+          content={blog?.data.post.description || "A detailed blog post."}
+        />
+        <meta property="og:title" content={blog?.data.post.name || "My Blog"} />
+        <meta
+          property="og:description"
+          content={blog?.data.post.description || "A detailed blog post."}
+        />
+        <meta
+          property="og:image"
+          content={blog?.data.post.image || "/default-image.jpg"}
+        />
+        <meta
+          property="og:url"
+          content={`${siteConfig.siteUrl}/blog/${blogId}`}
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(schemaMarkup || {})}
+        </script>
+      </Helmet>
+
       <>
         <div className="grid grid-cols-12 py-10 px-8 ">
           <div className=" col-span-12 lg:col-span-9  lg:px-24  ">
@@ -488,11 +351,7 @@ export default function BlogDetails() {
                     onClick={handleLikeClick}
                   >
                     {isLiked ? (
-                      <IoIosHeart
-                        size={25}
-                        color="red"
-                        // style={{ backgroundColor: "red" }}
-                      />
+                      <IoIosHeart size={25} color="red" />
                     ) : (
                       <IoIosHeartEmpty size={25} />
                     )}
@@ -509,45 +368,31 @@ export default function BlogDetails() {
             )}
             <div>
               <p>Share this Story</p>
-              {/* <div
-                  class="border hover:bg-[#1877f2] w-8 h-8 fill-[#1877f2] hover:fill-white border-blue-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-blue-500/50 cursor-pointer"
+              <div className="flex items-center gap-3">
+                <ShareButton
+                  backgroundColor="#4267b2"
+                  icon={<TiSocialFacebook size={20} />}
+                  label="Share"
                   onClick={() => handleShare("facebook")}
-                >
-                  <Facebook />
-                </div> */}
-              <div className="flex  items-center gap-3">
-                <div
-                  className="bg-[#4267b2] w-[149px] h-[35.5px] text-[12px] mt-3 text-[#ffffff] rounded-[5px] gap-2 flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:bg-opacity-80 hover:translate-y-[-5px] ease-in"
-                  onClick={() => handleShare("facebook")}
-                  style={{ transitionDuration: 650 }}
-                >
-                  <TiSocialFacebook size={20} />{" "}
-                  <span className="hidden md:block">Share</span>
-                </div>
-                <div
-                  className="bg-[#232323] w-[149px] h-[35.5px] text-[12px] mt-3 text-[#ffffff] rounded-[5px] gap-2 flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:bg-opacity-90 hover:translate-y-[-5px] ease-in"
+                />
+                <ShareButton
+                  backgroundColor="#232323"
+                  icon={<FaXTwitter />}
+                  label="Tweet"
                   onClick={() => handleShare("twitter")}
-                  style={{ transitionDuration: 650 }}
-                >
-                  <FaXTwitter />
-                  <span className="hidden md:block">Tweet</span>
-                </div>
-                <div
-                  className="bg-[#25d366] w-[149px] h-[35.5px] text-[12px] mt-3 text-[#ffffff] rounded-[5px] gap-2 flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:bg-opacity-90 hover:translate-y-[-5px] ease-in"
+                />
+                <ShareButton
+                  backgroundColor="#25d366"
+                  icon={<FaWhatsapp size={20} />}
+                  label="Share"
                   onClick={() => handleShare("whatsapp")}
-                  style={{ transitionDuration: 650 }}
-                >
-                  <FaWhatsapp size={20} />
-                  <span className="hidden md:block">Share</span>
-                </div>
-                <div
-                  className="bg-[#0077b5] w-[149px] h-[35.5px] text-[12px] mt-3 text-[#ffffff] rounded-[5px] gap-2 flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:bg-opacity-90 hover:translate-y-[-5px] ease-in"
+                />
+                <ShareButton
+                  backgroundColor="#0077b5"
+                  icon={<FaLinkedin size={20} />}
+                  label="Share"
                   onClick={() => handleShare("linkedin")}
-                  style={{ transitionDuration: 650 }}
-                >
-                  <FaLinkedin size={20} />
-                  <span className="hidden md:block">Share</span>
-                </div>
+                />
               </div>
             </div>
           </div>
@@ -559,9 +404,8 @@ export default function BlogDetails() {
                 type="text"
                 placeholder="Enter your keywords..."
                 className=" text-[#828282] text-sm outline-none  w-full"
-                value={query}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyPress}
+                // value={query}
+                onChange={(e) => setQuery(e.target.value)} // onKeyDown={handleKeyPress}
               />
               <svg
                 width="18"
@@ -573,8 +417,8 @@ export default function BlogDetails() {
                 <path
                   d="M10 6.5C10 8.433 8.433 10 6.5 10C4.567 10 3 8.433 3 6.5C3 4.567 4.567 3 6.5 3C8.433 3 10 4.567 10 6.5ZM9.30884 10.0159C8.53901 10.6318 7.56251 11 6.5 11C4.01472 11 2 8.98528 2 6.5C2 4.01472 4.01472 2 6.5 2C8.98528 2 11 4.01472 11 6.5C11 7.56251 10.6318 8.53901 10.0159 9.30884L12.8536 12.1464C13.0488 12.3417 13.0488 12.6583 12.8536 12.8536C12.6583 13.0488 12.3417 13.0488 12.1464 12.8536L9.30884 10.0159Z"
                   fill="#0038e3"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </div>
@@ -595,7 +439,6 @@ export default function BlogDetails() {
         <div className="my-8 px-4 lg:px-[212px] bg-[#f9fafa] flex flex-col items-center py-4">
           <div className="w-full">
             <h5 className="flex items-center text-[20px] gap-3 text-[#232323]">
-              {" "}
               <FaRegComment />
               <span>Comments</span>
             </h5>
@@ -609,7 +452,7 @@ export default function BlogDetails() {
                   key={comment._id}
                 >
                   <h5 className="text-[12px] text-[#939494] font-[501]">
-                    {comment.name}'s comment ~{" "}
+                    {comment.name}&apos;s comment ~{" "}
                     <span className="text-[#000000] text-[12px]">
                       {formatDistance(presentDay, new Date(comment?.createdAt))}{" "}
                       ago
@@ -676,100 +519,15 @@ export default function BlogDetails() {
                 <span className="text-[#fb4f58]"> *</span>
               </p>
             </div>
-
-            <form
-              className="grid grid-cols-12 my-4 mt-8 gap-6  "
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className="col-span-12 lg:col-span-6 ">
-                <label htmlFor="" className="text-[#828282]">
-                  {" "}
-                  Your name
-                  <span className="text-[#fb4f58]"> *</span>
-                </label>
-                <br />
-                <input
-                  type="text"
-                  className={`border  ${
-                    errors.name ? "border-red-500" : "border-[#dfdfdf]"
-                  } h-[53px] text-[15px] w-full rounded-[4px] mt-5  p-3 text-[#232323] outline-none`}
-                  placeholder="Enter your name"
-                  {...register("name", { required: true })}
-                />
-              </div>
-              <div className="col-span-12 lg:col-span-6 ">
-                <label htmlFor="" className="text-[#828282]">
-                  {" "}
-                  Your email address
-                  <span className="text-[#fb4f58]"> *</span>
-                </label>
-                <br />
-                <input
-                  type="text"
-                  className={`border ${
-                    errors.email ? "border-red-500" : "border-[#dfdfdf]"
-                  } h-[53px]  text-[15px] w-full rounded-[4px] mt-5 outline-none p-3 text-[#232323]`}
-                  placeholder="Enter your email"
-                  {...register("email", { required: true })}
-                />
-              </div>
-              <div className="col-span-12">
-                <label htmlFor="" className="text-[#828282]">
-                  {" "}
-                  Website
-                </label>
-                <br />
-                <input
-                  type="text"
-                  className={`border border-[#dfdfdf] h-[53px]  text-[15px] w-full col-span-12 rounded-[4px] mt-5 outline-none p-3 text-[#232323]`}
-                  placeholder="Website"
-                  {...register("website", { required: true })}
-                />
-              </div>
-              <div className="col-span-12">
-                <label htmlFor="" className="text-[#828282]">
-                  {" "}
-                  Your comment
-                  <span className="text-[#fb4f58]"> *</span>
-                </label>
-                <br />
-                <textarea
-                  name=""
-                  id=""
-                  cols="30"
-                  rows="10"
-                  className={`border ${
-                    errors.comment ? "border-red-500" : "border-[#dfdfdf]"
-                  } h-[120px] text-[15px] w-full col-span-12 rounded-[4px] mt-5 outline-none p-3 text-[#232323]`}
-                  placeholder="Enter your comment"
-                  {...register("comment", { required: true })}
-                ></textarea>
-              </div>
-
-              <div className="col-span-12">
-                <input
-                  type="checkbox"
-                  name="saveUserData"
-                  id="saveUserData"
-                  checked={rememberMe}
-                  onChange={() => setRememberMe(!rememberMe)}
-                />
-                <label htmlFor="saveUserData" className="text-[#828282]">
-                  {" "}
-                  Save my name, email, and website in this browser for the next
-                  time I comment.
-                  <span className="text-[#fb4f58]"> *</span>
-                </label>
-              </div>
-              <input
-                name="submit"
-                type="submit"
-                id="submit"
-                className="submit btn border w-[151.72px] h-[38.5px] text-[10px] bg-[#232323] text-[#ffffff] rounded-[5px] hover:bg-[#ffffff] hover:border-[#232323] hover:text-[#232323] transition-all duration-400 cursor-pointer ease-in"
-                value={isLoad ? "Posting..." : "Post Comment"}
-                disabled={isLoad} // Add this line
-              />
-            </form>
+            <CommentForm
+              register={register}
+              errors={errors}
+              rememberMe={rememberMe}
+              setRememberMe={setRememberMe}
+              isLoad={isLoad}
+              handleSubmit={handleSubmit}
+              onSubmit={onSubmit}
+            />{" "}
           </div>
         </div>
       </>
