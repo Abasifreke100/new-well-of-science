@@ -2,8 +2,35 @@ import { motion } from "framer-motion";
 import HoverCard from "./HoverCard";
 
 const SDG = () => {
+  const sdgItems = [
+    {
+      id: 1,
+      title: "SDG 13: Climate Action",
+      description:
+        "Promoting activities that reduce carbon footprints, enhance waste management, and raise awareness about climate change.",
+      imgSrc: "./images/green-club/sdg_13.png",
+      altText: "sdg_13",
+    },
+    {
+      id: 2,
+      title: "SDG 4: Quality Education",
+      description:
+        "Advocating for the integration of environmental education into school curriculums, enriching students' knowledge and skills.",
+      imgSrc: "./images/green-club/sdg_4.png",
+      altText: "sdg_4",
+    },
+    {
+      id: 3,
+      title: "SDG 15: Life on Land",
+      description:
+        "Supporting initiatives to protect and restore ecosystems, promote biodiversity, and combat deforestation.",
+      imgSrc: "./images/green-club/sdg_15.png",
+      altText: "sdg_15",
+    },
+  ];
+
   return (
-    <div className="max-w-[1280px] mx-auto ">
+    <div className="max-w-[1280px] mx-auto my-12 ">
       <motion.div className="flex md:pl-10 space-x-3 md:space-x-10 mt-12">
         <div className="flex flex-col items-center ">
           <motion.div
@@ -26,7 +53,6 @@ const SDG = () => {
               <path d="M12 4.5C6.48 4.5 2 8.97 2 12s4.48 7.5 10 7.5 10-3.48 10-7.5S17.52 4.5 12 4.5zm0 13c-3.62 0-6.5-2.88-6.5-6.5S8.38 5.5 12 5.5 18.5 8.38 18.5 12 15.62 17.5 12 17.5zm0-10a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"></path>
             </svg>
           </motion.div>
-        
         </div>
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -49,77 +75,48 @@ const SDG = () => {
           </h3>
         </motion.div>
       </motion.div>
-      <div className="grid  grid-cols-12 gap-3 h-fit  w-full">
-        <div className="col-span-12 lg:col-span-4  ">
-          <HoverCard
-            backgroundColor="#EEEEF0"
-            direction=""
-            left="0"
-            className="border border-gray-100 h-[500px] "
+      <div className="grid grid-cols-12 gap-6 w-full">
+        {/* Render each SDG item as a card */}
+        {sdgItems.map((item, index) => (
+          <div
+            key={item.id}
+            className={`col-span-12 ${
+              index === 0 ? "lg:col-span-4" : "md:col-span-6 lg:col-span-4"
+            } flex justify-center`}
           >
-            <div className="overflow-auto flex flex-col msl:flex-row lg:flex-col space-y-6 items-center md:space-y-10 msl:space-y-0 lg:space-y-10 flex-1 h-full p-4 md:p-10 msl:p-6 my-6   md:min-w-[400px]">
-              <p className=" text-xl  w-full  font-medium text-[#7d8590]">
-                <span className=" font-medium text-green_four">
-                  SDG 13: Climate Action
-                </span>{" "}
-                Promoting activities that reduce carbon footprints, enhance
-                waste management, and raise awareness about climate change
-              </p>
-              <img
-                src="./images/green-club/sdg_13.png"
-                alt="sdg_13"
-                className="h-52 w-52 rounded-md "
-              />
-            </div>
-          </HoverCard>
-        </div>
-        <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
-          <HoverCard
-            backgroundColor="#EEEEF0"
-            direction=""
-            left="0"
-            className="border border-gray-100  h-[500px]"
-          >
-            <div className="overflow-auto flex flex-col  space-y-6 items-center md:space-y-10  flex-1 h-full p-4 md:p-10 msl:p-6  my-6   md:min-w-[400px]">
-              <p className=" text-xl  w-full  font-medium text-[#7d8590]">
-                <span className=" font-medium text-green_four">
-                  SDG 4: Quality Education
-                </span>{" "}
-                Advocating for the integration of environmental education into
-                school curriculums, enriching students&apos; knowledge and
-                skills.
-              </p>
-              <img
-                src="./images/green-club/sdg_4.png"
-                alt="sdg_4"
-                className="h-52 w-52 rounded-md "
-              />
-            </div>
-          </HoverCard>
-        </div>
-        <div className="col-span-12 md:col-span-6 lg:col-span-4  ">
-          <HoverCard
-            backgroundColor="#EEEEF0"
-            direction=""
-            left="0"
-            className="border border-gray-100 h-[500px]"
-          >
-            <div className="overflow-auto flex flex-col space-y-6 items-center md:space-y-10 msl:space-y-20 lg:space-y-16 flex-1 h-full p-4 md:p-10 msl:p-6 my-6   md:min-w-[400px]">
-              <p className=" text-xl  w-full  font-medium text-[#7d8590]">
-                <span className=" font-medium text-green_four">
-                  SDG 15: Life on Land
-                </span>{" "}
-                Supporting initiatives to protect and restore ecosystems,
-                promote biodiversity, and combat deforestation.
-              </p>
-              <img
-                src="./images/green-club/sdg_15.png"
-                alt="sdg_15"
-                className="h-52 w-52 rounded-md "
-              />
-            </div>
-          </HoverCard>
-        </div>
+            <HoverCard
+              backgroundColor="#EEEEF0"
+              direction=""
+              left="0"
+              className={`border border-gray-100  ${
+                index === 0 ? "h-[500px] mmd:h-fit lg:h-[500px]" : "h-[500px]"
+              } w-full flex justify-center items-center`}
+            >
+              <div
+                className={`overflow-auto flex flex-col justify-between items-center space-y-6 h-full p-4 sm:p-6 md:p-8 ${
+                  index === 0 ? "md:space-y-10 lg:space-y-12" : "md:space-y-8"
+                }`}
+              >
+                {/* Text Section */}
+                <p
+                  className={`text-lg sm:text-xl md:text-xl font-medium text-[#7d8590] text-center md:text-left`}
+                >
+                  <span className="font-medium text-green_four block mb-2">
+                    {item.title}
+                  </span>
+                  {item.description}
+                </p>
+
+                {/* Image Section */}
+                <img
+                  src={item.imgSrc}
+                  alt={item.altText}
+                  className={`h-32 w-32 sm:h-40 sm:w-40 md:h-44 md:w-44 lg:h-52 lg:w-52 rounded-md`}
+                />
+              </div>
+            </HoverCard>
+          </div>
+        ))}
       </div>
     </div>
   );
