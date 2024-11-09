@@ -1,4 +1,4 @@
-const BASE_URL = "https://wellofsciencebackend.adaptable.app/api/v1"
+const BASE_URL = "https://api.wellofscience.com"
 
 export const fetchRecentPost = async (url) => {
   const response = await fetch(`${BASE_URL}${url}`);

@@ -47,5 +47,5 @@ export const siteConfig = {
     public_key: "T4N7Cw-PtAqFYmc5d",
   },
 
-  api_url: "https://wellofsciencebackend.adaptable.app/api/v1",
+  api_url: "https://api.wellofscience.com",
 };
